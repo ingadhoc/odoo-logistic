@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_travel_make_sale_order" model="ir.ui.view">
+            <field name="name">Travel Make Make Sale Order</field>
+            <field name="model">logistic.travel.make.sale.order</field>
+            <field name="arch" type="xml">
+             <form string="Create Sale Orders" version="7.0">
+                <p class="oe_grey">
+                    All items in these travels be ordered.
+                </p>
+                <footer>
+                    <button name="make_orders" string="Create &amp; View Orders" type="object" context="{'open_orders': True}" class="oe_highlight"/>
+                    <button name="make_orders" string="Create" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="action_view_travel_make_order" model="ir.actions.act_window">
+            <field name="name">Make Sale Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">logistic.travel.make.sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_travel_make_sale_order"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.values" id="sale_order_line_make_invoice">
+            <field name="model_id" ref="logistic.model_logistic_travel" />
+            <field name="name">Make Sale Orders</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_view_travel_make_order'))" />
+            <field name="key">action</field>
+            <field name="model">logistic.travel</field>
+        </record>
+    </data>
+</openerp>

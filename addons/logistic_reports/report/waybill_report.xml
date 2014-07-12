@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+    <record id="waybill_report" model="ir.actions.report.xml">
+        <field name="name">Waybill</field>
+        <field name="type">ir.actions.report.xml</field>
+        <field name="model">logistic.waybill</field>
+        <field name="report_name">waybill_report</field>
+        <field name="report_type">aeroo</field>
+        <field name="in_format">oo-odt</field>
+        <!-- <field name="out_format" ref="report_aeroo_ooo.report_mimetypes_pdf_odt"/> -->
+        <!-- <field name="parser_loc">sgr_reports/report/parser.py</field> -->
+        <!-- <field name="parser_state">loc</field> -->
+        <field name="parser_state">default</field>
+        <field name="report_rml">logistic_reports/report/waybill_report.odt</field>
+        <field name="tml_source">file</field>
+    </record>
+
+    <ir_set>
+        <field eval="'action'" name="key"/>
+        <field eval="'client_print_multi'" name="key2"/>
+        <field eval="['logistic.waybill']" name="models"/>
+        <field name="name">Waybill</field>
+        <field eval="'ir.actions.report.xml,'+str(waybill_report)" name="value"/>
+        <field eval="True" name="isobject"/>
+        <field eval="True" name="replace"/>
+    </ir_set>
+
+</data>
+</openerp>
+

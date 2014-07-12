@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Logistic
+#    Copyright (C) 2014 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- logistic.waybill_expense -->
+<!-- logistic.waybill_expense -->
+<!-- logistic.waybill_expense -->
+<openerp>
+    <data>
+
+        <!-- SEARCH VIEW -->
+        <record id="view_logistic_waybill_expense_filter" model="ir.ui.view">
+            <field name="name">logistic.waybill_expense.select</field>
+            <field name="model">logistic.waybill_expense</field>
+            <field name="arch" type="xml">
+                <search string="waybill_expense" version="7.0">
+                    <group string="By Attribute">
+                    <field name="supplier_id" string="Supplier"
+                            />
+                    <field name="product_id" string="Product"
+                            />
+                    <field name="price_unit" string="Price Unit"
+                            />
+                    <field name="product_uom_qty" string="Quantity"
+                            />
+                    <field name="price_subtotal" string="Subtotal"
+                            />
+                    <field name="invoice_state" string="Do not Invoice"
+                            />
+                    </group>
+                    <group string="By object">
+                    <field name="waybill_id" string="Waybill"
+                            />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- FORMVIEW -->
+        <record id="view_logistic_waybill_expense_form" model="ir.ui.view">
+            <field name="name">logistic.waybill_expense.form</field>
+            <field name="model">logistic.waybill_expense</field>
+            <field name="arch" type="xml">
+                <form string="waybill_expense" version="7.0">
+                    <header>
+                    </header>
+                    <sheet string="waybill_expense">
+                     <group>
+                        <field name="supplier_id"
+                            />
+                        <field name="product_id"
+                            />
+                        <field name="price_unit"
+                            />
+                        <field name="product_uom_qty"
+                            />
+                        <field name="price_subtotal"
+                            />
+                        <field name="invoice_state"
+                            />
+                        <field name="note"
+                            />
+                        <field name="invoice_line_id"
+                            />
+                    <field name="waybill_id"
+                            />
+                     </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <!-- TREEVIEW -->
+
+        <record id="view_logistic_waybill_expense_tree" model="ir.ui.view">
+            <field name="name">logistic.waybill_expense.tree</field>
+            <field name="model">logistic.waybill_expense</field>
+            <field name="arch" type="xml">
+                <tree string="waybill_expense"
+                    >
+                    <field name="supplier_id"
+                        />
+                    <field name="product_id"
+                        />
+                    <field name="price_unit"
+                        />
+                    <field name="product_uom_qty"
+                        />
+                    <field name="price_subtotal"
+                        />
+                    <field name="invoice_state"
+                        />
+                    <field name="note"
+                        />
+                    <field name="invoice_line_id"
+                        />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

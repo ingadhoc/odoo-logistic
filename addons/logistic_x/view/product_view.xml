@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Logistic
+#    Copyright (C) 2014 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- logistic.product -->
+<!-- product.product -->
+<!-- product.product -->
+<openerp>
+    <data>
+
+        <record id="logistic.action_logistic_product_products" model="ir.actions.act_window">
+            <!-- <field name="name">Products</field> -->
+            <!-- <field name="res_model">product.product</field> -->
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref=""/>
+            <!-- <field name="search_view_id" ref="view_logistic_product_filter"/> -->
+            <!-- <field name="domain">[]</field> -->
+        </record>        
+
+        <!-- INHERITED SEARCH -->
+        <record id="view_logistic_product_filter" model="ir.ui.view">
+            <field name="name">logistic.product.select</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+               <separator position="after"> 
+                   <separator/>
+                   <filter name="travel" string="Travels" domain="[('service_subtype','=','travel')]"/>
+                   <filter name="document" string="Documents" domain="[('service_subtype','=','document')]"/>
+                   <filter name="maintenance" string="Maintenances" domain="[('service_subtype','=','maintenance')]"/>
+                   <filter name="other" string="Others" domain="[('service_subtype','=','other')]"/>                  
+                   <separator/>     
+               </separator>
+            </field>
+        </record>
+ 
+        <!-- INHERITED FORM -->
+        <record id="logistic.view_logistic_product_form" model="ir.ui.view">
+            <field name="name">logistic.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="is_fuel"/>
+                    <field name="service_subtype" attrs="{'invisible':[('type','!=','service')],'required':[('type','=','service')]}"/>
+                    <field name="location_from_id" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','travel')],'required':[('type','=','service'),('service_subtype','=','travel')]}"/>
+                    <field name="location_to_id" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','travel')],'required':[('type','=','service'),('service_subtype','=','travel')]}"/>
+                    <field name="default_range" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','maintenance')],'required':[('type','=','service'),('service_subtype','=','maintenance')]}"/>
+                    <!-- <label for="default_range" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','maintenance')],'required':[('type','=','service'),('service_subtype','=','maintenance')]}"/>
+                    <div attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','maintenance')]}" class="oe_inline">
+                        <field name="default_range" attrs="{'required':[('type','=','service'),('service_subtype','=','maintenance')]}" class="oe_inline"/>
+                        <field name="range_unit" attrs="{'required':[('type','=','service'),('service_subtype','=','maintenance')]}" class="oe_inline"/>
+                    </div> -->
+                    <field name="default_warning_range" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','maintenance')],'required':[('type','=','service'),('service_subtype','=','maintenance')]}"/>
+                    <field name="range_unit" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','maintenance')],'required':[('type','=','service'),('service_subtype','=','maintenance')]}"/>
+                    <field name="default_validity_days" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','document')],'required':[('type','=','service'),('service_subtype','=','document')]}"/>
+                    <field name="default_warning_days" attrs="{'invisible':['|',('type','!=','service'),('service_subtype','!=','document')],'required':[('type','=','service'),('service_subtype','=','document')]}"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- INHERITED TREE -->
+<!--         <record id="view_logistic_product_tree" model="ir.ui.view">
+            <field name="name">logistic.product.tree</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <tree position="inside">
+                </tree>
+            </field>
+        </record> -->
+
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

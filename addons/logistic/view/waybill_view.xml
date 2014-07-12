@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Logistic
+#    Copyright (C) 2014 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- logistic.waybill -->
+<!-- logistic.waybill -->
+<!-- logistic.waybill -->
+<openerp>
+    <data>
+
+        <!-- SEARCH VIEW -->
+        <record id="view_logistic_waybill_filter" model="ir.ui.view">
+            <field name="name">logistic.waybill.select</field>
+            <field name="model">logistic.waybill</field>
+            <field name="arch" type="xml">
+                <search string="waybill" version="7.0">
+                    <group string="By Attribute">
+                    <field name="name" string="Name"
+                            />
+                    <field name="reference" string="Reference"
+                            />
+                    <field name="date" string="Date"
+                            />
+                    <field name="tractor_id" string="Tractor"
+                            />
+                    <field name="wagon_id" string="Wagon"
+                            />
+                    <field name="driver_id" string="Driver"
+                            />
+                    </group>
+                    <group string="By object">
+                    <field name="driver_payment_id" string="Driver Payment"
+                            />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- FORMVIEW -->
+        <record id="view_logistic_waybill_form" model="ir.ui.view">
+            <field name="name">logistic.waybill.form</field>
+            <field name="model">logistic.waybill</field>
+            <field name="arch" type="xml">
+                <form string="waybill" version="7.0">
+                    <header>
+                        <button name="sgn_close"
+                            states="active"
+                            string="Close"
+                            class="oe_highlight"
+                            />
+                        <button name="action_wfk_set_active"
+                            type="object"
+                            states="cancelled"
+                            string="Set Active"
+                            />
+                        <button name="sgn_cancel"
+                            states="closed"
+                            string="Cancel"
+                            />
+                        <field name="state" widget="statusbar"
+                            statusbar_colors='{}'
+                            />
+                    </header>
+                    <sheet string="waybill">
+                     <group>
+                        <field name="name"
+                            />
+                        <field name="reference"
+                            />
+                        <field name="date"
+                            />
+                        <field name="tractor_id"
+                            on_change="on_change_vehicle(vehicle_id, context)"
+                            />
+                        <field name="wagon_id"
+                            />
+                        <field name="driver_id"
+                            />
+                        <field name="initial_odometer"
+                            />
+                        <field name="final_odometer"
+                            />
+                        <field name="odometer_unit"
+                            />
+                        <field name="note"
+                            />
+                        <field name="company_id"
+                            />
+                        <field name="date_start"
+                            />
+                        <field name="date_finish"
+                            />
+                        <field name="driver_product_id"
+                            />
+                        <field name="distance"
+                            />
+                        <field name="initial_liters"
+                            />
+                        <field name="final_liters"
+                            />
+                        <field name="charged_liters"
+                            />
+                        <field name="consumed_liters"
+                            />
+                        <field name="consumption"
+                            />
+                    <field name="travel_ids"
+                            />
+                    <field name="waybill_expense_ids"
+                            />
+                    <field name="driver_payment_id"
+                            />
+                     </group>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- TREEVIEW -->
+
+        <record id="view_logistic_waybill_tree" model="ir.ui.view">
+            <field name="name">logistic.waybill.tree</field>
+            <field name="model">logistic.waybill</field>
+            <field name="arch" type="xml">
+                <tree string="waybill"
+                    fonts="bold:message_unread==True"
+                    colors="grey:state=='cancelled';blue:state in ('active',);black:state in ('closed',); red:state in ()"
+                    >
+                    <field name="message_unread" invisible="1"/>
+                    <field name="name"
+                        />
+                    <field name="reference"
+                        />
+                    <field name="date"
+                        />
+                    <field name="tractor_id"
+                        />
+                    <field name="wagon_id"
+                        />
+                    <field name="driver_id"
+                        />
+                    <field name="distance"
+                        />
+                    <field name="driver_payment_id"
+                        />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

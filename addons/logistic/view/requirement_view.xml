@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Logistic
+#    Copyright (C) 2014 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- logistic.requirement -->
+<!-- logistic.requirement -->
+<!-- logistic.requirement -->
+<openerp>
+    <data>
+
+        <!-- SEARCH VIEW -->
+        <record id="view_logistic_requirement_filter" model="ir.ui.view">
+            <field name="name">logistic.requirement.select</field>
+            <field name="model">logistic.requirement</field>
+            <field name="arch" type="xml">
+                <search string="requirement" version="7.0">
+                    <group string="By Attribute">
+                    <field name="date" string="Date"
+                            />
+                    <field name="product_id" string="Product"
+                            />
+                    <field name="name" string="Name"
+                            />
+                    <field name="warning_range" string="Warning Range"
+                            />
+                    <field name="issue_date" string="Issue Date"
+                            />
+                    <field name="expiration_date" string="Expiration Date"
+                            />
+                    <field name="warning_days" string="Warning Days"
+                            />
+                    </group>
+                    <group string="By object">
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- FORMVIEW -->
+        <record id="view_logistic_requirement_form" model="ir.ui.view">
+            <field name="name">logistic.requirement.form</field>
+            <field name="model">logistic.requirement</field>
+            <field name="arch" type="xml">
+                <form string="requirement" version="7.0">
+                    <header>
+                        <button name="action_wfk_set_draft"
+                            type="object"
+                            states="cancelled"
+                            string="To Draft"
+                            />
+                        <button name="sgn_set_ok"
+                            states="draft"
+                            string="Set OK"
+                            class="oe_highlight"
+                            />
+                        <button name="sgn_next_to_renew"
+                            states="ok"
+                            string="Next To Renew"
+                            class="oe_highlight"
+                            />
+                        <button name="sgn_need_renew"
+                            states="next_to_renew"
+                            string="Need Renew"
+                            />
+                        <button name="sgn_request_renewal"
+                            states="need_renew,next_to_renew,ok"
+                            string="Request Renewal"
+                            class="oe_highlight"
+                            />
+                        <button name="sgn_renewed"
+                            states="renewal_requested"
+                            string="Renewed"
+                            />
+                        <button name="sgn_cancel"
+                            states="need_renew,next_to_renew,ok,renewal_requested,renewed"
+                            string="Cancel"
+                            />
+                        <field name="state" widget="statusbar"
+                            statusbar_colors='{}'
+                            />
+                    </header>
+                    <sheet string="requirement">
+                     <group>
+                        <field name="date"
+                            />
+                        <field name="type"
+                            invisible="True"
+                            />
+                        <field name="vehicle_id"
+                            required="context.get('related_model',False) == 'fleet.vehicle'"
+                            invisible="context.get('related_model',False) != 'fleet.vehicle'"
+                            on_change="on_change_vehicle(vehicle_id,context)"
+                            />
+                        <field name="partner_id"
+                            required="context.get('related_model',False) == 'res.partner'"
+                            invisible="context.get('related_model',False) != 'res.partner'"
+                            />
+                        <field name="product_id"
+                            domain="[('service_subtype','=',type),('type','=','service')]"
+                            context="{'default_type':'service','default_service_subtype':type}"
+                            on_change="on_change_product(product_id,issue_date,context)"
+                            />
+                        <field name="name"
+                            />
+                        <field name="initial_odometer"
+                            attrs="{'invisible':[('type','!=','maintenance')],'required':[('type','=','maintenance')]}"
+                            />
+                        <field name="odometer_range"
+                            attrs="{'invisible':[('type','!=','maintenance')],'required':[('type','=','maintenance')]}"
+                            />
+                        <field name="warning_range"
+                            attrs="{'invisible':[('type','!=','maintenance')],'required':[('type','=','maintenance')]}"
+                            />
+                        <field name="odometer_unit"
+                            attrs="{'invisible':[('type','!=','maintenance')],'required':[('type','=','maintenance')]}"
+                            />
+                        <field name="issue_date"
+                            attrs="{'invisible':[('type','!=','document')],'required':[('type','=','document')]}"
+                            />
+                        <field name="expiration_date"
+                            attrs="{'invisible':[('type','!=','document')],'required':[('type','=','document')]}"
+                            />
+                        <field name="note"
+                            />
+                        <field name="remaining_range"
+                            attrs="{'invisible':['|',('type','!=','maintenance'),('id','=',False)],'required':[('type','=','maintenance')]}"
+                            />
+                        <field name="remaining_days"
+                            attrs="{'invisible':['|',('type','!=','document'),('id','=',False)],'required':[('type','=','document')]}"
+                            />
+                        <field name="warning_days"
+                            attrs="{'invisible':['|',('type','!=','document'),('id','=',False)],'required':[('type','=','document')]}"
+                            />
+                        <field name="renewed_by_id"
+                            />
+                        <field name="renews_id"
+                            />
+                        <field name="id"
+                            invisible="True"
+                            />
+                     </group>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- TREEVIEW -->
+
+        <record id="view_logistic_requirement_tree" model="ir.ui.view">
+            <field name="name">logistic.requirement.tree</field>
+            <field name="model">logistic.requirement</field>
+            <field name="arch" type="xml">
+                <tree string="requirement"
+                    fonts="bold:message_unread==True"
+                    colors="grey:state=='cancelled';blue:state in ('draft',);black:state in ('renewal_requested', 'need_renew', 'next_to_renew', 'renewed', 'ok'); red:state in ()"
+                    >
+                    <field name="message_unread" invisible="1"/>
+                    <field name="date"
+                        />
+                    <field name="type"
+                            invisible="True"
+                        />
+                    <field name="vehicle_id"
+                            invisible="context.get('related_model',False) != 'fleet.vehicle'"
+                        />
+                    <field name="partner_id"
+                            invisible="context.get('related_model',False) != 'res.partner'"
+                        />
+                    <field name="product_id"
+                        />
+                    <field name="name"
+                        />
+                    <field name="initial_odometer"
+                            invisible="context.get('default_type',False) != 'maintenance'"
+                        />
+                    <field name="odometer_range"
+                            invisible="context.get('default_type',False) != 'maintenance'"
+                        />
+                    <field name="warning_range"
+                            invisible="context.get('default_type',False) != 'maintenance'"
+                        />
+                    <field name="odometer_unit"
+                            invisible="context.get('default_type',False) != 'maintenance'"
+                        />
+                    <field name="issue_date"
+                            invisible="context.get('default_type',False) != 'document'"
+                        />
+                    <field name="expiration_date"
+                            invisible="context.get('default_type',False) != 'document'"
+                        />
+                    <field name="note"
+                        />
+                    <field name="remaining_range"
+                            invisible="context.get('default_type',False) != 'maintenance'"
+                        />
+                    <field name="remaining_days"
+                            invisible="context.get('default_type',False) != 'document'"
+                        />
+                    <field name="warning_days"
+                            invisible="context.get('default_type',False) != 'document'"
+                        />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="fleet.menu_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+        </record>
+
+        <!-- <menuitem name="Fleet" id="menu_root" sequence="110" groups="group_fleet_user"/> -->
+        
+        <!-- <menuitem name="Configuration" parent="menu_root" id="fleet_configuration" sequence="3" groups="group_fleet_manager"/> -->
+        <menuitem action="fleet.fleet_vehicle_model_act" parent="logistic.menu_configuration" id="fleet_vehicle_model_menu" />
+        <menuitem action="fleet.fleet_vehicle_model_brand_act" parent="logistic.menu_configuration" id="fleet_vehicle_model_brand_menu"/>
+        <menuitem action="fleet.fleet_vehicle_state_act" parent="logistic.menu_configuration" id="fleet_vehicle_state_menu"/>
+
+        <record id="logistic.action_logistic_vehicle_vehicles" model="ir.actions.act_window">
+            <!-- <field name="name">Vehicles</field> -->
+            <!-- <field name="res_model">fleet.vehicle</field> -->
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref=""/>
+            <!-- <field name="search_view_id" ref="view_logistic_vehicle_filter"/> -->
+            <!-- <field name="domain">[]</field> -->
+        </record>
+
+        <record model='ir.ui.view' id='logistic.view_logistic_vehicle_filter'>
+            <field name="name">fleet.vehicle.search</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_search"/>
+            <field name="arch" type="xml">
+                <search>
+                    <filter name="tractors" string="Tractors" domain="[('type','=','tractor')]"/>
+                    <filter name="wagons" string="Wagons" domain="[('type','=','wagon')]"/>
+                    <filter name="cars" string="Cars" domain="[('type','=','car')]"/>
+                    <!-- Lo sacamos porque muestra el label mal -->
+                    <!-- <group expand="0" string="Group By...">
+                        <filter string="Type" domain="[]" context="{'group_by' : 'type'}"/>
+                    </group>                -->     
+                </search>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='logistic.view_logistic_vehicle_tree'>
+            <field name="name">fleet.vehicle.tree</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_tree"/>
+            <field name="arch" type="xml">
+                <field name="license_plate" position="before">
+                    <field name="name"/>
+                </field>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='fleet_vehicle_kanban'>
+            <field name="name">fleet.vehicle.kanban</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_kanban"/>
+            <field name="arch" type="xml">
+                <field name="license_plate" position='after'>
+                    <field name="name"/>
+                </field>
+                <xpath expr="/kanban/templates/t/div/div/h4/a/field[@name='license_plate']" position="before">
+                    <field name="name"/><br/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='fleet_vehicle_form'>
+            <field name="name">fleet.vehicle.form</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_form"/>
+            <field name="arch" type="xml">
+<!--                 <field name="driver_id" position="before">
+                    <field name="type"/>
+                    <field name="wagon_id" attrs="{'invisible':[('type','!=','tractor')]}"/>
+                </field> -->
+                <label for="license_plate" position="before">
+                    <label for="name" class="oe_edit_only"/>
+                    <h2>
+                        <field name="name" class="oe_inline"/>
+                    </h2>                
+                </label>
+
+                <group col="2" string="General Properties" position="replace"/>
+                <group col="2" position="replace"/>
+                <sheet>
+                    <notebook>
+                        <page string="Information">
+                            <group col="2" string="General Properties">
+                                <group>
+                                    <field name="requirement_state"/>
+                                    <field name="type"/>
+                                    <field name="wagon_id" attrs="{'invisible':[('type','!=','tractor')]}"/>
+                                    <field name="driver_id" attrs="{'invisible':[('type','=','wagon')]}"/>
+                                    <field name="location"/>                                   
+                                    <field name="vin_sn" string="Número de Chasis"/>
+                                    <field name="company_id" groups="base.group_multi_company"/>
+                                </group>
+                                <group>
+                                    <label for="odometer"/>
+                                    <div>
+                                        <field name="odometer" class="oe_inline"/>
+                                        <field name="odometer_unit" class="oe_inline"/>
+                                    </div>
+                                    <field name="acquisition_date"/>
+                                    <field name="car_value"/>
+                                </group>
+                            </group>
+                            <group col="2">
+                                <group string="Additional Properties">
+                                    <field name="length" attrs="{'invisible':[('type','not in',['wagon','tractor'])]}"/>
+                                    <field name="width" attrs="{'invisible':[('type','not in',['wagon','tractor'])]}"/>
+                                    <field name="capacity" attrs="{'invisible':[('type','not in',['wagon','tractor'])]}"/>
+                                    <field name="seats"/>
+                                    <field name="doors"/>
+                                    <field name="color"/>
+                                    <field name="year"/>
+                                </group>
+                                <group string="Engine Options">
+                                    <field name="transmission"/>
+                                    <field name="fuel_type"/>
+                                    <field name="motor_sn"/>
+                                    <field name="co2"/>
+                                    <field name="horsepower"/>
+                                    <field name="horsepower_tax"/>
+                                    <field name="power"/>
+                                </group>  
+                            </group>                            
+                        </page>
+                        <page name="maintenances" string="Maintenances">
+                            <field name="maintenance_ids" context="{'default_type':'maintenance','default_initial_odometer': odometer}"/>
+                        </page>
+                        <page name="documents" string="Documents">
+                            <field name="document_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <button string="Contracts" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </button>
+                <button string="Costs" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </button>
+                <button string="Services" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </button>
+                <button string="Fuel Logs" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </button>
+            </field>
+        </record>
+    </data>
+</openerp>

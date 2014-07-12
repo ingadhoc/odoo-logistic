@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Logistic
+#    Copyright (C) 2014 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+-->
+<openerp>
+    <data>
+
+        <menuitem
+            name="Logistic"
+            id="menu_logistic"
+            sequence="20"
+            groups="group_view"
+            />
+
+
+        <menuitem
+            name="Configuration"
+            id="menu_configuration"
+            sequence="500"
+            parent="menu_logistic"
+            groups="group_manager"
+            />
+
+
+        <menuitem
+            name="Master Data"
+            id="menu_master_data"
+            sequence="20"
+            parent="menu_logistic"
+            groups="group_view"
+            />
+
+
+        <menuitem
+            name="Requirements"
+            id="menu_requirements"
+            sequence="30"
+            parent="menu_logistic"
+            groups="group_view"
+            />
+
+
+        <menuitem
+            name="Waybills"
+            id="menu_waybills_main"
+            sequence="10"
+            parent="menu_logistic"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_waybill_driver_payment_driver_payments" model="ir.actions.act_window">
+            <field name="name">Driver Payments</field>
+            <field name="res_model">logistic.waybill_driver_payment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_waybill_driver_payment_tree"/>
+            <field name="search_view_id" ref="view_logistic_waybill_driver_payment_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Driver Payments"
+            id="menu_driver_payments"
+            sequence="50"
+            action="action_logistic_waybill_driver_payment_driver_payments"
+            parent="menu_waybills_main"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_partner_drivers" model="ir.actions.act_window">
+            <field name="name">Drivers</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_partner_tree"/>
+            <field name="search_view_id" ref="view_logistic_partner_filter"/>
+            <field name="context">{'default_is_driver':True}</field>
+            <field name="domain">[('is_driver','=',True)]</field>
+        </record>
+
+        <menuitem
+            name="Drivers"
+            id="menu_drivers"
+            sequence="20"
+            action="action_logistic_partner_drivers"
+            parent="menu_master_data"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_waybill_expense_expenses_to_invoice" model="ir.actions.act_window">
+            <field name="name">Expenses to Invoice</field>
+            <field name="res_model">logistic.waybill_expense</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_waybill_expense_tree"/>
+            <field name="search_view_id" ref="view_logistic_waybill_expense_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Expenses to Invoice"
+            id="menu_expenses_to_invoice"
+            sequence="40"
+            action="action_logistic_waybill_expense_expenses_to_invoice"
+            parent="menu_waybills_main"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_location_locations" model="ir.actions.act_window">
+            <field name="name">Locations</field>
+            <field name="res_model">logistic.location</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_location_tree"/>
+            <field name="search_view_id" ref="view_logistic_location_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Locations"
+            id="menu_locations"
+            sequence="10"
+            action="action_logistic_location_locations"
+            parent="menu_configuration"
+            groups="group_manager"
+            />
+
+        <record id="action_logistic_requirement_maintenances" model="ir.actions.act_window">
+            <field name="name">Maintenances</field>
+            <field name="res_model">logistic.requirement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_requirement_tree"/>
+            <field name="search_view_id" ref="view_logistic_requirement_filter"/>
+            <field name="context">{'default_type':'maintenance','related_model':'fleet.vehicle'}</field>
+            <field name="domain">[('type', '=', 'maintenance')]</field>
+        </record>
+
+        <menuitem
+            name="Maintenances"
+            id="menu_maintenances"
+            sequence="30"
+            action="action_logistic_requirement_maintenances"
+            parent="menu_requirements"
+            groups="group_view"
+            />
+
+
+        <menuitem
+            name="Marcas"
+            id="menu_marcas"
+            sequence="100"
+            parent="menu_configuration"
+            groups="group_manager"
+            />
+
+        <record id="action_logistic_requirement_partners_documents" model="ir.actions.act_window">
+            <field name="name">Partners Documents</field>
+            <field name="res_model">logistic.requirement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_requirement_tree"/>
+            <field name="search_view_id" ref="view_logistic_requirement_filter"/>
+            <field name="context">{'default_type':'document','related_model':'res.partner'}</field>
+            <field name="domain">[('type', '=', 'document'),('partner_id','!=',False)]</field>
+        </record>
+
+        <menuitem
+            name="Partners Documents"
+            id="menu_partners_documents"
+            sequence="10"
+            action="action_logistic_requirement_partners_documents"
+            parent="menu_requirements"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_product_products" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_product_tree"/>
+            <field name="search_view_id" ref="view_logistic_product_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Products"
+            id="menu_products"
+            sequence="30"
+            action="action_logistic_product_products"
+            parent="menu_master_data"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_travel_travels" model="ir.actions.act_window">
+            <field name="name">Travels</field>
+            <field name="res_model">logistic.travel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_travel_tree"/>
+            <field name="search_view_id" ref="view_logistic_travel_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Travels"
+            id="menu_travels"
+            sequence="20"
+            action="action_logistic_travel_travels"
+            parent="menu_waybills_main"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_travel_travels_calendar" model="ir.actions.act_window">
+            <field name="name">Travels Calendar</field>
+            <field name="res_model">logistic.travel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_travel_tree"/>
+            <field name="search_view_id" ref="view_logistic_travel_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Travels Calendar"
+            id="menu_travels_calendar"
+            sequence="30"
+            action="action_logistic_travel_travels_calendar"
+            parent="menu_waybills_main"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_requirement_vehicle_documents" model="ir.actions.act_window">
+            <field name="name">Vehicle Documents</field>
+            <field name="res_model">logistic.requirement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_requirement_tree"/>
+            <field name="search_view_id" ref="view_logistic_requirement_filter"/>
+            <field name="context">{'default_type':'document','related_model':'fleet.vehicle'}</field>
+            <field name="domain">[('type', '=', 'document'),('vehicle_id','!=',False)]</field>
+        </record>
+
+        <menuitem
+            name="Vehicle Documents"
+            id="menu_vehicle_documents"
+            sequence="20"
+            action="action_logistic_requirement_vehicle_documents"
+            parent="menu_requirements"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_vehicle_vehicles" model="ir.actions.act_window">
+            <field name="name">Vehicles</field>
+            <field name="res_model">fleet.vehicle</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_vehicle_tree"/>
+            <field name="search_view_id" ref="view_logistic_vehicle_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Vehicles"
+            id="menu_vehicles"
+            sequence="10"
+            action="action_logistic_vehicle_vehicles"
+            parent="menu_master_data"
+            groups="group_view"
+            />
+
+        <record id="action_logistic_waybill_waybills" model="ir.actions.act_window">
+            <field name="name">Waybills</field>
+            <field name="res_model">logistic.waybill</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_waybill_tree"/>
+            <field name="search_view_id" ref="view_logistic_waybill_filter"/>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem
+            name="Waybills"
+            id="menu_waybills"
+            sequence="10"
+            action="action_logistic_waybill_waybills"
+            parent="menu_waybills_main"
+            groups="group_view"
+            />
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

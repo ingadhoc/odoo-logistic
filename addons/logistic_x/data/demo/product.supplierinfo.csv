@@ -1,0 +1,13 @@
+id,product_id/id,name/id,min_qty
+product_supplierinfo_01,product_product_04,res_partner_03,0
+product_supplierinfo_02,product_product_05,res_partner_02,0
+product_supplierinfo_03,product_product_06,res_partner_02,0
+product_supplierinfo_04,product_product_07,res_partner_02,0
+product_supplierinfo_05,product_product_08,res_partner_02,0
+product_supplierinfo_06,product_product_09,res_partner_04,0
+product_supplierinfo_07,product_product_10,res_partner_01,0
+product_supplierinfo_08,product_product_11,res_partner_01,0
+product_supplierinfo_09,product_product_12,res_partner_01,0
+product_supplierinfo_10,product_product_13,res_partner_01,0
+product_supplierinfo_11,product_product_14,res_partner_05,0
+product_supplierinfo_12,product_product_15,res_partner_06,0

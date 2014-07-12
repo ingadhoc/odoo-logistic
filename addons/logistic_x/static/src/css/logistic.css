@@ -1,0 +1,3 @@
+.openerp .oe_form_editable .oe_view_only {
+   display: none !important;
+ }

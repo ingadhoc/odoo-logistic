@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Logistic
+#    Copyright (C) 2014 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- logistic.document -->
+<!-- logistic.document -->
+<!-- logistic.document -->
+<openerp>
+    <data>
+
+        <!-- SEARCH VIEW -->
+<!--         <record id="view_logistic_document_filter" model="ir.ui.view">
+            <field name="name">logistic.document.select</field>
+            <field name="model">logistic.document</field>
+            <field name="arch" type="xml">
+                <search string="document" version="7.0">
+                    <group string="By Attribute">
+                    <field name="category_id" string="Category"
+                            />
+                    <field name="issue_date" string="Issue Date"
+                            />
+                    <field name="expiration_date" string="Expiration Date"
+                            />
+                    </group>
+                    <group string="By object">
+                    </group>
+                </search>
+            </field>
+        </record> -->
+
+        <!-- FORMVIEW -->
+        <record id="view_logistic_document_form" model="ir.ui.view">
+            <field name="name">logistic.document.form</field>
+            <field name="model">logistic.document</field>
+            <field name="inherit_id" ref="logistic.view_logistic_document_form"/>
+            <field name="arch" type="xml">
+                <button name="sgn_cancel" position="attributes">
+                    <attribute name="groups">base.group_no_one</attribute>
+                </button>
+                <button name="sgn_cancel" position="after">
+                    <button name="verify_document_validity" string="ada" type="object"/>
+                </button>
+                <field name="state" position="attributes">
+                    <attribute name="statusbar_visible">valid,next_to_expire,expired</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!-- TREEVIEW -->
+
+        <record id="view_logistic_document_tree" model="ir.ui.view">
+            <field name="name">logistic.document.tree</field>
+            <field name="model">logistic.document</field>
+            <field name="inherit_id" ref="logistic.view_logistic_document_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="colors">grey:state=='cancelled';green:state in ('valid',);violet:state in ('next_to_expire',); red:state in ('expired')</attribute>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

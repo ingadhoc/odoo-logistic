@@ -1,0 +1,538 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* logistic_x
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-23 08:39+0000\n"
+"PO-Revision-Date: 2014-06-23 10:39+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_14_product_template
+msgid "Service"
+msgstr "Servicio"
+
+#. module: logistic_x
+#: view:logistic.requirement:0 view:logistic.travel:0 view:logistic.waybill:0
+#: view:logistic.waybill_expense:0
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_05_product_template
+msgid "Inspección Técnica Vehicular"
+msgstr "Inspección Técnica Vehicular"
+
+#. module: logistic_x
+#: view:logistic.requirement:0 view:logistic.waybill:0
+msgid "Vehicle"
+msgstr "Vehículo"
+
+#. module: logistic_x
+#: view:logistic.waybill_expense:0
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: logistic_x
+#: model:ir.actions.act_window,name:logistic_x.action_expense_make_invoice
+#: model:ir.actions.act_window,name:logistic_x.action_travel_make_invoice
+msgid "Make Invoices"
+msgstr "Realizar facturas"
+
+#. module: logistic_x
+#: view:logistic.travel:0 view:logistic.waybill_expense:0
+msgid "To Invoice"
+msgstr "A Facturar"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Final"
+msgstr "Final"
+
+#. module: logistic_x
+#: field:logistic.expense.make.invoice,invoice_date:0
+#: field:logistic.travel.make.invoice,invoice_date:0
+msgid "Invoice Date"
+msgstr "Fecha de Factura"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "base.group_no_one"
+msgstr "base.group_no_one"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_13_product_template
+msgid "Carnet Sanitario"
+msgstr "Carnet Sanitario"
+
+#. module: logistic_x
+#: field:fleet.vehicle,length:0
+msgid "Length  (mts)"
+msgstr "Largo  (mts)"
+
+#. module: logistic_x
+#: view:product.product:0
+msgid "Others"
+msgstr "Otros"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Services"
+msgstr "Servicios"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_expense_make_invoice
+msgid "Expense Make Invoice"
+msgstr "Facturar Gasto"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Wagon"
+msgstr "Furgón"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Initial"
+msgstr "Inicial"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_12_product_template
+msgid "Curso FTP"
+msgstr "Curso FTP"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Notes"
+msgstr "Notas"
+
+#. module: logistic_x
+#: field:fleet.vehicle,requirement_state:0
+#: field:res.partner,requirement_state:0
+msgid "Requirements State"
+msgstr "Estado de Requerimientos"
+
+#. module: logistic_x
+#: field:logistic.requirement,purchase_order_id:0
+msgid "Purchase Order"
+msgstr "Orden de Compra"
+
+#. module: logistic_x
+#: view:logistic.travel:0 view:logistic.waybill:0 view:product.product:0
+msgid "Travels"
+msgstr "Viajes"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Fuel Logs"
+msgstr "Registros de combustible"
+
+#. module: logistic_x
+#: field:logistic.travel,tractor_id:0
+msgid "Tractor"
+msgstr "Tractor"
+
+#. module: logistic_x
+#: field:logistic.waybill,tractor_status:0
+msgid "Tractor Status"
+msgstr "Estado del Tractor"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_02_product_template
+msgid "Córdoba – Buenos Aires"
+msgstr "Córdoba – Buenos Aires"
+
+#. module: logistic_x
+#: selection:fleet.vehicle,requirement_state:0
+#: selection:res.partner,requirement_state:0
+msgid "OK"
+msgstr "OK"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_07_product_template
+msgid "Bromatología"
+msgstr "Bromatología"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_11_product_template
+msgid "Psicofísico"
+msgstr "Psicofísico"
+
+#. module: logistic_x
+#: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
+msgid "Create Invoices"
+msgstr "Crear Facturas"
+
+#. module: logistic_x
+#: view:logistic.travel:0
+msgid "From Location"
+msgstr "Desde Ubicación"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_res_partner view:logistic.travel:0
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_requirement
+msgid "requirement"
+msgstr "requerimiento"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0 field:fleet.vehicle,document_ids:0
+#: view:product.product:0 field:res.partner,document_ids:0
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: logistic_x
+#: field:logistic.waybill,driver_status:0
+msgid "Driver Status"
+msgstr "Estado del Conductor"
+
+#. module: logistic_x
+#: view:logistic.requirement:0
+msgid "State"
+msgstr "Estado"
+
+#. module: logistic_x
+#: field:logistic.requirement,invoice_line_ids:0
+msgid "Invoice Lines"
+msgstr "Líneas de Factura"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_10_product_template
+msgid "Carnet Municipal"
+msgstr "Carnet Municipal"
+
+#. module: logistic_x
+#: help:logistic.travel.make.invoice,grouped:0
+msgid "Check the box to group the invoices for the same customers"
+msgstr "Marque la casilla para agrupar facturas para el mismo cliente"
+
+#. module: logistic_x
+#: view:logistic.travel:0 view:logistic.waybill_expense:0
+msgid "Waybill"
+msgstr "Hoja de Ruta"
+
+#. module: logistic_x
+#: selection:fleet.vehicle,requirement_state:0
+#: selection:res.partner,requirement_state:0
+msgid "Next To Renew"
+msgstr "Próximo a Renovarse"
+
+#. module: logistic_x
+#: field:logistic.waybill,final_odometer_id:0
+#: field:logistic.waybill,wagon_final_odometer:0
+#: field:logistic.waybill,wagon_final_odometer_id:0
+msgid "Final Odometer"
+msgstr "Odómetro Final"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Engine Options"
+msgstr "Opciones del motor"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_01_product_template
+msgid "Rosario – Córdoba"
+msgstr "Rosario – Córdoba"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Payment And Cost"
+msgstr "Costo y Pago"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Número de Chasis"
+msgstr "Número de Chasis"
+
+#. module: logistic_x
+#: field:logistic.expense.make.invoice,grouped:0
+#: field:logistic.travel.make.invoice,grouped:0
+msgid "Group the invoices"
+msgstr "Agrupar las Facturas"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Notes......"
+msgstr "Notas......"
+
+#. module: logistic_x
+#: field:logistic.travel,ordered:0
+msgid "Ordered?"
+msgstr "Ordenado?"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_travel_make_invoice
+msgid "Travel Make Invoice"
+msgstr "Facturar Viaje"
+
+#. module: logistic_x
+#: view:logistic.travel:0 view:logistic.waybill_expense:0
+msgid "Invoice Line"
+msgstr "Línea de Factura"
+
+#. module: logistic_x
+#: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
+msgid "or"
+msgstr "o"
+
+#. module: logistic_x
+#: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
+msgid "Create invoices"
+msgstr "Crear Facturas"
+
+#. module: logistic_x
+#: field:fleet.vehicle,capacity:0
+msgid "Capacity (pallets)"
+msgstr "Capacidad (pallets)"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_06_product_template
+msgid "Ruta"
+msgstr "Ruta"
+
+#. module: logistic_x
+#: view:logistic.requirement:0 view:logistic.travel:0 view:logistic.waybill:0
+#: view:logistic.waybill_expense:0
+msgid "By Attribute"
+msgstr "Por Atributo"
+
+#. module: logistic_x
+#: model:ir.ui.menu,name:logistic_x.fleet_vehicle_state_menu
+msgid "Vehicle Status"
+msgstr "Estado del vehículo"
+
+#. module: logistic_x
+#: view:logistic.travel:0
+msgid "base.group_sale_salesman,account.group_account_invoice"
+msgstr "base.group_sale_salesman,account.group_account_invoice"
+
+#. module: logistic_x
+#: help:logistic.requirement,initial_odometer_id:0
+#: help:logistic.waybill,final_odometer_id:0
+#: help:logistic.waybill,initial_odometer_id:0
+#: help:logistic.waybill,wagon_final_odometer_id:0
+#: help:logistic.waybill,wagon_initial_odometer_id:0
+msgid "Odometer measure of the vehicle at the moment of this log"
+msgstr "Medida del Odómetro del vehíuclo en el momento de este registro"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Contracts"
+msgstr "Contratos"
+
+#. module: logistic_x
+#: view:logistic.requirement:0 view:logistic.travel:0
+#: field:logistic.travel,driver_id:0 view:logistic.waybill:0
+msgid "Driver"
+msgstr "Conductor"
+
+#. module: logistic_x
+#: view:logistic.travel:0
+msgid "account.group_account_invoice"
+msgstr "account.group_account_invoice"
+
+#. module: logistic_x
+#: view:logistic.travel:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: logistic_x
+#: model:ir.ui.menu,name:logistic_x.fleet_vehicle_model_menu
+msgid "Vehicle Model"
+msgstr "Modelo del vehículo"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_04_product_template
+msgid "Seguro"
+msgstr "Seguro"
+
+#. module: logistic_x
+#: field:logistic.waybill,driver_total:0
+msgid "Driver Total"
+msgstr "Conductor Total"
+
+#. module: logistic_x
+#: view:logistic.requirement:0 view:logistic.waybill:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_15_product_template
+msgid "Cubierta Bridgestone"
+msgstr "Cubierta Bridgestone"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0 field:fleet.vehicle,maintenance_ids:0
+#: view:product.product:0
+msgid "Maintenances"
+msgstr "Mantenimientos"
+
+#. module: logistic_x
+#: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: logistic_x
+#: help:logistic.expense.make.invoice,grouped:0
+msgid "Check the box to group the invoices for the same suppliers"
+msgstr ""
+"Marque la casilla para agrupar las facturas para los mismos proveedores"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "General Properties"
+msgstr "Propiedades generales"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Information"
+msgstr "Información"
+
+#. module: logistic_x
+#: field:logistic.requirement,initial_odometer_id:0
+#: field:logistic.waybill,initial_odometer_id:0
+#: field:logistic.waybill,wagon_initial_odometer:0
+#: field:logistic.waybill,wagon_initial_odometer_id:0
+msgid "Initial Odometer"
+msgstr "Odómetro Inicial"
+
+#. module: logistic_x
+#: view:logistic.travel:0 view:logistic.waybill_expense:0
+msgid "false"
+msgstr "falso"
+
+#. module: logistic_x
+#: field:logistic.waybill,wagon_status:0
+msgid "Wagon Status"
+msgstr "Estado del Furgón"
+
+#. module: logistic_x
+#: model:ir.ui.menu,name:logistic_x.fleet_vehicle_model_brand_menu
+msgid "Model brand of Vehicle"
+msgstr "Modelo del vehículo"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_09_product_template
+msgid "Permiso Internacional Chile"
+msgstr "Permiso Internacional Chile"
+
+#. module: logistic_x
+#: view:logistic.travel:0 view:logistic.waybill:0
+msgid "Create Invoice"
+msgstr "Crear Factura"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Fuel"
+msgstr "Combustible"
+
+#. module: logistic_x
+#: view:logistic.travel:0
+msgid "To Location"
+msgstr "A Ubicación"
+
+#. module: logistic_x
+#: view:logistic.requirement:0 view:logistic.travel:0
+#: view:logistic.waybill_expense:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_waybill_expense
+msgid "waybill_expense"
+msgstr "waybill_expense"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_travel
+msgid "travel"
+msgstr "viaje"
+
+#. module: logistic_x
+#: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
+msgid "Do you really want to create the invoice(s)?"
+msgstr "Quiere realmente crear la(s) factura(s)?"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Additional Properties"
+msgstr "Propiedades adicionales"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_03_product_template
+msgid "Buenos Aires – Rosario"
+msgstr "Buenos Aires – Rosario"
+
+#. module: logistic_x
+#: view:logistic.requirement:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: logistic_x
+#: field:fleet.vehicle,width:0
+msgid "Width (mts)"
+msgstr "Ancho (mts)"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_waybill
+#: view:logistic.waybill:0
+msgid "waybill"
+msgstr "hoja de ruta"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Waybill "
+msgstr "Hoja de Ruta"
+
+#. module: logistic_x
+#: view:logistic.requirement:0
+msgid ""
+"grey:state in ('cancelled','renewed');green:state in ('ok');violet:state in "
+"('next_to_renew',); red:state in ('need_renew'); black:"
+"state=='renewal_requested'"
+msgstr ""
+"grey:state in ('cancelled','renewed');green:state in ('ok');violet:state in "
+"('next_to_renew',); red:state in ('need_renew'); black:"
+"state=='renewal_requested'"
+
+#. module: logistic_x
+#: view:fleet.vehicle:0
+msgid "Costs"
+msgstr "Costes"
+
+#. module: logistic_x
+#: selection:fleet.vehicle,requirement_state:0
+#: selection:res.partner,requirement_state:0
+msgid "Need Renew"
+msgstr "Necesita Renovación"
+
+#. module: logistic_x
+#: model:product.template,name:logistic_x.product_product_08_product_template
+msgid "SENASA"
+msgstr "SENASA"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_fleet_vehicle
+msgid "Information on a vehicle"
+msgstr "Información en un vehículo"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Reference..."
+msgstr "Referencia..."
+
+#. module: logistic_x
+#: view:logistic.travel:0 view:logistic.waybill:0
+#: view:logistic.waybill_driver_payment:0 view:logistic.waybill_expense:0
+msgid "Total"
+msgstr "Total"

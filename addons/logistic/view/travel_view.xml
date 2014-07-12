@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+#    Logistic
+#    Copyright (C) 2014 No author.
+#    No email
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+-->
+<!-- logistic.travel -->
+<!-- logistic.travel -->
+<!-- logistic.travel -->
+<openerp>
+    <data>
+
+        <!-- SEARCH VIEW -->
+        <record id="view_logistic_travel_filter" model="ir.ui.view">
+            <field name="name">logistic.travel.select</field>
+            <field name="model">logistic.travel</field>
+            <field name="arch" type="xml">
+                <search string="travel" version="7.0">
+                    <group string="By Attribute">
+                    <field name="from_date" string="From"
+                            />
+                    <field name="location_from_id" string="Location From"
+                            />
+                    <field name="to_date" string="To"
+                            />
+                    <field name="location_to_id" string="Location To"
+                            />
+                    <field name="reference" string="Reference"
+                            />
+                    <field name="partner_id" string="Customer"
+                            />
+                    <field name="product_id" string="Product"
+                            />
+                    </group>
+                    <group string="By object">
+                    <field name="waybill_id" string="Waybill"
+                            />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- FORMVIEW -->
+        <record id="view_logistic_travel_form" model="ir.ui.view">
+            <field name="name">logistic.travel.form</field>
+            <field name="model">logistic.travel</field>
+            <field name="arch" type="xml">
+                <form string="travel" version="7.0">
+                    <header>
+                    </header>
+                    <sheet string="travel">
+                     <group>
+                        <field name="from_date"
+                            />
+                        <field name="location_from_id"
+                            on_change="on_change_location(location_from_id, location_to_id, context)"
+                            />
+                        <field name="to_date"
+                            />
+                        <field name="location_to_id"
+                            on_change="on_change_location(location_from_id, location_to_id, context)"
+                            />
+                        <field name="reference"
+                            />
+                        <field name="partner_id"
+                            on_change="on_change_product(product_id, partner_id, context)"
+                            />
+                        <field name="product_id"
+                            on_change="on_change_product(product_id, partner_id, context)"
+                            />
+                        <field name="price"
+                            />
+                        <field name="invoice_line_id"
+                            />
+                    <field name="waybill_id"
+                            />
+                     </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <!-- TREEVIEW -->
+
+        <record id="view_logistic_travel_tree" model="ir.ui.view">
+            <field name="name">logistic.travel.tree</field>
+            <field name="model">logistic.travel</field>
+            <field name="arch" type="xml">
+                <tree string="travel"
+                    >
+                    <field name="from_date"
+                        />
+                    <field name="location_from_id"
+                        />
+                    <field name="to_date"
+                        />
+                    <field name="location_to_id"
+                        />
+                    <field name="reference"
+                        />
+                    <field name="partner_id"
+                        />
+                    <field name="product_id"
+                        />
+                    <field name="price"
+                        />
+                    <field name="invoice_line_id"
+                        />
+                    <field name="waybill_id"
+                        />
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->
