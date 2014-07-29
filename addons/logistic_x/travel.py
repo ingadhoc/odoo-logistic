@@ -77,7 +77,8 @@ class travel(osv.osv):
     _columns = {
         'ordered': fields.function(_fnct_line_ordered, type='boolean', arg=None, fnct_inv_arg=None, obj=None, string='Ordered?', readonly=True),
         'tractor_id': fields.related('waybill_id','tractor_id',relation='fleet.vehicle', type='many2one', string='Tractor', readonly=True,),
-        'driver_id': fields.related('waybill_id','driver_id',relation='res.partner', type='many2one', string='Driver', domain=[('is_driver','=',True)], readonly=True, store=True),
+        'driver_id': fields.related('waybill_id','driver_id', relation='res.partner', type='many2one', string='Driver', domain=[('is_driver','=',True)], readonly=True, store=True),
+        'invoice_id': fields.related('invoice_line_id', 'invoice_id', relation='account.invoice', type='many2one', string='Invoice', readonly=True,),
     }
 
     def get_from_date(self, cr, uid, context=None):

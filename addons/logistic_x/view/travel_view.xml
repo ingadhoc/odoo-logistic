@@ -70,7 +70,6 @@
                        <filter string="Product" domain="[]" context="{'group_by' : 'product_id'}"/>
                        <filter string="From Location" domain="[]" context="{'group_by' : 'location_from_id'}"/>
                        <filter string="To Location" domain="[]" context="{'group_by' : 'location_to_id'}"/>
-                       <filter string="Invoice Line" domain="[]" context="{'group_by' : 'invoice_line_id'}"/>
                    </group>                      
                 </search>
             </field>
@@ -107,8 +106,13 @@
                 <field name="price" position="attributes">
                     <attribute name="groups">base.group_sale_salesman,account.group_account_invoice</attribute>
                 </field>
+                
+                <field name="invoice_line_id" position="after">
+                    <field name="invoice_id" groups="account.group_account_invoice"/>
+                </field>
+
                 <field name="invoice_line_id" position="attributes">
-                    <attribute name="groups">account.group_account_invoice</attribute>
+                    <attribute name="invisible">True</attribute>
                 </field>                
             </field>
         </record>
@@ -127,8 +131,13 @@
                     <attribute name="groups">base.group_sale_salesman,account.group_account_invoice</attribute>
                     <attribute name="sum">Total</attribute>
                 </field>
+
+                <field name="invoice_line_id" position="after">
+                    <field name="invoice_id" groups="account.group_account_invoice"/>
+                </field>            
+                    
                 <field name="invoice_line_id" position="attributes">
-                    <attribute name="groups">account.group_account_invoice</attribute>
+                    <attribute name="invisible">True</attribute>
                 </field>  
             </field>
         </record>

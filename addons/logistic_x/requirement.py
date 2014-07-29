@@ -120,7 +120,7 @@ class requirement(osv.osv):
         # Next to renew requirements
         ok_requirement_ids = self.search(cr, uid, [('state','in', ['ok','need_renew'])], context=context)
         for record in self.browse(cr, uid, ok_requirement_ids, context):
-            if record.remaining_range <= record.warning_days or record.remaining_range <= record.warning_range:
+            if (record.type == 'document' and record.remaining_days <= record.warning_days) or (record.type == 'maintenance' and record.remaining_range <= record.warning_range):
                 wf_service.trg_validate(uid, 'logistic.requirement', record.id, 'sgn_next_to_renew', cr)
 
         # need renew requirements
@@ -129,7 +129,7 @@ class requirement(osv.osv):
         # No peudo agregar esta parte en el search porque remianing_range es un function sin search
         maintenance_ids = self.search(cr, uid, [('state','in', ['ok','next_to_renew']),('type','=','maintenance')], context=context)
         for record in self.browse(cr, uid, maintenance_ids, context):
-            if record.remaining_range <= 0:
+            if (record.type == 'maintenance' and record.remaining_range <= 0) or (record.type == 'document' and record.remaining_days <= 0):
                 need_renew_ids.append(record.id)
         for record_id in need_renew_ids:
             wf_service.trg_validate(uid, 'logistic.requirement', record_id, 'sgn_need_renew', cr)                          

@@ -26,5 +26,6 @@ import vehicle
 import requirement
 import res_partner
 import waybill_expense
+import account_invoice
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
