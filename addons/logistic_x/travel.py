@@ -74,6 +74,17 @@ class travel(osv.osv):
         result = self.name_get(cr, user, ids, context=context)
         return result
 
+    def _check_dates(self, cr, uid, ids, context=None):
+        for leave in self.read(cr, uid, ids, ['to_date', 'from_date'], context=context):
+            if leave['to_date'] and leave['from_date']:
+                if leave['from_date'] > leave['to_date']:
+                    return False
+        return True
+
+    _constraints = [
+        (_check_dates, 'Error! From date must be lower then to date.', ['to_date', 'from_date'])
+    ]
+
     _columns = {
         'ordered': fields.function(_fnct_line_ordered, type='boolean', arg=None, fnct_inv_arg=None, obj=None, string='Ordered?', readonly=True),
         'tractor_id': fields.related('waybill_id','tractor_id',relation='fleet.vehicle', type='many2one', string='Tractor', readonly=True,),
