@@ -48,10 +48,15 @@
                     <filter string="Active" name="active" domain="[('state','=','active')]"/>
                 </group>
                 <search>
+                    <group>
+                    <field name="date" string="Date From" filter_domain="[('date','&gt;=',self)]"/>
+                    <field name="date" string="Date To" filter_domain="[('date','&lt;=',self)]"/>
+                </group>
                    <group expand="0" string="Group By...">
                        <filter string="Vehicle" domain="[]" context="{'group_by' : 'tractor_id'}"/>
                        <filter string="Wagon" domain="[]" context="{'group_by' : 'wagon_id'}"/>
                        <filter string="Driver" domain="[]" context="{'group_by' : 'driver_id'}"/>
+                       <filter string="Date" domain="[]" context="{'group_by' : 'date'}"/>
                    </group>                    
                 </search>
             </field>

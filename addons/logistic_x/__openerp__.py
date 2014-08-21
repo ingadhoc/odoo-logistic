@@ -55,6 +55,7 @@ Logistic Modifications
         'view/waybill_expense_view.xml',
         'view/fleet_view.xml',
         'view/requirement_view.xml',
+        'view/purchase_order.xml',
         'view/waybill_driver_payment_view.xml', 
         'data/waybill_sequence.xml',
         'data/cron.xml',
