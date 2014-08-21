@@ -203,8 +203,9 @@ class waybill_expense(osv.osv):
         if not journal_ids:
             raise osv.except_osv(_('Error!'),
                 _('Please define purchases journal for this company: "%s" (id:%d).') % (company.name, company.id))
+        origin = _('Gastos de Hoja de Ruta')
         invoice_vals = {
-            'origin': _('Waybill Expenses'),
+            'origin': origin,
             'type': 'in_invoice',
             'account_id': partner.property_account_payable.id,
             'partner_id': partner.id,
