@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+       
+        <record model='ir.ui.view' id='purchase.purchase_order_logistic'>
+            <field name="name">purchase.order.log</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <search>
+                     <field name="origin" string="Source"/>                 
+                </search>
+            </field>
+        </record>
+
+       
+             
+    </data>
+</openerp>
