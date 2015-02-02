@@ -36,6 +36,7 @@ Logistic Reports
     'test': [],
     'update_xml': [
         'report/waybill_report.xml',
+        'view/waybill_view.xml',
       ],
     'version': 'No version',
     'website': 'www.ingadhoc.com'}

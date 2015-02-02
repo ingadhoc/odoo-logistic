@@ -51,6 +51,7 @@ class waybill_expense(osv.osv):
 
     _columns = {
         'price_subtotal': fields.function(_amount_line, string='Subtotal', digits_compute= dp.get_precision('Account')),
+        'date': fields.related('waybill_id', 'date', type='datetime', string='Date', store=True),
     }
 
     def action_invoice_create(self, cr, uid, ids, grouped=False, date_invoice = False, context=None):
