@@ -217,18 +217,6 @@ class travel(osv.osv):
                 raise osv.except_osv(_('Error!'), _('Order cannot be created because not sale pricelist exists!'))
         return self.pool['product.pricelist'].browse(cr, uid, pricelist_id, context=context)
 
-    # def invoice_line_create(self, cr, uid, ids, context=None):
-    #     if context is None:
-    #         context = {}
-
-    #     create_ids = []
-    #     for travel in self.browse(cr, uid, ids, context=context):
-    #         vals = self._prepare_order_line_invoice_line(cr, uid, travel, context=context)
-    #         if vals:
-    #             inv_line_id = self.pool.get('account.invoice.line').create(cr, uid, vals, context=context)
-    #             self.write(cr, uid, [travel.id], {'invoice_line_id': inv_line_id}, context=context)
-    #             create_ids.append(inv_line_id)
-    #     return create_ids
 
     def invoice_line_create(self, cr, uid, ids, context=None):
         if context is None:
