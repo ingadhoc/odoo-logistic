@@ -93,7 +93,6 @@ class travel(osv.osv):
     }
 
     def get_from_date(self, cr, uid, context=None):
-        print 'context', context
         waybill_id = context.get('waybill_id', False)
         from_date = time.strftime('%Y-%m-%d %H:%M:%S')
         if waybill_id:
@@ -218,17 +217,46 @@ class travel(osv.osv):
                 raise osv.except_osv(_('Error!'), _('Order cannot be created because not sale pricelist exists!'))
         return self.pool['product.pricelist'].browse(cr, uid, pricelist_id, context=context)
 
+    # def invoice_line_create(self, cr, uid, ids, context=None):
+    #     if context is None:
+    #         context = {}
+
+    #     create_ids = []
+    #     for travel in self.browse(cr, uid, ids, context=context):
+    #         vals = self._prepare_order_line_invoice_line(cr, uid, travel, context=context)
+    #         if vals:
+    #             inv_line_id = self.pool.get('account.invoice.line').create(cr, uid, vals, context=context)
+    #             self.write(cr, uid, [travel.id], {'invoice_line_id': inv_line_id}, context=context)
+    #             create_ids.append(inv_line_id)
+    #     return create_ids
+
     def invoice_line_create(self, cr, uid, ids, context=None):
         if context is None:
             context = {}
-
         create_ids = []
-        for travel in self.browse(cr, uid, ids, context=context):
-            vals = self._prepare_order_line_invoice_line(cr, uid, travel, context=context)
-            if vals:
-                inv_line_id = self.pool.get('account.invoice.line').create(cr, uid, vals, context=context)
-                self.write(cr, uid, [travel.id], {'invoice_line_id': inv_line_id}, context=context)
-                create_ids.append(inv_line_id)
+        product_currency = {}
+        for o in self.browse(cr, uid, ids, context=context):
+            pricelist = self.get_pricelist(cr, uid, o.partner_id, context=context)
+            currency_id = pricelist.currency_id.id
+            product_currency[o.product_id.id] = currency_id
+        if context.get(('grouped_line')):
+            for product_id in product_currency:
+                travel_ids = self.search(cr, uid, [('id', 'in', ids),('product_id','=',product_id)], context=context)
+                travels = []
+                for tr in self.browse(cr, uid, travel_ids, context=context):
+                    travels.append(tr)
+                vals = self._prepare_order_line_invoice_line(cr, uid, travels, context=context)
+                if vals:
+                    inv_line_id = self.pool.get('account.invoice.line').create(cr, uid, vals, context=context)
+                    self.write(cr, uid, travel_ids, {'invoice_line_id': inv_line_id}, context=context)
+                    create_ids.append(inv_line_id)
+        else:
+            for travel in self.browse(cr, uid, ids, context=context):
+                vals = self._prepare_order_line_invoice_line(cr, uid, travel, context=context)
+                if vals:
+                    inv_line_id = self.pool.get('account.invoice.line').create(cr, uid, vals, context=context)
+                    self.write(cr, uid, [travel.id], {'invoice_line_id': inv_line_id}, context=context)
+                    create_ids.append(inv_line_id)
         return create_ids
 
     def _prepare_order_line_invoice_line(self, cr, uid, travel, context=None):
@@ -243,46 +271,84 @@ class travel(osv.osv):
            :return: dict of values to create() the invoice line
         """
         res = {}
-        if not travel.invoice_line_id:
-            if travel.product_id:
-                account_id = travel.product_id.property_account_income.id
-                if not account_id:
-                    account_id = travel.product_id.categ_id.property_account_income_categ.id
+        if context.get(('grouped_line')):
+            if not travel[0].invoice_line_id:
+                if travel[0].product_id:
+                    account_id = travel[0].product_id.property_account_income.id
+                    if not account_id:
+                        account_id = travel[0].product_id.categ_id.property_account_income_categ.id
+                    if not account_id:
+                        raise osv.except_osv(_('Error!'),
+                                _('Please define income account for this product: "%s" (id:%d).') % \
+                                        (travel.product_id.name, travel.product_id.id,))
+            fpos = travel[0].partner_id.property_account_position.id or False
+            account_id = self.pool.get('account.fiscal.position').map_account(cr, uid, fpos, account_id)
+            tax_ids = self.pool.get('account.fiscal.position').map_tax(cr, uid, fpos, travel[0].product_id.taxes_id)
+            name = travel[0].product_id.name
+            name += ', Hoja de Ruta: '
+            name += ", ".join([x.waybill_id.reference for x in travel if x.waybill_id.reference])
+            refs = [x.reference for x in travel if x.reference]
+            name += refs and ". Refs: " + ", ".join(refs) or ""
+            pu = 0.0
+            for travel_id in travel:
+                uosqty = 1.0
+                if uosqty:
+                    pu = pu + round(travel_id.price,
+                            self.pool.get('decimal.precision').precision_get(cr, uid, 'Product Price'))
                 if not account_id:
                     raise osv.except_osv(_('Error!'),
-                            _('Please define income account for this product: "%s" (id:%d).') % \
-                                (travel.product_id.name, travel.product_id.id,))
-            uosqty = self._get_line_qty(cr, uid, travel, context=context)
-            uos_id = self._get_line_uom(cr, uid, travel, context=context)
-            pu = 0.0
-            if uosqty:
-                pu = round(travel.price,
-                        self.pool.get('decimal.precision').precision_get(cr, uid, 'Product Price'))
-            fpos = travel.partner_id.property_account_position.id or False
-            account_id = self.pool.get('account.fiscal.position').map_account(cr, uid, fpos, account_id)
-            if not account_id:
-                raise osv.except_osv(_('Error!'),
-                            _('There is no Fiscal Position defined or Income category account defined for default properties of Product categories.'))
-            tax_ids = self.pool.get('account.fiscal.position').map_tax(cr, uid, fpos, travel.product_id.taxes_id)
-            name = travel.product_id.name
-            name += ', Hoja de Ruta: '
-            name += travel.waybill_id.reference or ''
-            name += ', '
-            name += travel.reference or ''
+                                _('There is no Fiscal Position defined or Income category account defined for default properties of Product categories.'))
             res = {
                 'name': name,
                 'account_id': account_id,
                 'price_unit': pu,
                 'quantity': uosqty,
-                # 'discount': line.discount,
-                'uos_id': uos_id,
-                'product_id': travel.product_id.id or False,
+                'uos_id': travel[0].product_id and travel[0].product_id.uom_id.id or False,
+                'product_id': travel[0].product_id.id or False,
                 'invoice_line_tax_id': [(6, 0, tax_ids)],
-            }
+                }
+
+        else:
+            if not travel.invoice_line_id:
+                if travel.product_id:
+                    account_id = travel.product_id.property_account_income.id
+                    if not account_id:
+                        account_id = travel.product_id.categ_id.property_account_income_categ.id
+                    if not account_id:
+                        raise osv.except_osv(_('Error!'),
+                                _('Please define income account for this product: "%s" (id:%d).') % \
+                                    (travel.product_id.name, travel.product_id.id,))
+                uosqty = self._get_line_qty(cr, uid, travel, context=context)
+                uos_id = self._get_line_uom(cr, uid, travel, context=context)
+                pu = 0.0
+                if uosqty:
+                    pu = round(travel.price,
+                            self.pool.get('decimal.precision').precision_get(cr, uid, 'Product Price'))
+                fpos = travel.partner_id.property_account_position.id or False
+                account_id = self.pool.get('account.fiscal.position').map_account(cr, uid, fpos, account_id)
+                if not account_id:
+                    raise osv.except_osv(_('Error!'),
+                                _('There is no Fiscal Position defined or Income category account defined for default properties of Product categories.'))
+                tax_ids = self.pool.get('account.fiscal.position').map_tax(cr, uid, fpos, travel.product_id.taxes_id)
+                name = travel.product_id.name
+                name += ', Hoja de Ruta: '
+                name += travel.waybill_id.reference or ''
+                name += travel.reference and '. Refs: ' + travel.reference or ''
+                res = {
+                    'name': name,
+                    'account_id': account_id,
+                    'price_unit': pu,
+                    'quantity': uosqty,
+                    # 'discount': line.discount,
+                    'uos_id': uos_id,
+                    'product_id': travel.product_id.id or False,
+                    'invoice_line_tax_id': [(6, 0, tax_ids)],
+                }
 
         return res  
         
     def _get_line_qty(self, cr, uid, travel, context=None):
+
         return 1.0
 
     def _get_line_uom(self, cr, uid, travel, context=None):

@@ -27,6 +27,7 @@ class logistic_travel_make_invoice(osv.osv_memory):
     _description = "Travel Make Invoice"
     _columns = {
         'grouped': fields.boolean('Group the invoices', help='Check the box to group the invoices for the same customers'),
+        'grouped_line': fields.boolean('Group the Invoice Lines'),
         'invoice_date': fields.date('Invoice Date'),
     }
     _defaults = {
@@ -42,8 +43,9 @@ class logistic_travel_make_invoice(osv.osv_memory):
         if context is None:
             context = {}
         data = self.read(cr, uid, ids)[0]
+        context['grouped_line'] = data['grouped_line']
 
-        invoice_ids = travel_obj.action_invoice_create(cr, uid, context.get(('active_ids'), []), data['grouped'], date_invoice=data['invoice_date'])
+        invoice_ids = travel_obj.action_invoice_create(cr, uid, context.get(('active_ids'), []), data['grouped'], date_invoice=data['invoice_date'], context=context)
         result = mod_obj.get_object_reference(cr, uid, 'account', 'action_invoice_tree1')
         id = result and result[1] or False
         result = act_obj.read(cr, uid, [id], context=context)[0]
