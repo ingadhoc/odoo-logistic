@@ -62,14 +62,106 @@ class waybill(osv.osv):
             }
         return res
 
+    def _get_total_travel(self, cr, uid, ids, context=None):
+        result = []
+        for travel in self.pool.get('logistic.travel').browse(cr, uid, ids, context=context):
+            if travel.price:
+                result.append(travel.waybill_id.id)
+        return result
+
+    def _get_total_exp(self, cr, uid, ids, context=None):
+        result = []
+        for expense in self.pool.get('logistic.waybill_expense').browse(cr, uid, ids, context=context):
+            if expense.price_subtotal:
+                result.append(expense.waybill_id.id)
+        return result
+
     _columns = {
         'days_range': fields.function(_get_days_range, type='integer', string='Days Range'),
-        'total_price': fields.function(_get_total, type='float', string='Total Price', multi="total", store=True),
-        'total_cost': fields.function(_get_total, type='float', string='Total Cost', multi="total", store=True),
-        'net': fields.function(_get_total, type='float', string='Net', multi="total", store=True),
-        'price_km': fields.function(_get_price_cost_km, type='float', string='Price per km', multi="total_km", store=True),
-        'cost_km': fields.function(_get_price_cost_km, type='float', string='Cost per km', multi="total_km", store=True),
-        'net_km': fields.function(_get_price_cost_km, type='float', string='Net per km', multi="total_km", store=True),
+        'total_price': fields.function(
+            _get_total, type='float', string='Total Price',
+            multi="total",
+            store={
+                'logistic.travel': (
+                    _get_total_travel,
+                    ['price'],
+                    10),
+                'logistic.waybill': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['travel_ids'],
+                    10),
+            }),
+        'total_cost': fields.function(
+            _get_total, type='float', string='Total Cost',
+            multi="total",
+            store={
+                'logistic.waybill_expense': (
+                    _get_total_exp,
+                    ['price_unit', 'product_uom_qty'],
+                    10),
+                'logistic.waybill': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['waybill_expense_ids'],
+                    10),
+            }),
+        'net': fields.function(
+            _get_total, type='float', string='Net', multi="total",
+            store={
+                'logistic.travel': (
+                    _get_total_travel,
+                    ['price'],
+                    10),
+                'logistic.waybill_expense': (
+                    _get_total_exp,
+                    ['price_unit', 'product_uom_qty'],
+                    10),
+                'logistic.waybill': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['travel_ids', 'waybill_expense_ids'],
+                    10)},
+        ),
+        'price_km': fields.function(
+            _get_price_cost_km, type='float', string='Price per km',
+            multi="total_km",
+            store={
+                'logistic.waybill': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['distance', 'net'],
+                    10),
+                'logistic.travel': (
+                    _get_total_travel,
+                    ['price'],
+                    10),
+                'logistic.waybill_expense': (
+                    _get_total_exp,
+                    ['price_unit', 'product_uom_qty'],
+                    10)}, group_operator="avg"),
+        'cost_km': fields.function(_get_price_cost_km, type='float', string='Cost per km', multi="total_km", store={
+            'logistic.waybill': (
+                lambda self, cr, uid, ids, c={}: ids,
+                ['distance', 'net'],
+                10),
+            'logistic.travel': (
+                _get_total_travel,
+                ['price'],
+                10),
+            'logistic.waybill_expense': (
+                _get_total_exp,
+                ['price_unit', 'product_uom_qty'],
+                10)}, group_operator="avg"),
+        'net_km': fields.function(_get_price_cost_km, type='float', string='Net per km', multi="total_km", store={
+            'logistic.waybill': (
+                lambda self, cr, uid, ids, c={}: ids,
+                ['distance', 'net'],
+                10),
+            'logistic.travel': (
+                _get_total_travel,
+                ['price'],
+                10),
+            'logistic.waybill_expense': (
+                _get_total_exp,
+                ['price_unit', 'product_uom_qty'],
+                10)}, group_operator="avg"),
     }
 
 

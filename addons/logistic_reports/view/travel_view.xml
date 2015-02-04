@@ -18,7 +18,7 @@
                     <field name="location_from_id"/>
                     <field name="location_to_id"/>
                     <field name="days_range" sum="Total"/>
-                    <field name="days_range_avg"/>
+                    <field name="days_range_avg" widget="progressbar" sum="Total"/>
                 </tree>
             </field>
         </record>
@@ -31,12 +31,10 @@
             <field name="arch" type="xml">
                 <graph string="Travel" >
                     <field name="days_range"/>
-                    <field name="days_range_avg" type="measure"/>
+                    <field name="days_range_avg"/>
                 </graph>
             </field>
         </record>
-
-
     </data>
 </openerp>
 <!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4

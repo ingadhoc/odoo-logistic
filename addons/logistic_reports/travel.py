@@ -22,8 +22,8 @@ class travel(osv.osv):
                 to_date = datetime.strptime(
                     record.to_date, '%Y-%m-%d  %H:%M:%S')
                 days = (to_date - from_date).days
-                days_avg = days / monthrange(from_date.year, from_date.month)[1]
-
+                days_avg = days * 100.0 / \
+                    monthrange(from_date.year, from_date.month)[1]
                 res[record.id] = {
                     'days_range': days,
                     'days_range_avg': days_avg,
@@ -36,11 +36,24 @@ class travel(osv.osv):
         return res
 
     _columns = {
-        'days_range': fields.function(_get_days_range, type='integer',
-                                      string='Days Range', multi="cal_days", store=True),
-        'days_range_avg': fields.function(_get_days_range, type='float',
-                                          string='Days Range Average', multi="cal_days", store=True),
+        'days_range': fields.function(
+            _get_days_range, type='integer', string='Days Range',
+            multi="cal_days",
+            store={
+                'logistic.travel': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['from_date', 'to_date'],
+                    10)
+            }),
+        'days_range_avg': fields.function(
+            _get_days_range, type='float', string='Days Range Average',
+            multi="cal_days",
+            store={
+                'logistic.travel': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['from_date', 'to_date'],
+                    10)
+            }),
     }
-
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
