@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+
+        <!-- TREEVIEW -->
+
+        <record id="view_logistic_travel_tree" model="ir.ui.view">
+            <field name="name">logistic_travel.tree</field>
+            <field name="model">logistic.travel</field>
+            <field name="arch" type="xml">
+                <tree string="Travel" create='false'>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="product_id" invisible="1"/>
+                    <field name="waybill_id" invisible="1"/>
+                    <field name="from_date"/>
+                    <field name="location_from_id"/>
+                    <field name="location_to_id"/>
+                    <field name="days_range" sum="Total"/>
+                    <field name="days_range_avg" widget="progressbar" sum="Total"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- GRAPHVIEW -->
+
+        <record id="view_logistic_travel_graph" model="ir.ui.view">
+            <field name="name">logistic.travel.graph</field>
+            <field name="model">logistic.travel</field>
+            <field name="arch" type="xml">
+                <graph string="Travel" >
+                    <field name="days_range"/>
+                    <field name="days_range_avg"/>
+                </graph>
+            </field>
+        </record>
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

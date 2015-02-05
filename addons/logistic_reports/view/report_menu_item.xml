@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <menuitem
+            name="Logistic"
+            id="menu_logistic_report"
+            sequence="5"
+            parent="base.menu_reporting"
+            />
+
+        <record id="action_analysis_travel_report" model="ir.actions.act_window">
+            <field name="name">Analysis Travel</field>
+            <field name="res_model">logistic.travel</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph,form</field>
+            <field name="view_id" ref="view_logistic_travel_tree"/>
+            <field name="context">{'search_default_group_by_date':1,'search_default_group_by_tractor':1}</field>
+        </record>
+
+
+        <menuitem
+            name="Analysis Travel"
+            id="menu_analysis_travel"
+            sequence="10"
+            action="action_analysis_travel_report"
+            parent="menu_logistic_report"
+            groups="logistic.group_view"
+            />
+      
+        <record id="action_logistic_waybill_report" model="ir.actions.act_window">
+            <field name="name">Summary</field>
+            <field name="res_model">logistic.waybill</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_logistic_waybill_report_tree"/>
+        </record>
+
+        <menuitem
+            name="Summary"
+            id="menu_waybills_report"
+            sequence="1"
+            action="action_logistic_waybill_report"
+            parent="menu_logistic_report"
+            groups="logistic.group_view"
+            />
+    </data>
+</openerp>
+<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
+     -->

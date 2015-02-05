@@ -68,7 +68,7 @@
                        <filter string="Driver" name="group_by_driver" domain="[]" context="{'group_by' : 'driver_id'}"/>
                        <filter string="Waybill" domain="[]" context="{'group_by' : 'waybill_id'}"/>
                        <filter string="Product" domain="[]" context="{'group_by' : 'product_id'}"/>
-                       <filter string="Tractor" domain="[]" context="{'group_by' : 'tractor_id'}"/>
+                       <filter string="Tractor" domain="[]" name="group_by_tractor" context="{'group_by' : 'tractor_id'}"/>
                        <filter string="From Location" domain="[]" context="{'group_by' : 'location_from_id'}"/>
                        <filter string="To Location" domain="[]" context="{'group_by' : 'location_to_id'}"/>
                    </group>                      

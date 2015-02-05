@@ -144,6 +144,7 @@ class waybill(osv.osv):
                 'charged_liters': charged_liters,
                 'consumed_liters': consumed_liters,
                 'consumption': consumption,
+                'consumption_copy': consumption,
             }
         return res
 
@@ -151,6 +152,7 @@ class waybill(osv.osv):
         'charged_liters': fields.function(_get_fuel_data, type='float', string='Charged', multi="fuel_data"),
         'consumed_liters': fields.function(_get_fuel_data, type='float', string='Consumed', multi="fuel_data"),
         'consumption': fields.function(_get_fuel_data, type='float', string='Consumption (l/km)', multi="fuel_data"),
+        'consumption_copy': fields.function(_get_fuel_data, type='float', string='Consumption (l/km)', multi="fuel_data"),
         'initial_odometer_id': fields.many2one('fleet.vehicle.odometer', 'Initial Odometer', help='Odometer measure of the vehicle at the moment of this log', readonly=True, states={'active': [('readonly', False)]}),
         'initial_odometer': fields.function(_get_initial_odometer, fnct_inv=_set_initial_odometer, type='float', string='Initial Odometer', readonly=True, states={'active': [('readonly', False)]}),
         'final_odometer_id': fields.many2one('fleet.vehicle.odometer', 'Final Odometer', help='Odometer measure of the vehicle at the moment of this log', readonly=True, states={'active': [('readonly', False)]}),
