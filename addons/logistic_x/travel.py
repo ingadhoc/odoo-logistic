@@ -222,17 +222,11 @@ class travel(osv.osv):
         if context is None:
             context = {}
         create_ids = []
-        product_currency = {}
-        for o in self.browse(cr, uid, ids, context=context):
-            pricelist = self.get_pricelist(cr, uid, o.partner_id, context=context)
-            currency_id = pricelist.currency_id.id
-            product_currency[o.product_id.id] = currency_id
-        if context.get(('grouped_line')):
-            for product_id in product_currency:
-                travel_ids = self.search(cr, uid, [('id', 'in', ids),('product_id','=',product_id)], context=context)
-                travels = []
-                for tr in self.browse(cr, uid, travel_ids, context=context):
-                    travels.append(tr)
+        if context.get('grouped_line'):
+            product_ids = [x.product_id.id for x in self.browse(cr, uid, ids, context=context) if x.product_id]
+            for product_id in list(set(product_ids)):
+                travel_ids = self.search(cr, uid, [('id', 'in', ids), ('product_id', '=', product_id)], context=context)
+                travels = self.browse(cr, uid, travel_ids, context=context)
                 vals = self._prepare_order_line_invoice_line(cr, uid, travels, context=context)
                 if vals:
                     inv_line_id = self.pool.get('account.invoice.line').create(cr, uid, vals, context=context)
@@ -259,7 +253,7 @@ class travel(osv.osv):
            :return: dict of values to create() the invoice line
         """
         res = {}
-        if context.get(('grouped_line')):
+        if context.get('grouped_line'):
             if not travel[0].invoice_line_id:
                 if travel[0].product_id:
                     account_id = travel[0].product_id.property_account_income.id
