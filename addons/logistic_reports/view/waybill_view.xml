@@ -49,9 +49,9 @@
                     <field name="total_price" sum="Total"/>
                     <field name="total_cost" sum="Total"/>
                     <field name="net" sum="Total"/>
-                    <field name="cost_km" sum="Promedio"/>
-                    <field name="price_km" sum="Promedio"/>
-                    <field name="net_km" sum="Promedio"/>
+                    <field name="cost_km" avg="Promedio"/>
+                    <field name="price_km" avg="Promedio"/>
+                    <field name="net_km" avg="Promedio"/>
                 </tree>
             </field>
         </record>
