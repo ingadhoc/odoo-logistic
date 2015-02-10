@@ -13,6 +13,7 @@
                         <group>
                             <field name="days_range" />
                             <field name="consumption_copy" />
+                            <field name="distance" />
                             <group>
                                 <field name="total_price" />
                                 <field name="total_cost" />
