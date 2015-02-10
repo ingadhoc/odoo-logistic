@@ -171,7 +171,7 @@
                             <page string="Payment And Cost">
                                 <field name="currency_id" invisible="1"/>
                                 <group>
-                                    <field name="distance" />
+                                    <!-- <field name="distance" /> -->
                                     <group string="Driver">
                                         <field name="driver_product_id" on_change="on_change_product(driver_product_id,context)"/>
                                         <field name="driver_unit_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>

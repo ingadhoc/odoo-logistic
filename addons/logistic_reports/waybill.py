@@ -126,7 +126,7 @@ class waybill(osv.osv):
             store={
                 'logistic.waybill': (
                     lambda self, cr, uid, ids, c={}: ids,
-                    ['distance', 'net'],
+                    ['final_odometer', 'net', 'travel_ids', 'initial_odometer'],
                     10),
                 'logistic.travel': (
                     _get_total_travel,
@@ -139,7 +139,7 @@ class waybill(osv.osv):
         'cost_km': fields.function(_get_price_cost_km, type='float', string='Cost per km', multi="total_km", store={
             'logistic.waybill': (
                 lambda self, cr, uid, ids, c={}: ids,
-                ['distance', 'net'],
+                ['final_odometer', 'initial_odometer', 'net', 'waybill_expense_ids'],
                 10),
             'logistic.travel': (
                 _get_total_travel,
@@ -152,7 +152,7 @@ class waybill(osv.osv):
         'net_km': fields.function(_get_price_cost_km, type='float', string='Net per km', multi="total_km", store={
             'logistic.waybill': (
                 lambda self, cr, uid, ids, c={}: ids,
-                ['distance', 'net'],
+                ['net', 'waybill_expense_ids', 'travel_ids', 'final_odometer', 'initial_odometer'],
                 10),
             'logistic.travel': (
                 _get_total_travel,
