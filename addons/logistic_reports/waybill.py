@@ -10,6 +10,7 @@ class waybill(osv.osv):
     """"""
 
     _inherit = 'logistic.waybill'
+    _order = 'date desc'
 
     def _get_days_range(self, cr, uid, ids, fields, arg, context):
         res = {}
