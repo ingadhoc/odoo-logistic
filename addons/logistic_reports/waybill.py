@@ -38,9 +38,14 @@ class waybill(osv.osv):
                 for travel in record.waybill_expense_ids:
                     total_cost = total_cost + travel.price_subtotal
             net = total_price - total_cost
+            net_avg = 0
+            if total_cost != 0:
+                net_avg = ((total_price/total_cost) - 1) * 100
+            print net_avg
             res[record.id] = {
                 'total_price': total_price,
                 'total_cost': total_cost,
+                'net_avg': net_avg,
                 'net': net,
             }
         return res
@@ -120,6 +125,22 @@ class waybill(osv.osv):
                     lambda self, cr, uid, ids, c={}: ids,
                     ['travel_ids', 'waybill_expense_ids'],
                     10)},
+        ),
+        'net_avg': fields.function(
+            _get_total, type='float', string='Net %', multi="total",
+            store={
+                'logistic.travel': (
+                    _get_total_travel,
+                    ['price'],
+                    10),
+                'logistic.waybill_expense': (
+                    _get_total_exp,
+                    ['price_unit', 'product_uom_qty'],
+                    10),
+                'logistic.waybill': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    ['travel_ids', 'waybill_expense_ids'],
+                    10)}, group_operator="avg"
         ),
         'price_km': fields.function(
             _get_price_cost_km, type='float', string='Price per km',

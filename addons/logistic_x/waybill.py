@@ -156,11 +156,7 @@ class waybill(osv.osv):
         store={
             'logistic.waybill': (
                 lambda self, cr, uid, ids, c={}: ids,
-                ['final_liters', 'initial_liters', 'distance', 'waybill_expense_ids'],
-                10),
-            'logistic.waybill_expense': (
-                lambda self, cr, uid, ids, c={}: ids,
-                ['product_id', 'product_uom_qty'],
+                ['consumption', 'initial_liters','waybill_expense_ids'],
                 10)}, group_operator="avg"),
         'initial_odometer_id': fields.many2one('fleet.vehicle.odometer', 'Initial Odometer', help='Odometer measure of the vehicle at the moment of this log', readonly=True, states={'active': [('readonly', False)]}),
         'initial_odometer': fields.function(_get_initial_odometer, fnct_inv=_set_initial_odometer, type='float', string='Initial Odometer', readonly=True, states={'active': [('readonly', False)]}),
