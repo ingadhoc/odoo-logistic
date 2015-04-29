@@ -13,10 +13,12 @@
                         <group>
                             <field name="days_range" />
                             <field name="consumption_copy" />
+                            <field name="distance" />
                             <group>
                                 <field name="total_price" />
                                 <field name="total_cost" />
                                 <field name="net" />
+                                <field name="net_avg" />
                             </group>
                             <group>
                                 <field name="price_km" />
@@ -45,10 +47,11 @@
                     <field name="driver_id"/>
                     <field name="state" invisible="1"/>
                     <field name="days_range"/>
-                    <field name="consumption_copy"/>
+                    <field name="consumption_copy" avg="Promedio"/>
                     <field name="total_price" sum="Total"/>
                     <field name="total_cost" sum="Total"/>
                     <field name="net" sum="Total"/>
+                    <field name="net_avg" avg="Promedio"/>
                     <field name="cost_km" avg="Promedio"/>
                     <field name="price_km" avg="Promedio"/>
                     <field name="net_km" avg="Promedio"/>

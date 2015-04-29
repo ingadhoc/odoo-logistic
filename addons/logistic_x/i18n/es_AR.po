@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-23 08:39+0000\n"
-"PO-Revision-Date: 2014-06-23 10:39+0100\n"
+"POT-Creation-Date: 2015-02-24 14:42+0000\n"
+"PO-Revision-Date: 2015-02-24 11:44-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,20 +17,10 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_14_product_template
-msgid "Service"
-msgstr "Servicio"
-
-#. module: logistic_x
 #: view:logistic.requirement:0 view:logistic.travel:0 view:logistic.waybill:0
 #: view:logistic.waybill_expense:0
 msgid "Group By..."
 msgstr "Agrupar Por..."
-
-#. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_05_product_template
-msgid "Inspección Técnica Vehicular"
-msgstr "Inspección Técnica Vehicular"
 
 #. module: logistic_x
 #: view:logistic.requirement:0 view:logistic.waybill:0
@@ -70,11 +60,6 @@ msgid "base.group_no_one"
 msgstr "base.group_no_one"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_13_product_template
-msgid "Carnet Sanitario"
-msgstr "Carnet Sanitario"
-
-#. module: logistic_x
 #: field:fleet.vehicle,length:0
 msgid "Length  (mts)"
 msgstr "Largo  (mts)"
@@ -105,11 +90,6 @@ msgid "Initial"
 msgstr "Inicial"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_12_product_template
-msgid "Curso FTP"
-msgstr "Curso FTP"
-
-#. module: logistic_x
 #: view:logistic.waybill:0
 msgid "Notes"
 msgstr "Notas"
@@ -136,7 +116,7 @@ msgid "Fuel Logs"
 msgstr "Registros de combustible"
 
 #. module: logistic_x
-#: field:logistic.travel,tractor_id:0
+#: view:logistic.travel:0 field:logistic.travel,tractor_id:0
 msgid "Tractor"
 msgstr "Tractor"
 
@@ -146,25 +126,10 @@ msgid "Tractor Status"
 msgstr "Estado del Tractor"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_02_product_template
-msgid "Córdoba – Buenos Aires"
-msgstr "Córdoba – Buenos Aires"
-
-#. module: logistic_x
 #: selection:fleet.vehicle,requirement_state:0
 #: selection:res.partner,requirement_state:0
 msgid "OK"
 msgstr "OK"
-
-#. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_07_product_template
-msgid "Bromatología"
-msgstr "Bromatología"
-
-#. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_11_product_template
-msgid "Psicofísico"
-msgstr "Psicofísico"
 
 #. module: logistic_x
 #: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
@@ -208,11 +173,6 @@ msgid "Invoice Lines"
 msgstr "Líneas de Factura"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_10_product_template
-msgid "Carnet Municipal"
-msgstr "Carnet Municipal"
-
-#. module: logistic_x
 #: help:logistic.travel.make.invoice,grouped:0
 msgid "Check the box to group the invoices for the same customers"
 msgstr "Marque la casilla para agrupar facturas para el mismo cliente"
@@ -221,6 +181,11 @@ msgstr "Marque la casilla para agrupar facturas para el mismo cliente"
 #: view:logistic.travel:0 view:logistic.waybill_expense:0
 msgid "Waybill"
 msgstr "Hoja de Ruta"
+
+#. module: logistic_x
+#: field:account.invoice,available_journal_ids:0
+msgid "Available Journals"
+msgstr "Available Journals"
 
 #. module: logistic_x
 #: selection:fleet.vehicle,requirement_state:0
@@ -241,14 +206,19 @@ msgid "Engine Options"
 msgstr "Opciones del motor"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_01_product_template
-msgid "Rosario – Córdoba"
-msgstr "Rosario – Córdoba"
+#: view:logistic.travel:0
+msgid "True"
+msgstr "True"
 
 #. module: logistic_x
 #: view:logistic.waybill:0
 msgid "Payment And Cost"
 msgstr "Costo y Pago"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Date To"
+msgstr "Fecha hasta"
 
 #. module: logistic_x
 #: view:fleet.vehicle:0
@@ -272,12 +242,13 @@ msgid "Ordered?"
 msgstr "Ordenado?"
 
 #. module: logistic_x
-#: model:ir.model,name:logistic_x.model_logistic_travel_make_invoice
-msgid "Travel Make Invoice"
-msgstr "Facturar Viaje"
+#: view:fleet.vehicle:0 field:fleet.vehicle,maintenance_ids:0
+#: view:product.product:0
+msgid "Maintenances"
+msgstr "Mantenimientos"
 
 #. module: logistic_x
-#: view:logistic.travel:0 view:logistic.waybill_expense:0
+#: view:logistic.waybill_expense:0
 msgid "Invoice Line"
 msgstr "Línea de Factura"
 
@@ -297,15 +268,15 @@ msgid "Capacity (pallets)"
 msgstr "Capacidad (pallets)"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_06_product_template
-msgid "Ruta"
-msgstr "Ruta"
-
-#. module: logistic_x
 #: view:logistic.requirement:0 view:logistic.travel:0 view:logistic.waybill:0
 #: view:logistic.waybill_expense:0
 msgid "By Attribute"
 msgstr "Por Atributo"
+
+#. module: logistic_x
+#: view:logistic.waybill:0
+msgid "Date From"
+msgstr "Fecha desde"
 
 #. module: logistic_x
 #: model:ir.ui.menu,name:logistic_x.fleet_vehicle_state_menu
@@ -338,12 +309,8 @@ msgid "Driver"
 msgstr "Conductor"
 
 #. module: logistic_x
-#: view:logistic.travel:0
-msgid "account.group_account_invoice"
-msgstr "account.group_account_invoice"
-
-#. module: logistic_x
-#: view:logistic.travel:0
+#: view:logistic.travel:0 view:logistic.waybill:0
+#: view:logistic.waybill_expense:0 field:logistic.waybill_expense,date:0
 msgid "Date"
 msgstr "Fecha"
 
@@ -353,9 +320,9 @@ msgid "Vehicle Model"
 msgstr "Modelo del vehículo"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_04_product_template
-msgid "Seguro"
-msgstr "Seguro"
+#: field:logistic.travel.make.invoice,grouped_line:0
+msgid "Group the Invoice Lines"
+msgstr "Group the Invoice Lines"
 
 #. module: logistic_x
 #: field:logistic.waybill,driver_total:0
@@ -368,15 +335,15 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_15_product_template
-msgid "Cubierta Bridgestone"
-msgstr "Cubierta Bridgestone"
+#: model:ir.model,name:logistic_x.model_logistic_travel_make_invoice
+msgid "Travel Make Invoice"
+msgstr "Facturar Viaje"
 
 #. module: logistic_x
-#: view:fleet.vehicle:0 field:fleet.vehicle,maintenance_ids:0
-#: view:product.product:0
-msgid "Maintenances"
-msgstr "Mantenimientos"
+#: model:ir.model,name:logistic_x.model_account_invoice
+#: field:logistic.travel,invoice_id:0
+msgid "Invoice"
+msgstr "Factura"
 
 #. module: logistic_x
 #: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
@@ -423,11 +390,6 @@ msgid "Model brand of Vehicle"
 msgstr "Modelo del vehículo"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_09_product_template
-msgid "Permiso Internacional Chile"
-msgstr "Permiso Internacional Chile"
-
-#. module: logistic_x
 #: view:logistic.travel:0 view:logistic.waybill:0
 msgid "Create Invoice"
 msgstr "Crear Factura"
@@ -438,9 +400,9 @@ msgid "Fuel"
 msgstr "Combustible"
 
 #. module: logistic_x
-#: view:logistic.travel:0
-msgid "To Location"
-msgstr "A Ubicación"
+#: view:fleet.vehicle:0
+msgid "Additional Properties"
+msgstr "Propiedades adicionales"
 
 #. module: logistic_x
 #: view:logistic.requirement:0 view:logistic.travel:0
@@ -454,9 +416,9 @@ msgid "waybill_expense"
 msgstr "waybill_expense"
 
 #. module: logistic_x
-#: model:ir.model,name:logistic_x.model_logistic_travel
-msgid "travel"
-msgstr "viaje"
+#: field:res.partner,parent_name:0
+msgid "Parent name"
+msgstr "Parent name"
 
 #. module: logistic_x
 #: view:logistic.expense.make.invoice:0 view:logistic.travel.make.invoice:0
@@ -464,14 +426,9 @@ msgid "Do you really want to create the invoice(s)?"
 msgstr "Quiere realmente crear la(s) factura(s)?"
 
 #. module: logistic_x
-#: view:fleet.vehicle:0
-msgid "Additional Properties"
-msgstr "Propiedades adicionales"
-
-#. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_03_product_template
-msgid "Buenos Aires – Rosario"
-msgstr "Buenos Aires – Rosario"
+#: view:logistic.travel:0
+msgid "To Location"
+msgstr "A Ubicación"
 
 #. module: logistic_x
 #: view:logistic.requirement:0
@@ -517,11 +474,6 @@ msgid "Need Renew"
 msgstr "Necesita Renovación"
 
 #. module: logistic_x
-#: model:product.template,name:logistic_x.product_product_08_product_template
-msgid "SENASA"
-msgstr "SENASA"
-
-#. module: logistic_x
 #: model:ir.model,name:logistic_x.model_fleet_vehicle
 msgid "Information on a vehicle"
 msgstr "Información en un vehículo"
@@ -536,3 +488,13 @@ msgstr "Referencia..."
 #: view:logistic.waybill_driver_payment:0 view:logistic.waybill_expense:0
 msgid "Total"
 msgstr "Total"
+
+#. module: logistic_x
+#: constraint:logistic.travel:0
+msgid "Error! From date must be lower then to date."
+msgstr "Error! From date must be lower then to date."
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_travel
+msgid "travel"
+msgstr "Viaje"
