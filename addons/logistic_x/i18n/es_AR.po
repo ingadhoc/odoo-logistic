@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-24 14:42+0000\n"
-"PO-Revision-Date: 2015-02-24 11:44-0300\n"
+"POT-Creation-Date: 2015-05-04 13:44+0000\n"
+"PO-Revision-Date: 2015-05-04 10:45-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -173,6 +173,11 @@ msgid "Invoice Lines"
 msgstr "Líneas de Factura"
 
 #. module: logistic_x
+#: field:logistic.waybill,consumption_copy:0
+msgid "Consumption (l/km)"
+msgstr "Consumo (l/km)"
+
+#. module: logistic_x
 #: help:logistic.travel.make.invoice,grouped:0
 msgid "Check the box to group the invoices for the same customers"
 msgstr "Marque la casilla para agrupar facturas para el mismo cliente"
@@ -204,6 +209,12 @@ msgstr "Odómetro Final"
 #: view:fleet.vehicle:0
 msgid "Engine Options"
 msgstr "Opciones del motor"
+
+#. module: logistic_x
+#: model:ir.model,name:logistic_x.model_logistic_waybill
+#: view:logistic.waybill:0
+msgid "waybill"
+msgstr "hoja de ruta"
 
 #. module: logistic_x
 #: view:logistic.travel:0
@@ -441,10 +452,9 @@ msgid "Width (mts)"
 msgstr "Ancho (mts)"
 
 #. module: logistic_x
-#: model:ir.model,name:logistic_x.model_logistic_waybill
-#: view:logistic.waybill:0
-msgid "waybill"
-msgstr "hoja de ruta"
+#: model:ir.actions.act_window,name:logistic_x.action_logistic_waybill_expense_expenses_to_invoice_by_product
+msgid "Expenses to Invoice By Products"
+msgstr "Expenses to Invoice By Products"
 
 #. module: logistic_x
 #: view:logistic.waybill:0
@@ -479,6 +489,11 @@ msgid "Information on a vehicle"
 msgstr "Información en un vehículo"
 
 #. module: logistic_x
+#: model:ir.ui.menu,name:logistic_x.menu_expenses_to_invoice_by_product
+msgid "Expenses to Invoice By Product"
+msgstr "Gastos a Facturar por Producto"
+
+#. module: logistic_x
 #: view:logistic.waybill:0
 msgid "Reference..."
 msgstr "Referencia..."
@@ -497,4 +512,4 @@ msgstr "Error! From date must be lower then to date."
 #. module: logistic_x
 #: model:ir.model,name:logistic_x.model_logistic_travel
 msgid "travel"
-msgstr "Viaje"
+msgstr "viaje"

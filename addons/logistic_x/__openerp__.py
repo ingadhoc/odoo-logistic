@@ -48,6 +48,7 @@ Logistic Modifications
         # 'wizard/travel_sale_order.xml',
         'wizard/travel_make_invoice.xml',
         'wizard/expense_make_invoice.xml',
+        'view/logistic_menuitem.xml',
         'view/partner_view.xml',   
         'view/waybill_view.xml',
         'view/product_view.xml',

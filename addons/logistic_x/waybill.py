@@ -148,6 +148,13 @@ class waybill(osv.osv):
             }
         return res
 
+    def _get_total_exp(self, cr, uid, ids, context=None):
+        result = []
+        for expense in self.pool.get('logistic.waybill_expense').browse(cr, uid, ids, context=context):
+            if expense.product_uom_qty:
+                result.append(expense.waybill_id.id)
+        return result
+
     _columns = {
         'charged_liters': fields.function(_get_fuel_data, type='float', string='Charged', multi="fuel_data"),
         'consumed_liters': fields.function(_get_fuel_data, type='float', string='Consumed', multi="fuel_data"),
@@ -156,7 +163,11 @@ class waybill(osv.osv):
         store={
             'logistic.waybill': (
                 lambda self, cr, uid, ids, c={}: ids,
-                ['consumption', 'initial_liters','waybill_expense_ids'],
+                ['consumption', 'initial_liters', 'final_liters', 'waybill_expense_ids', 'state', 'initial_odometer', 'final_odometer'],
+                10),
+            'logistic.waybill_expense': (
+                _get_total_exp,
+                ['product_uom_qty'],
                 10)}, group_operator="avg"),
         'initial_odometer_id': fields.many2one('fleet.vehicle.odometer', 'Initial Odometer', help='Odometer measure of the vehicle at the moment of this log', readonly=True, states={'active': [('readonly', False)]}),
         'initial_odometer': fields.function(_get_initial_odometer, fnct_inv=_set_initial_odometer, type='float', string='Initial Odometer', readonly=True, states={'active': [('readonly', False)]}),
