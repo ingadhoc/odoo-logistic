@@ -41,7 +41,7 @@
                        <filter string="Supplier" name="group_by_partner" domain="[]" context="{'group_by' : 'supplier_id'}"/>
                        <filter string="Waybill" domain="[]" context="{'group_by' : 'waybill_id'}"/>
                        <filter string="Date" domain="[]" context="{'group_by' : 'date'}"/>
-                       <filter string="Product" name="group_by_product" domain="[]" context="{'group_by' : 'product_id'}"/>
+                       <filter string="Product" domain="[]" context="{'group_by' : 'product_id'}"/>
                        <filter string="Invoice Line" domain="[]" context="{'group_by' : 'invoice_line_id'}"/>
                    </group>                      
                 </search>
