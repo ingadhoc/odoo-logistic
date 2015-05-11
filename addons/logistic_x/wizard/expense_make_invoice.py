@@ -28,6 +28,7 @@ class logistic_expense_make_invoice(osv.osv_memory):
     _columns = {
         'grouped': fields.boolean('Group the invoices', help='Check the box to group the invoices for the same suppliers'),
         'invoice_date': fields.date('Invoice Date'),
+        'grouped_line': fields.boolean('Group the Invoice Lines')
     }
     _defaults = {
         'grouped': False,
@@ -42,8 +43,10 @@ class logistic_expense_make_invoice(osv.osv_memory):
         if context is None:
             context = {}
         data = self.read(cr, uid, ids)[0]
+        context['grouped_line'] = data['grouped_line']
 
-        invoice_ids = waybill_expense_obj.action_invoice_create(cr, uid, context.get(('active_ids'), []), data['grouped'], date_invoice=data['invoice_date'])
+        invoice_ids = waybill_expense_obj.action_invoice_create(cr, uid, context.get(
+            ('active_ids'), []), data['grouped'], date_invoice=data['invoice_date'], context=context)
         result = mod_obj.get_object_reference(cr, uid, 'account', 'action_invoice_tree2')
         id = result and result[1] or False
         result = act_obj.read(cr, uid, [id], context=context)[0]
@@ -51,5 +54,6 @@ class logistic_expense_make_invoice(osv.osv_memory):
             result['domain'] = "[('id','in',"+ str(invoice_ids) + " )]"
 
         return result
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

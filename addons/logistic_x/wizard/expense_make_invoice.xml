@@ -9,6 +9,7 @@
                     <separator colspan="4" string="Do you really want to create the invoice(s)?" />
                     <group>
                         <field name="grouped"/>
+                        <field name="grouped_line" attrs="{'invisible': [('grouped','=',False)]}"/>
                         <field name="invoice_date"/>
                     </group>
                     <footer>
