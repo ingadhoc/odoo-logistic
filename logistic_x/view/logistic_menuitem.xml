@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        
+
+        <record id="action_logistic_waybill_expense_expenses_to_invoice_by_product" model="ir.actions.act_window">
+            <field name="name">Expenses to Invoice By Products</field>
+            <field name="res_model">logistic.waybill_expense</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_waybill_expense_tree"/>
+            <field name="search_view_id" ref="view_logistic_waybill_expense_filter"/>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_to_invoice':1,'search_default_group_by_product':1}</field>
+        </record>
+
+        <menuitem
+            name="Expenses to Invoice By Product"
+            id="menu_expenses_to_invoice_by_product"
+            sequence="45"
+            action="action_logistic_waybill_expense_expenses_to_invoice_by_product"
+            parent="logistic.menu_waybills_main"
+            groups="logistic.group_view"
+            />
+
+    </data>
+</openerp>
