@@ -60,7 +60,7 @@ class waybill_expense(models.Model):
         if grouped:
             for supplier_id in partner_currency:
                 expense_ids = self.search(
-                    [('id', 'in', ids), ('supplier_id', '=', supplier_id)], context=context)
+                    cr, uid, [('id', 'in', ids), ('supplier_id', '=', supplier_id)], context=context)
                 invoice_ids.append(
                     self._invoice_create(cr, uid, expense_ids, context=context))
         else:

@@ -134,13 +134,6 @@ class waybill(models.Model):
         self.consumption = consumption
         self.consumption_copy = consumption
 
-    # def _get_total_exp(self, cr, uid, ids, context=None):
-    #     result = []
-    #     for expense in self.pool.get('logistic.waybill_expense').browse(cr, uid, ids, context=context):
-    #         if expense.product_uom_qty:
-    #             result.append(expense.waybill_id.id)
-    #     return result
-
     charged_liters = fields.Float(
         string='Charged', compute='_get_fuel_data', multi="fuel_data")
     consumed_liters = fields.Float(
