@@ -21,7 +21,7 @@
 
 
 {'active': False,
-    'author': 'ADHOC.',
+    'author': 'ADHOC SA',
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [
         'data/demo/res.partner.csv',
