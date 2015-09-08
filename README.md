@@ -1,5 +1,6 @@
-odoo-logistic
-=============
+[![Build Status](https://travis-ci.org/ingadhoc/odoo-logistic.svg?branch=8.0)](https://travis-ci.org/ingadhoc/odoo-logistic)
+[![Coverage Status](https://coveralls.io/repos/ingadhoc/odoo-logistic/badge.png?branch=8.0)](https://coveralls.io/r/ingadhoc/odoo-logistic?branch=8.0)
+# odoo-logistic
 
 odoo Logistic Management Modules
 
