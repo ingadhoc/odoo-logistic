@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 
 
-from openerp import models, fields
+from openerp import models, fields, api
 from openerp.exceptions import Warning
 from openerp.tools.translate import _
 
@@ -32,12 +36,10 @@ class waybill(models.Model):
             cr, uid, data, context=context)
         return self.write(cr, uid, id, {'initial_odometer_id': odometer_id}, context=context)
 
-    def _get_final_odometer(self, cr, uid, ids, final_odometer_id, arg, context):
-        res = dict.fromkeys(ids, False)
-        for record in self.browse(cr, uid, ids, context=context):
-            if record.final_odometer_id:
-                res[record.id] = record.final_odometer_id.value
-        return res
+    @api.one
+    def _get_final_odometer(self):
+        if self.final_odometer_id:
+            self.final_odometer = self.final_odometer_id.value
 
     def _set_final_odometer(self, cr, uid, id, name, value, args=None, context=None):
         if not value:
@@ -53,12 +55,10 @@ class waybill(models.Model):
         return self.write(cr, uid, id, {'final_odometer_id': odometer_id}, context=context)
 
     # WAGON
-    def _get_wagon_initial_odometer(self, cr, uid, ids, wagon_initial_odometer_id, arg, context):
-        res = dict.fromkeys(ids, False)
-        for record in self.browse(cr, uid, ids, context=context):
-            if record.wagon_initial_odometer_id:
-                res[record.id] = record.wagon_initial_odometer_id.value
-        return res
+
+    def _get_wagon_initial_odometer(self):
+        if self.wagon_initial_odometer_id:
+            self.wagon_initial_odometer = self.wagon_initial_odometer_id.value
 
     def _set_wagon_initial_odometer(self, cr, uid, id, name, value, args=None, context=None):
         if not value:
@@ -73,12 +73,10 @@ class waybill(models.Model):
             cr, uid, data, context=context)
         return self.write(cr, uid, id, {'wagon_initial_odometer_id': odometer_id}, context=context)
 
-    def _get_wagon_final_odometer(self, cr, uid, ids, wagon_final_odometer_id, arg, context):
-        res = dict.fromkeys(ids, False)
-        for record in self.browse(cr, uid, ids, context=context):
-            if record.wagon_final_odometer_id:
-                res[record.id] = record.wagon_final_odometer_id.value
-        return res
+    @api.one
+    def _get_wagon_final_odometer(self):
+        if self.wagon_final_odometer_id:
+            self.wagon_final_odometer = self.wagon_final_odometer_id.value
 
     def _set_wagon_final_odometer(self, cr, uid, id, name, value, args=None, context=None):
         if not value:
@@ -93,55 +91,55 @@ class waybill(models.Model):
             cr, uid, data, context=context)
         return self.write(cr, uid, id, {'wagon_final_odometer_id': odometer_id}, context=context)
 
-    def _get_distance(self, cr, uid, ids, fields, arg, context):
-        res = dict.fromkeys(ids, False)
-        for record in self.browse(cr, uid, ids, context=context):
-            if record.initial_odometer and record.final_odometer:
-                res[record.id] = record.final_odometer - \
-                    record.initial_odometer
-        return res
+    @api.one
+    @api.depends('initial_odometer', 'final_odometer')
+    def _get_distance(self):
+        if self.initial_odometer and self.final_odometer:
+            self.distance = self.final_odometer - \
+                self.initial_odometer
 
-    def _get_amounts(self, cr, uid, ids, fields, arg, context):
-        res = {}
-        for record in self.browse(cr, uid, ids, context=context):
-            driver_total = False
-            if record.driver_unit_price and record.distance:
-                driver_total = record.driver_unit_price * record.distance
-            res[record.id] = {
-                'driver_total': driver_total,
-            }
-        return res
+    def _get_amounts(self):
+        # for record in self.browse(cr, uid, ids, context=context):
+        self.driver_total = False
+        if self.driver_unit_price and self.distance:
+            self.driver_total = self.driver_unit_price * self.distance
 
-    def _get_fuel_data(self, cr, uid, ids, fields, arg, context):
-        res = {}
-        expense_obj = self.pool['logistic.waybill_expense']
+    @api.one
+    @api.depends(
+        'consumption',
+        'initial_liters',
+        'final_liters',
+        'waybill_expense_ids',
+        'waybill_expense_ids.product_uom_qty',
+        'state',
+        'initial_odometer',
+        'final_odometer'
+    )
+    def _get_fuel_data(self):
+        expense_obj = self.env['logistic.waybill_expense']
+        charged_liters = 0.0
+        fuel_charge_ids = expense_obj.search([(
+            'waybill_id', '=', self.id), ('product_id.is_fuel', '=', True)])
+        for fuel_charge in expense_obj.browse(fuel_charge_ids):
+            charged_liters += fuel_charge.product_uom_qty
+        consumed_liters = self.initial_liters + \
+            charged_liters - self.final_liters
+        if self.distance != 0:
+            consumption = consumed_liters / self.distance
+        else:
+            consumption = 0
 
-        for record in self.browse(cr, uid, ids, context=context):
-            charged_liters = 0.0
-            fuel_charge_ids = expense_obj.search(cr, uid, [(
-                'waybill_id', '=', record.id), ('product_id.is_fuel', '=', True)], context=context)
-            for fuel_charge in expense_obj.browse(cr, uid, fuel_charge_ids, context=context):
-                charged_liters += fuel_charge.product_uom_qty
-            consumed_liters = record.initial_liters + \
-                charged_liters - record.final_liters
-            if record.distance != 0:
-                consumption = consumed_liters / record.distance
-            else:
-                consumption = 0
-            res[record.id] = {
-                'charged_liters': charged_liters,
-                'consumed_liters': consumed_liters,
-                'consumption': consumption,
-                'consumption_copy': consumption,
-            }
-        return res
+        self.charged_liters = charged_liters
+        self.consumed_liters = consumed_liters
+        self.consumption = consumption
+        self.consumption_copy = consumption
 
-    def _get_total_exp(self, cr, uid, ids, context=None):
-        result = []
-        for expense in self.pool.get('logistic.waybill_expense').browse(cr, uid, ids, context=context):
-            if expense.product_uom_qty:
-                result.append(expense.waybill_id.id)
-        return result
+    # def _get_total_exp(self, cr, uid, ids, context=None):
+    #     result = []
+    #     for expense in self.pool.get('logistic.waybill_expense').browse(cr, uid, ids, context=context):
+    #         if expense.product_uom_qty:
+    #             result.append(expense.waybill_id.id)
+    #     return result
 
     charged_liters = fields.Float(
         string='Charged', compute='_get_fuel_data', multi="fuel_data")
@@ -153,15 +151,6 @@ class waybill(models.Model):
         string='Consumption (l/km)',
         compute='_get_fuel_data',
         multi="fuel_data", store=True, group_operator="avg")
-        # store={
-        #     'logistic.waybill': (
-        #         lambda self, cr, uid, ids, c={}: ids,
-        #         ['consumption', 'initial_liters', 'final_liters', 'waybill_expense_ids', 'state', 'initial_odometer', 'final_odometer'],
-        #         10),
-        #     'logistic.waybill_expense': (
-        #         _get_total_exp,
-        #         ['product_uom_qty'],
-        #         10)}, group_operator="avg")
     initial_odometer_id = fields.Many2one(
         'fleet.vehicle.odometer', 'Initial Odometer',
         help='Odometer measure of the vehicle at the moment of this log',
@@ -175,7 +164,7 @@ class waybill(models.Model):
         'fleet.vehicle.odometer', 'Final Odometer',
         help='Odometer measure of the vehicle at the moment of this log',
         readonly=True, states={'active': [('readonly', False)]})
-    final_odometer = fields.function(
+    final_odometer = fields.Float(
         fnct_inv=_set_final_odometer,
         compute='_get_final_odometer',
         string='Final Odometer',
@@ -202,11 +191,11 @@ class waybill(models.Model):
         compute='_get_wagon_final_odometer',
         string='Final Odometer', readonly=True,
         states={'active': [('readonly', False)]})
-    tractor_status = fields.Char(
+    tractor_status = fields.Selection(
         related='tractor_id.requirement_state', string='Tractor Status')
-    wagon_status = fields.Char(
+    wagon_status = fields.Selection(
         related='wagon_id.requirement_state', string='Wagon Status')
-    driver_status = fields.Char(
+    driver_status = fields.Selection(
         related='driver_id.requirement_state', string='Driver Status')
 
     def on_change_tractor_final_odometer(self, cr, uid, ids, initial_odometer, final_odometer, wagon_initial_odometer, context=None):
@@ -316,5 +305,3 @@ class waybill(models.Model):
                         cr, uid, travel_ids[0], context=context).to_date
                     self.write(
                         cr, uid, [record.id], {'date_finish': date_finish}, context=context)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

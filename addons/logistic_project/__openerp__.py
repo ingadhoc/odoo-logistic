@@ -20,19 +20,20 @@
 ##############################################################################
 
 
-{   'active': False,
+{'active': False,
     'application': True,
-    'author': 'Ingenieria ADHOC.',
+    'author': 'ADHOC.',
     'category': u'base.module_category_knowledge_management',
     'demo_xml': [],
-    'depends': [u'logistic_x', 
+    'depends': [
+        'logistic_x',
         'product_customer_price',
         'disable_openerp_online',
         'purchase_double_validation_imp',
         'cron_run_manually',
         'partner_person',
         'logistic_reports',
-        ],
+    ],
     'description': u"""
 AFTER INSTALLATION CONFIGURATIONS:
 * Set purchase ammount to 0
@@ -47,8 +48,6 @@ Necesita los repo:
     'name': u'Logistic Project',
     'test': [],
     'update_xml': [
-      ],
+    ],
     'version': 'No version',
-    'website': 'www.ingadhoc.com'}
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    'website': 'www.adhoc.com.ar'}

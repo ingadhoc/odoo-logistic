@@ -30,7 +30,7 @@
         'data/demo/fleet.vehicle.csv',
         'data/demo/logistic.waybill.csv',
         'data/demo/logistic.travel.csv',
-        'data/demo/product.supplierinfo.csv',
+        # 'data/demo/product.supplierinfo.csv',
         'data/demo/documents/logistic.requirement.csv',
         'data/demo/maintenances/logistic.requirement.csv',
         'data/demo/logistic.requirement.xml',

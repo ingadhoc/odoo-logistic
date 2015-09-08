@@ -1,32 +1,16 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Ingenieria ADHOC - ADHOC SA
-#    https://launchpad.net/~ingenieria-adhoc
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
 ##############################################################################
+from openerp import models, fields, api
+from openerp.exceptions import Warning
 
-from openerp.osv import osv, fields
-from openerp.tools.translate import _
-from openerp import netsvc
 
-class logistic_travel_make_sale_order(osv.osv_memory):
+class logistic_travel_make_sale_order(models.TransientModel):
     _name = "logistic.travel.make.sale.order"
     _description = "Travel Make Sale Orders"
-    
+
     def make_orders(self, cr, uid, ids, context=None):
         """
              To make sale orders.
@@ -40,11 +24,12 @@ class logistic_travel_make_sale_order(osv.osv_memory):
              @return: A dictionary which of fields with values.
 
         """
-        if context is None: context = {}
+        if context is None:
+            context = {}
         res = False
         orders = []
 
-    #TODO: merge with sale.py/make_invoice
+    # TODO: merge with sale.py/make_invoice
         def make_orders(travel):
             """
                  To make orders.
@@ -64,11 +49,13 @@ class logistic_travel_make_sale_order(osv.osv_memory):
             if not travel.partner_id.property_product_pricelist:
                 pricelist_id = travel.partner_id.property_product_pricelist
             else:
-                pricelist_ids = self.pool['product.pricelist'].search(cr, uid, [('type','=','sale')], context=context)
+                pricelist_ids = self.pool['product.pricelist'].search(
+                    cr, uid, [('type', '=', 'sale')], context=context)
                 if pricelist_ids:
                     pricelist_id = pricelist_ids[0]
                 else:
-                    raise osv.except_osv(_('Error!'), _('Order cannot be created because not sale pricelist exists!'))
+                    raise Warning(
+                        _('Error!'), _('Order cannot be created because not sale pricelist exists!'))
             inv = {
                 # 'name': order.client_order_ref or '',
                 'origin': travel.waybill_id.name,
@@ -78,7 +65,7 @@ class logistic_travel_make_sale_order(osv.osv_memory):
                 'partner_id': travel.partner_id.id,
                 'partner_invoice_id': travel.partner_id.id,
                 'partner_shipping_id': travel.partner_id.id,
-                'pricelist_id': pricelist_id, 
+                'pricelist_id': pricelist_id,
                 # 'order_line': [(6, 0, lines)],
                 # 'currency_id' : travel.pricelist_id.currency_id.id,
                 # 'comment': order.note,
@@ -102,7 +89,8 @@ class logistic_travel_make_sale_order(osv.osv_memory):
 
             """
             fpos = travel.partner_id.property_account_position or False
-            tax_ids = self.pool.get('account.fiscal.position').map_tax(cr, uid, fpos, travel.product_id.taxes_id)
+            tax_ids = self.pool.get('account.fiscal.position').map_tax(
+                cr, uid, fpos, travel.product_id.taxes_id)
 
             line = {
                 # 'name': travel.product_id.name,
@@ -120,7 +108,7 @@ class logistic_travel_make_sale_order(osv.osv_memory):
             }
 
             line_id = self.pool.get('sale.order.line').create(cr, uid, line)
-            return line_id            
+            return line_id
 
         travel_obj = self.pool.get('logistic.travel')
         # sales_order_line_obj = self.pool.get('sale.order.line')
@@ -131,9 +119,10 @@ class logistic_travel_make_sale_order(osv.osv_memory):
                 order_id = make_orders(travel)
                 line_id = make_lines(travel, order_id)
                 orders.append(order_id)
-                travel_obj.write(cr, uid, travel.id, {'order_line_id':line_id}, context=context)
+                travel_obj.write(
+                    cr, uid, travel.id, {'order_line_id': line_id}, context=context)
         #     if (not line.order_line_id):
-        #     # if (not line.ordered) and (line.state not in ('draft', 'cancel')):
+        # if (not line.ordered) and (line.state not in ('draft', 'cancel')):
         #         if not line.order_line_id in orders:
         #             orders[line.order_id] = []
         #         orders[line.id] = []
@@ -154,11 +143,14 @@ class logistic_travel_make_sale_order(osv.osv_memory):
         #         wf_service.trg_validate(uid, 'sale.order', order.id, 'manual_invoice', cr)
         #         sales_order_obj.write(cr, uid, [order.id], {'state': 'progress'})
             elif not travel.partner_id:
-                raise osv.except_osv(_('Error!'), _('Sale order cannot be created because there is no partner defined for this travel!'))
+                raise Warning(_('Error!'), _(
+                    'Sale order cannot be created because there is no partner defined for this travel!'))
             elif not travel.product_id:
-                raise osv.except_osv(_('Error!'), _('Sale order cannot be created because there is no product defined for this travel!'))
+                raise Warning(_('Error!'), _(
+                    'Sale order cannot be created because there is no product defined for this travel!'))
             elif travel.order_line_id:
-                raise osv.except_osv(_('Error!'), _('Sale order cannot be created because it already has a related sale order line!'))
+                raise Warning(_('Error!'), _(
+                    'Sale order cannot be created because it already has a related sale order line!'))
         if context.get('open_orders', False):
             return self.open_orders(cr, uid, ids, orders[0], context=context)
         return {'type': 'ir.actions.act_window_close'}
@@ -166,9 +158,11 @@ class logistic_travel_make_sale_order(osv.osv_memory):
     def open_orders(self, cr, uid, ids, order_ids, context=None):
         """ open a view on one of the given order_ids """
         ir_model_data = self.pool.get('ir.model.data')
-        form_res = ir_model_data.get_object_reference(cr, uid, 'sale', 'view_order_form')
+        form_res = ir_model_data.get_object_reference(
+            cr, uid, 'sale', 'view_order_form')
         form_id = form_res and form_res[1] or False
-        tree_res = ir_model_data.get_object_reference(cr, uid, 'sale', 'view_quotation_tree')
+        tree_res = ir_model_data.get_object_reference(
+            cr, uid, 'sale', 'view_quotation_tree')
         tree_id = tree_res and tree_res[1] or False
 
         return {
@@ -182,5 +176,3 @@ class logistic_travel_make_sale_order(osv.osv_memory):
             'context': {},
             'type': 'ir.actions.act_window',
         }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

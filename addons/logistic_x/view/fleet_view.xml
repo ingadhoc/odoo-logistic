@@ -134,16 +134,16 @@
                         </page>
                     </notebook>
                 </sheet>
-                <button string="Contracts" position="attributes">
+                <button name="return_action_to_open" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </button>
-                <button string="Costs" position="attributes">
+                <button name="act_show_log_cost" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </button>
-                <button string="Services" position="attributes">
+                <button icon="fa-wrench" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </button>
-                <button string="Fuel Logs" position="attributes">
+                <button icon="fa-flask" position="attributes">
                     <attribute name="groups">base.group_no_one</attribute>
                 </button>
             </field>

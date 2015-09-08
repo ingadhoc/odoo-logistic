@@ -1,59 +1,41 @@
 # -*- coding: utf-8 -*-
-
-from openerp.osv import osv, fields
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from openerp import models, fields, api
 from datetime import datetime
 from calendar import monthrange
-from openerp.tools.translate import _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP, float_compare
 
 
-class travel(osv.osv):
+class travel(models.Model):
 
     """"""
 
     _inherit = 'logistic.travel'
 
-    def _get_days_range(self, cr, uid, ids, fields, arg, context):
-        res = {}
-        for record in self.browse(cr, uid, ids, context=context):
-            if record.from_date and record.to_date:
-                from_date = datetime.strptime(
-                    record.from_date, '%Y-%m-%d  %H:%M:%S')
-                to_date = datetime.strptime(
-                    record.to_date, '%Y-%m-%d  %H:%M:%S')
-                days = (to_date - from_date).days
-                days_avg = days * 100.0 / \
-                    monthrange(from_date.year, from_date.month)[1]
-                res[record.id] = {
-                    'days_range': days,
-                    'days_range_avg': days_avg,
-                }
-            else:
-                res[record.id] = {
-                    'days_range': 0,
-                    'days_range_avg': 0,
-                }
-        return res
+    @api.one
+    @api.depends('from_date', 'to_date')
+    def _get_days_range(self):
+        if self.from_date and self.to_date:
+            from_date = datetime.strptime(
+                self.from_date, '%Y-%m-%d  %H:%M:%S')
+            to_date = datetime.strptime(
+                self.to_date, '%Y-%m-%d  %H:%M:%S')
+            days = (to_date - from_date).days
+            days_avg = days * 100.0 / \
+                monthrange(from_date.year, from_date.month)[1]
+            self.days_range = days
+            self.days_range_avg = days_avg
+        else:
+            self.days_range = 0
+            self.days_range_avg = 0
 
-    _columns = {
-        'days_range': fields.function(
-            _get_days_range, type='integer', string='Days Range',
-            multi="cal_days",
-            store={
-                'logistic.travel': (
-                    lambda self, cr, uid, ids, c={}: ids,
-                    ['from_date', 'to_date'],
-                    10)
-            }),
-        'days_range_avg': fields.function(
-            _get_days_range, type='float', string='Days Range Average',
-            multi="cal_days",
-            store={
-                'logistic.travel': (
-                    lambda self, cr, uid, ids, c={}: ids,
-                    ['from_date', 'to_date'],
-                    10)
-            }),
-    }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    days_range = fields.Integer(
+        compute='_get_days_range', string='Days Range',
+        multi="cal_days",
+        store=True)
+    days_range_avg = fields.Float(
+        compute='_get_days_range', string='Days Range Average',
+        multi="cal_days",
+        store=True)

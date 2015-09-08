@@ -1,41 +1,24 @@
+# -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Ingenieria ADHOC - ADHOC SA
-#    https://launchpad.net/~ingenieria-adhoc
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
 ##############################################################################
 
-from openerp.osv import fields, osv
-from openerp.tools.translate import _
-from openerp import netsvc
+from openerp import models, fields
 
 
-class logistic_travel_make_invoice(osv.osv_memory):
+class logistic_travel_make_invoice(models.TransientModel):
     _name = "logistic.travel.make.invoice"
     _description = "Travel Make Invoice"
-    _columns = {
-        'grouped': fields.boolean('Group the invoices',
-                                  help='Check the box to group the invoices for the same customers'),
-        'grouped_line': fields.boolean('Group the Invoice Lines'),
-        'invoice_date': fields.date('Invoice Date'),
-    }
-    _defaults = {
-        'grouped': False,
-        'invoice_date': fields.date.context_today,
-    }
+
+    grouped = fields.Boolean(
+        'Group the invoices',
+        help='Check the box to group the invoices for the same customers',
+        default=False)
+    grouped_line = fields.Boolean('Group the Invoice Lines')
+    invoice_date = fields.Date(
+        'Invoice Date',
+        default=fields.date.today())
 
     def make_invoices(self, cr, uid, ids, context=None):
         travel_obj = self.pool.get('logistic.travel')
@@ -56,5 +39,3 @@ class logistic_travel_make_invoice(osv.osv_memory):
             result['domain'] = "[('id','in'," + str(invoice_ids) + " )]"
 
         return result
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

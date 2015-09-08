@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 
-
-from openerp import models, fields
+from openerp import models, fields, api, _
 import time
-import datetime
-from openerp.tools.translate import _
-from dateutil.relativedelta import relativedelta
+from openerp.exceptions import Warning
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP, float_compare
 import openerp.addons.decimal_precision as dp
 
@@ -16,24 +17,21 @@ class waybill_expense(models.Model):
 
     _inherit = 'logistic.waybill_expense'
 
-    def _amount_line(self, cr, uid, ids, field_name, arg, context=None):
+    @api.one
+    @api.depends('price_unit', 'product_uom_qty')
+    def _amount_line(self):
         # tax_obj = self.pool.get('account.tax')
         # cur_obj = self.pool.get('res.currency')
-        res = {}
-        if context is None:
-            context = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            price = line.price_unit * line.product_uom_qty
-            # taxes = tax_obj.compute_all(cr, uid, line.tax_id, price, line.product_uom_qty, line.product_id, line.order_id.partner_id)
-            # cur = line.order_id.pricelist_id.currency_id
-            # res[line.id] = cur_obj.round(cr, uid, cur, taxes['total'])
-            res[line.id] = price
-        return res
+        self.price_subtotal = self.price_unit * self.product_uom_qty
+        # taxes = tax_obj.compute_all(cr, uid, line.tax_id, price, line.product_uom_qty, line.product_id, line.order_id.partner_id)
+        # cur = line.order_id.pricelist_id.currency_id
+        # res[line.id] = cur_obj.round(cr, uid, cur, taxes['total'])
 
-    _columns = {
-        'price_subtotal': fields.function(_amount_line, string='Subtotal', digits_compute=dp.get_precision('Account')),
-        'date': fields.related('waybill_id', 'date', type='datetime', string='Date', store=True),
-    }
+    price_subtotal = fields.Float(
+        compute='_amount_line',
+        string='Subtotal', digits_compute=dp.get_precision('Account'))
+    date = fields.Date(
+        related='waybill_id.date',  string='Date', store=True)
 
     def action_invoice_create(self, cr, uid, ids, grouped=False, date_invoice=False, context=None):
         invoice_ids = []
@@ -51,10 +49,10 @@ class waybill_expense(models.Model):
                 cr, uid, o.supplier_id, context=context)
             currency_id = pricelist.currency_id.id
             if not o.supplier_id or not o.product_id:
-                raise osv.except_osv(
+                raise Warning(
                     _('Warning!'), _('To create invoice expenses must have supplier and product'))
             if (o.supplier_id.id in partner_currency) and (partner_currency[o.supplier_id.id] <> currency_id):
-                raise osv.except_osv(
+                raise Warning(
                     _('Error!'),
                     _('You cannot group expenses having different currencies for the same supplier.'))
 
@@ -62,7 +60,7 @@ class waybill_expense(models.Model):
         if grouped:
             for supplier_id in partner_currency:
                 expense_ids = self.search(
-                    cr, uid, [('id', 'in', ids), ('supplier_id', '=', supplier_id)], context=context)
+                    [('id', 'in', ids), ('supplier_id', '=', supplier_id)], context=context)
                 invoice_ids.append(
                     self._invoice_create(cr, uid, expense_ids, context=context))
         else:
@@ -90,6 +88,7 @@ class waybill_expense(models.Model):
         if data.get('value', False):
             inv_obj.write(cr, uid, [inv_id], data['value'], context=context)
         inv_obj.button_compute(cr, uid, [inv_id])
+        print 'expe', inv_id
         return inv_id
 
     def get_pricelist(self, cr, uid, partner, context=None):
@@ -101,7 +100,7 @@ class waybill_expense(models.Model):
             if pricelist_ids:
                 pricelist_id = pricelist_ids[0]
             else:
-                raise osv.except_osv(
+                raise Warning(
                     _('Error!'), _('Order cannot be created because no purchase pricelist exists!'))
         return self.pool['product.pricelist'].browse(cr, uid, pricelist_id, context=context)
 
@@ -162,9 +161,9 @@ class waybill_expense(models.Model):
                         account_id = expense[
                             0].product_id.categ_id.property_account_income_categ.id
                     if not account_id:
-                        raise osv.except_osv(_('Error!'),
-                                             _('Please define income account for this product: "%s" (id:%d).') %
-                                             (expense.product_id.name, expense.product_id.id,))
+                        raise Warning(_('Error!'),
+                                      _('Please define income account for this product: "%s" (id:%d).') %
+                                      (expense.product_id.name, expense.product_id.id,))
             fpos = expense[0].supplier_id.property_account_position.id or False
             account_id = self.pool.get('account.fiscal.position').map_account(
                 cr, uid, fpos, account_id)
@@ -182,8 +181,8 @@ class waybill_expense(models.Model):
                     pu = round(expense_id.price_unit,
                                self.pool.get('decimal.precision').precision_get(cr, uid, 'Product Price'))
                 if not account_id:
-                    raise osv.except_osv(_('Error!'),
-                                         _('There is no Fiscal Position defined or Income category account defined for default properties of Product categories.'))
+                    raise Warning(_('Error!'),
+                                  _('There is no Fiscal Position defined or Income category account defined for default properties of Product categories.'))
             res = {
                 'name': name,
                 'account_id': account_id,
@@ -201,9 +200,9 @@ class waybill_expense(models.Model):
                     if not account_id:
                         account_id = expense.product_id.categ_id.property_account_income_categ.id
                     if not account_id:
-                        raise osv.except_osv(_('Error!'),
-                                             _('Please define income account for this product: "%s" (id:%d).') %
-                                             (expense.product_id.name, expense.product_id.id,))
+                        raise Warning(_('Error!'),
+                                      _('Please define income account for this product: "%s" (id:%d).') %
+                                      (expense.product_id.name, expense.product_id.id,))
                 uosqty = self._get_line_qty(cr, uid, expense, context=context)
                 uos_id = self._get_line_uom(cr, uid, expense, context=context)
                 pu = 0.0
@@ -214,8 +213,8 @@ class waybill_expense(models.Model):
                 account_id = self.pool.get('account.fiscal.position').map_account(
                     cr, uid, fpos, account_id)
                 if not account_id:
-                    raise osv.except_osv(_('Error!'),
-                                         _('There is no Fiscal Position defined or Income category account defined for default properties of Product categories.'))
+                    raise Warning(_('Error!'),
+                                  _('There is no Fiscal Position defined or Income category account defined for default properties of Product categories.'))
                 tax_ids = self.pool.get('account.fiscal.position').map_tax(
                     cr, uid, fpos, expense.product_id.taxes_id)
                 res = {
@@ -261,8 +260,8 @@ class waybill_expense(models.Model):
                                                                ('company_id', '=', company.id)],
                                                               limit=1)
         if not journal_ids:
-            raise osv.except_osv(_('Error!'),
-                                 _('Please define purchases journal for this company: "%s" (id:%d).') % (company.name, company.id))
+            raise Warning(_('Error!'),
+                          _('Please define purchases journal for this company: "%s" (id:%d).') % (company.name, company.id))
         origin = _('Gastos de Hoja de Ruta')
         invoice_vals = {
             'origin': origin,

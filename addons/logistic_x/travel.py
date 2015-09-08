@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from openerp import models, fields, api
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
+from openerp import models, fields
 import time
 import datetime
 from openerp.tools.translate import _
@@ -14,7 +18,7 @@ class travel(models.Model):
 
     _inherit = 'logistic.travel'
 
-    def _fnct_line_ordered(self, cr, uid, ids, name, unknow_none, context=None):
+    def _fnct_line_ordered(self):
         """"""
         res = {}
         # Por ahora no la usamos
@@ -404,4 +408,3 @@ class travel(models.Model):
             'company_id': company.id,
         }
         return invoice_vals
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

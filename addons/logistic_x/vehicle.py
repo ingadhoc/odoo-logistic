@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 
-from openerp import models, fields
+from openerp import models, fields, api
 
 
 class vehicle(models.Model):
@@ -16,27 +20,20 @@ class vehicle(models.Model):
         ('need_renew', 'Need Renew'),
     ]
 
-    def _get_requirement_state(self, cr, uid, ids, initial_odometer_id, arg, context):
-        res = dict.fromkeys(ids, False)
-        requirement_obj = self.pool['logistic.requirement']
-        for record_id in ids:
-            state = 'ok'
-            if requirement_obj.search(cr, uid, [('vehicle_id', '=', record_id), ('state', '=', 'need_renew')], context=context):
-                state = 'need_renew'
-            elif requirement_obj.search(cr, uid, [('vehicle_id', '=', record_id), ('state', '=', 'next_to_renew')], context=context):
-                state = 'next_to_renew'
-            res[record_id] = state
-        return res
+    @api.one
+    def _get_requirement_state(self):
+        self.requirement_state = 'ok'
+        if self.env['logistic.requirement'].search(
+                [('vehicle_id', '=', self.id), ('state', '=', 'need_renew')]):
+            self.requirement_state = 'need_renew'
+        elif self.env['logistic.requirement'].search(
+                [('vehicle_id', '=', self.id), ('state', '=', 'next_to_renew')]):
+            self.requirement_state = 'next_to_renew'
 
     length = fields.Float(string='Length  (mts)')
     width = fields.Float(string='Width (mts)')
     capacity = fields.Integer('Capacity (pallets)')
     name = fields.Char('Name', required=True)
-        # 'maintenance_ids': fields.one2many('logistic.requirement', 'res_id',
-        #     context={'default_type':'maintenance','default_model':self._name},
-        #     domain=lambda self: [('model', '=', self._name),('type', '=', 'maintenance')],
-        #     auto_join=True,
-        #     string='Maintenances',),
     maintenance_ids = fields.One2many(
         'logistic.requirement', 'vehicle_id',
         context={'default_type': 'maintenance'},

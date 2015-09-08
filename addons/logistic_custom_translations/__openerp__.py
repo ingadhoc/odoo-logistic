@@ -20,11 +20,11 @@
 ##############################################################################
 
 
-{   'active': False,
-    'author': 'Ingenieria ADHOC.',
+{'active': False,
+    'author': 'ADHOC.',
     'category': u'base.module_category_knowledge_management',
     'demo_xml': [
-        ],
+    ],
     'depends': [u'fleet'],
     'description': """
 Logistic translations
@@ -35,10 +35,10 @@ Logistic translations
     'name': u'Logistic Translations',
     'test': [],
     'update_xml': [
-      ],
-    'version': 'No version',
-    'css' : [ 
-        ],
-    'website': 'www.ingadhoc.com'}
+    ],
+    'version': '8.0.0.1.0',
+    'css': [
+    ],
+    'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+##############################################################################
+# For copyright and license notices, see __openerp__.py file in module root
+# directory
+##############################################################################
 
 
 from openerp import models, fields, api
@@ -18,16 +22,14 @@ class res_partner(models.Model):
     ]
 
     @api.one
-    def _get_requirement_state(self, initial_odometer_id, arg):
-        # res = dict.fromkeys(ids, False)
-        requirement_obj = self.env['logistic.requirement']
+    def _get_requirement_state(self):
         self.requirement_state = 'ok'
-        if requirement_obj.search([('partner_id', '=', self.id), ('state', '=', 'need_renew')]):
+        if self.env['logistic.requirement'].search(
+                [('partner_id', '=', self.id), ('state', '=', 'need_renew')]):
             self.requirement_state = 'need_renew'
-        elif requirement_obj.search([('partner_id', '=', self.id), ('state', '=', 'next_to_renew')]):
+        elif self.env['logistic.requirement'].search(
+                [('partner_id', '=', self.id), ('state', '=', 'next_to_renew')]):
             self.requirement_state = 'next_to_renew'
-        #     res[record_id] = state
-        # return res
 
     document_ids = fields.One2many(
         'logistic.requirement', 'partner_id',
@@ -38,6 +40,3 @@ class res_partner(models.Model):
     requirement_state = fields.Selection(
         selection=_requirement_states,
         compute='_get_requirement_state', string="Requirements State")
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
