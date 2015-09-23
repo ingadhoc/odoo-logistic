@@ -1,57 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-##############################################################################
-#
-#    Logistic
-#    Copyright (C) 2014 No author.
-#    No email
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
--->
-<!-- logistic.requirement -->
-<!-- logistic.requirement -->
-<!-- logistic.requirement -->
 <openerp>
     <data>
-
         <!-- SEARCH VIEW -->
         <record id="view_logistic_requirement_filter" model="ir.ui.view">
             <field name="name">logistic.requirement.select</field>
             <field name="model">logistic.requirement</field>
             <field name="arch" type="xml">
-                <search string="requirement" version="7.0">
+                <search>
                     <group string="By Attribute">
-                    <field name="date" string="Date"
-                            />
-                    <field name="product_id" string="Product"
-                            />
-                    <field name="name" string="Name"
-                            />
-                    <field name="warning_range" string="Warning Range"
-                            />
-                    <field name="issue_date" string="Issue Date"
-                            />
-                    <field name="expiration_date" string="Expiration Date"
-                            />
-                    <field name="warning_days" string="Warning Days"
-                            />
+                        <filter name="active" string="Active" domain="[('state','not in',['renewed','cancelled'])]"/>
                     </group>
-                    <group string="By object">
+                    <group expand="0" string="Group By...">
+                        <filter string="Name" domain="[]" context="{'group_by' : 'name'}"/>
+                        <filter string="Product" domain="[]" context="{'group_by' : 'product_id'}"/>
+                        <filter string="Driver" invisible="context.get('related_model',False) != 'res.partner'" context="{'group_by' : 'partner_id'}"/>
+                        <filter string="Vehicle" invisible="context.get('related_model',False) != 'fleet.vehicle'" context="{'group_by' : 'vehicle_id'}"/>
+                        <filter string="State" domain="[]" context="{'group_by' : 'state'}"/>
                     </group>
-                </search>
+                </search>                    
             </field>
         </record>
 
@@ -150,13 +116,11 @@
                         <field name="warning_days"
                             attrs="{'invisible':['|',('type','!=','document'),('id','=',False)],'required':[('type','=','document')]}"
                             />
-                        <field name="renewed_by_id"
-                            />
-                        <field name="renews_id"
-                            />
-                        <field name="id"
-                            invisible="True"
-                            />
+                        <field name="renewed_by_id"/>
+                        <field name="renews_id"/>
+                        <field name="id" invisible="True"/>
+                        <field name="purchase_order_id"/>
+                        <field name="invoice_line_ids"/>
                      </group>
                     </sheet>
 
@@ -176,7 +140,7 @@
             <field name="arch" type="xml">
                 <tree string="requirement"
                     fonts="bold:message_unread==True"
-                    colors="grey:state=='cancelled';blue:state in ('draft',);black:state in ('renewal_requested', 'need_renew', 'next_to_renew', 'renewed', 'ok'); red:state in ()"
+                    colors="grey:state in ('cancelled','renewed');green:state in ('ok');violet:state in ('next_to_renew',); red:state in ('need_renew'); black:state=='renewal_requested'"
                     >
                     <field name="message_unread" invisible="1"/>
                     <field name="date"
@@ -230,5 +194,3 @@
 
     </data>
 </openerp>
-<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
-     -->

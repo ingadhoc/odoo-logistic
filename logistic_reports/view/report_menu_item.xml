@@ -32,8 +32,8 @@
             <field name="name">Summary</field>
             <field name="res_model">logistic.waybill</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_logistic_waybill_report_tree"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_logistic_waybill_report_graph"/>
         </record>
 
         <menuitem
@@ -46,5 +46,3 @@
             />
     </data>
 </openerp>
-<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
-     -->

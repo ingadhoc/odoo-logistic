@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Logistic
-#    Copyright (C) 2014 No author.
-#    No email
+#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
+#    All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,56 +20,61 @@
 ##############################################################################
 
 
-{   'active': False,
-    'author': 'No author.',
-    'category': u'base.module_category_knowledge_management',
-    'demo_xml': [],
-    'depends': [   u'purchase',
-                   u'account',
-                   u'product',
-                   u'sale',
-                   u'fleet',
-                   u'mail'],
-    'description': u'Logistic',
-    'init_xml': [],
+{'active': False,
+    'author': 'ADHOC.',
+    'category': 'base.module_category_knowledge_management',
+    'demo': [
+        'data/demo/res.partner.csv',
+        'data/demo/logistic.location.csv',
+        'data/demo/product.product.csv',
+        'data/demo/fleet.vehicle.csv',
+        'data/demo/logistic.waybill.csv',
+        'data/demo/logistic.travel.csv',
+        # 'data/demo/product.supplierinfo.csv',
+        'data/demo/documents/logistic.requirement.csv',
+        'data/demo/maintenances/logistic.requirement.csv',
+        'data/demo/logistic.requirement.xml',
+    ],
+    'depends': ['purchase',
+                'account',
+                'product',
+                'sale',
+                'fleet',
+                'mail'],
+    'description': """
+Logistic
+""",
     'installable': True,
     'license': 'AGPL-3',
-    'name': u'Logistic',
+    'name': 'Logistic',
     'test': [],
-    'update_xml': [   u'security/logistic_group.xml',
-                      u'view/product_view.xml',
-                      u'view/waybill_expense_view.xml',
-                      u'view/waybill_view.xml',
-                      u'view/travel_view.xml',
-                      u'view/requirement_view.xml',
-                      u'view/waybill_driver_payment_view.xml',
-                      u'view/location_view.xml',
-                      u'view/vehicle_view.xml',
-                      u'view/partner_view.xml',
-                      u'view/logistic_menuitem.xml',
-                      u'data/product_properties.xml',
-                      u'data/waybill_expense_properties.xml',
-                      u'data/waybill_properties.xml',
-                      u'data/travel_properties.xml',
-                      u'data/requirement_properties.xml',
-                      u'data/waybill_driver_payment_properties.xml',
-                      u'data/location_properties.xml',
-                      u'data/vehicle_properties.xml',
-                      u'data/partner_properties.xml',
-                      u'data/product_track.xml',
-                      u'data/waybill_expense_track.xml',
-                      u'data/waybill_track.xml',
-                      u'data/travel_track.xml',
-                      u'data/requirement_track.xml',
-                      u'data/waybill_driver_payment_track.xml',
-                      u'data/location_track.xml',
-                      u'data/vehicle_track.xml',
-                      u'data/partner_track.xml',
-                      u'workflow/waybill_workflow.xml',
-                      u'workflow/requirement_workflow.xml',
-                      u'workflow/waybill_driver_payment_workflow.xml',
-                      'security/ir.model.access.csv'],
-    'version': 'No version',
-    'website': ''}
+    'data': [
+        # 'wizard/travel_sale_order.xml',
+        'security/logistic_group.xml',
+        'wizard/travel_make_invoice.xml',
+        'wizard/expense_make_invoice.xml',
+        'view/partner_view.xml',
+        'view/waybill_view.xml',
+        'view/product_view.xml',
+        'view/travel_view.xml',
+        'view/waybill_expense_view.xml',
+        'view/fleet_view.xml',
+        'view/requirement_view.xml',
+        'view/purchase_order.xml',
+        'view/waybill_driver_payment_view.xml',
+        'view/location_view.xml',
+        'view/logistic_menuitem.xml',
+        'data/waybill_sequence.xml',
+        'data/cron.xml',
+        'workflow/waybill_workflow.xml',
+        'workflow/requirement_workflow.xml',
+        'workflow/waybill_driver_payment_workflow.xml',
+        'security/ir.model.access.csv',
+    ],
+    'version': '8.0.0.1.1',
+    'css': [
+        'static/src/css/logistic.css',
+    ],
+    'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

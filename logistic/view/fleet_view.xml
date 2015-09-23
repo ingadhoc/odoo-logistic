@@ -1,26 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <record id="fleet.menu_root" model="ir.ui.menu">
-            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
-        </record>
 
         <!-- <menuitem name="Fleet" id="menu_root" sequence="110" groups="group_fleet_user"/> -->
         
         <!-- <menuitem name="Configuration" parent="menu_root" id="fleet_configuration" sequence="3" groups="group_fleet_manager"/> -->
-        <menuitem action="fleet.fleet_vehicle_model_act" parent="logistic.menu_configuration" id="fleet_vehicle_model_menu" />
-        <menuitem action="fleet.fleet_vehicle_model_brand_act" parent="logistic.menu_configuration" id="fleet_vehicle_model_brand_menu"/>
-        <menuitem action="fleet.fleet_vehicle_state_act" parent="logistic.menu_configuration" id="fleet_vehicle_state_menu"/>
-
-        <record id="logistic.action_logistic_vehicle_vehicles" model="ir.actions.act_window">
-            <!-- <field name="name">Vehicles</field> -->
-            <!-- <field name="res_model">fleet.vehicle</field> -->
-            <!-- <field name="view_type">form</field> -->
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="view_id" ref=""/>
-            <!-- <field name="search_view_id" ref="view_logistic_vehicle_filter"/> -->
-            <!-- <field name="domain">[]</field> -->
-        </record>
 
         <record model='ir.ui.view' id='logistic.view_logistic_vehicle_filter'>
             <field name="name">fleet.vehicle.search</field>
@@ -76,7 +60,7 @@
                 <label for="license_plate" position="before">
                     <label for="name" class="oe_edit_only"/>
                     <h2>
-                        <field name="name" class="oe_inline"/>
+                        <field name="name" class="oe_inline" readonly="0"/>
                     </h2>                
                 </label>
 

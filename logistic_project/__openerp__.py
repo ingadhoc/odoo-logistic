@@ -22,19 +22,19 @@
 
 {'active': False,
     'application': True,
-    'author': 'ADHOC.',
-    'category': u'base.module_category_knowledge_management',
-    'demo_xml': [],
+    'author': 'ADHOC S.A',
+    'category': 'base.module_category_knowledge_management',
+    'demo': [],
     'depends': [
-        'logistic_x',
+        'logistic',
         'product_customer_price',
         'disable_openerp_online',
-        'purchase_double_validation_imp',
+        # 'purchase_double_validation_imp',
         'cron_run_manually',
         'partner_person',
         'logistic_reports',
     ],
-    'description': u"""
+    'description': """
 AFTER INSTALLATION CONFIGURATIONS:
 * Set purchase ammount to 0
 * Enable supplier pricelist on products
@@ -42,12 +42,11 @@ AFTER INSTALLATION CONFIGURATIONS:
 Necesita los repo:
     lp:server-env-tools    
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
-    'name': u'Logistic Project',
+    'name': 'Logistic Project',
     'test': [],
-    'update_xml': [
+    'data': [
     ],
-    'version': 'No version',
+    'version': '8.0.0.0.0',
     'website': 'www.adhoc.com.ar'}

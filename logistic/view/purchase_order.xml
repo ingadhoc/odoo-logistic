@@ -7,15 +7,12 @@
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
             <field name="arch" type="xml">
-                
-                     <field name="name" string="Reference" position="after">
-                     <field name="origin" string="Source"/> 
-                     </field>                
-                
+                <field name="name" string="Reference" position="after">
+                    <field name="origin" string="Source"/> 
+                </field>                
             </field>
         </record>
 
-       
              
     </data>
 </openerp>

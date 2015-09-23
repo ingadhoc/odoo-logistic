@@ -28,7 +28,6 @@ class waybill(models.Model):
 
     @api.one
     @api.depends(
-        'state',
         'travel_ids',
         'travel_ids.price',
         'waybill_expense_ids',
@@ -41,8 +40,8 @@ class waybill(models.Model):
             for travel in self.travel_ids:
                 total_price = total_price + travel.price
         if self.waybill_expense_ids:
-            for travel in self.waybill_expense_ids:
-                total_cost = total_cost + travel.price_subtotal
+            for expense in self.waybill_expense_ids:
+                total_cost = total_cost + expense.price_subtotal
         net = total_price - total_cost
         net_avg = 0
         if total_cost != 0:
@@ -55,14 +54,9 @@ class waybill(models.Model):
 
     @api.one
     @api.depends(
-        'state',
         'distance',
         'total_price',
-        'total_cost',
-        'travel_ids',
-        'travel_ids.price',
-        'waybill_expense_ids',
-        'waybill_expense_ids.price_subtotal')
+        'total_cost')
     def _get_price_cost_km(self):
         if self.distance != 0:
             self.price_km = self.total_price / self.distance
@@ -73,27 +67,48 @@ class waybill(models.Model):
             self.cost_km = 0
             self.net_km = 0
 
-    days_range = fields.Integer(compute='_get_days_range', string='Days Range')
+    days_range = fields.Integer(
+        compute='_get_days_range',
+        string='Days Range'
+        )
     total_price = fields.Float(
-        compute='_get_total', string='Total Price',
-        multi="total", store=True)
-
+        compute='_get_total',
+        string='Total Price',
+        store=True)
+    conumption = fields.Float(
+        group_operator="avg"
+        )
     total_cost = fields.Float(
-        compute='_get_total', string='Total Cost',
-        multi="total", store=True)
+        compute='_get_total',
+        string='Total Cost',
+        store=True
+        )
     net = fields.Float(
-        compute='_get_total', string='Net', multi="total", store=True)
+        compute='_get_total',
+        string='Net',
+        store=True
+        )
     net_avg = fields.Float(
         compute='_get_total',
-        string='Net %', multi="total", store=True, group_operator="avg")
+        string='Net %',
+        store=True,
+        group_operator="avg"
+        )
     price_km = fields.Float(
-        compute='_get_price_cost_km', string='Price per km',
-        multi="total_km", store=True, group_operator="avg")
+        compute='_get_price_cost_km',
+        string='Price per km',
+        store=True,
+        group_operator="avg"
+        )
     cost_km = fields.Float(
         compute='_get_price_cost_km',
         tring='Cost per km',
-        multi="total_km", store=True, group_operator="avg")
+        store=True,
+        group_operator="avg"
+        )
     net_km = fields.Float(
         compute='_get_price_cost_km',
         string='Net per km',
-        multi="total_km", store=True, group_operator="avg")
+        store=True,
+        group_operator="avg"
+        )

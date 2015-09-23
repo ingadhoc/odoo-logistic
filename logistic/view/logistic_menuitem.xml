@@ -1,30 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-##############################################################################
-#
-#    Logistic
-#    Copyright (C) 2014 No author.
-#    No email
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
-
--->
 <openerp>
     <data>
 
+        
         <menuitem
             name="Logistic"
             id="menu_logistic"
@@ -91,8 +69,8 @@
             <field name="name">Drivers</field>
             <field name="res_model">res.partner</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_logistic_partner_tree"/>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref=""/>
             <field name="search_view_id" ref="view_logistic_partner_filter"/>
             <field name="context">{'default_is_driver':True}</field>
             <field name="domain">[('is_driver','=',True)]</field>
@@ -115,6 +93,7 @@
             <field name="view_id" ref="view_logistic_waybill_expense_tree"/>
             <field name="search_view_id" ref="view_logistic_waybill_expense_filter"/>
             <field name="domain">[]</field>
+            <field name="context">{'search_default_to_invoice':1,'search_default_group_by_partner':1}</field>
         </record>
 
         <menuitem
@@ -152,7 +131,7 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_logistic_requirement_tree"/>
             <field name="search_view_id" ref="view_logistic_requirement_filter"/>
-            <field name="context">{'default_type':'maintenance','related_model':'fleet.vehicle'}</field>
+            <field name="context">{'default_type':'maintenance','related_model':'fleet.vehicle','search_default_active':1}</field>
             <field name="domain">[('type', '=', 'maintenance')]</field>
         </record>
 
@@ -181,7 +160,7 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_logistic_requirement_tree"/>
             <field name="search_view_id" ref="view_logistic_requirement_filter"/>
-            <field name="context">{'default_type':'document','related_model':'res.partner'}</field>
+            <field name="context">{'default_type':'document','related_model':'res.partner','search_default_active':1}</field>
             <field name="domain">[('type', '=', 'document'),('partner_id','!=',False)]</field>
         </record>
 
@@ -198,8 +177,8 @@
             <field name="name">Products</field>
             <field name="res_model">product.product</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_logistic_product_tree"/>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref=""/>
             <field name="search_view_id" ref="view_logistic_product_filter"/>
             <field name="domain">[]</field>
         </record>
@@ -221,6 +200,7 @@
             <field name="view_id" ref="view_logistic_travel_tree"/>
             <field name="search_view_id" ref="view_logistic_travel_filter"/>
             <field name="domain">[]</field>
+            <field name="context">{'search_default_to_invoice':1,'search_default_group_by_date':1}</field>
         </record>
 
         <menuitem
@@ -236,8 +216,8 @@
             <field name="name">Travels Calendar</field>
             <field name="res_model">logistic.travel</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_logistic_travel_tree"/>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="view_id" ref="view_logistic_travel_calendar"/>
             <field name="search_view_id" ref="view_logistic_travel_filter"/>
             <field name="domain">[]</field>
         </record>
@@ -258,7 +238,7 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_logistic_requirement_tree"/>
             <field name="search_view_id" ref="view_logistic_requirement_filter"/>
-            <field name="context">{'default_type':'document','related_model':'fleet.vehicle'}</field>
+            <field name="context">{'default_type':'document','related_model':'fleet.vehicle','search_default_active':1}</field>
             <field name="domain">[('type', '=', 'document'),('vehicle_id','!=',False)]</field>
         </record>
 
@@ -275,8 +255,8 @@
             <field name="name">Vehicles</field>
             <field name="res_model">fleet.vehicle</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="view_logistic_vehicle_tree"/>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref=""/>
             <field name="search_view_id" ref="view_logistic_vehicle_filter"/>
             <field name="domain">[]</field>
         </record>
@@ -298,6 +278,7 @@
             <field name="view_id" ref="view_logistic_waybill_tree"/>
             <field name="search_view_id" ref="view_logistic_waybill_filter"/>
             <field name="domain">[]</field>
+            <field name="context">{'search_default_active':True}</field>
         </record>
 
         <menuitem
@@ -308,8 +289,42 @@
             parent="menu_waybills_main"
             groups="group_view"
             />
+        <!-- <record id="action_logistic_waybill_expense_expenses_to_invoice_by_product" model="ir.actions.act_window">
+            <field name="name">Expenses to Invoice By Products</field>
+            <field name="res_model">logistic.waybill_expense</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_logistic_waybill_expense_tree"/>
+            <field name="search_view_id" ref="view_logistic_waybill_expense_filter"/>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_to_invoice':1,'search_default_group_by_product':1}</field>
+        </record>
+
+        <menuitem
+            name="Expenses to Invoice By Product"
+            id="menu_expenses_to_invoice_by_product"
+            sequence="45"
+            action="action_logistic_waybill_expense_expenses_to_invoice_by_product"
+            parent="logistic.menu_waybills_main"
+            groups="logistic.group_view"
+            /> -->
+
+        <menuitem 
+            action="fleet.fleet_vehicle_model_act" 
+            parent="menu_configuration" 
+            id="fleet_vehicle_model_menu"/>
+        <menuitem 
+            action="fleet.fleet_vehicle_model_brand_act" 
+            parent="menu_configuration" 
+            id="fleet_vehicle_model_brand_menu"/>
+        <menuitem 
+            action="fleet.fleet_vehicle_state_act" 
+            parent="menu_configuration" 
+            id="fleet_vehicle_state_menu"/>
+            
+        <record id="fleet.menu_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+        </record>
 
     </data>
 </openerp>
-<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
-     -->

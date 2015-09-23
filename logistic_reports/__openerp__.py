@@ -21,24 +21,23 @@
 {'active': False,
     'author': 'ADHOC',
     'category': 'base.module_category_knowledge_management',
-    'demo_xml': [
+    'demo': [
     ],
-    'depends': ['logistic_x', 'report_aeroo'],
+    'depends': ['logistic', 'report_aeroo'],
     'description': """
 Logistic Reports
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
     'name': 'Logistic Reports',
     'test': [],
-    'update_xml': [
+    'data': [
         'report/waybill_report.xml',
         'view/travel_view.xml',
         'view/waybill_view.xml',
         'view/report_menu_item.xml',
     ],
-    'version': 'No version',
+    'version': '8.0.0.0.0',
     'website': 'www.adhoc.com.ar'}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
