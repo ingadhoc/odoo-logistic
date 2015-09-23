@@ -1,0 +1,1488 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* logistic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-23 15:59+0000\n"
+"PO-Revision-Date: 2015-09-23 13:04-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: selection:logistic.waybill,state:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+msgid "Additional Properties"
+msgstr "Opciones"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_07_product_template
+msgid "Bromatología"
+msgstr "Bromatología"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_03_product_template
+msgid "Buenos Aires – Rosario"
+msgstr "Buenos Aires – Rosario"
+
+#. module: logistic
+#: view:logistic.location:logistic.view_logistic_location_filter
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_filter
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+msgid "By Attribute"
+msgstr "Por Atributo"
+
+#. module: logistic
+#: view:logistic.location:logistic.view_logistic_location_filter
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_filter
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+msgid "By object"
+msgstr "By object"
+
+#. module: logistic
+#: view:logistic.expense.make.invoice:logistic.view_expense_make_invoice
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+#: view:logistic.travel.make.invoice:logistic.view_travel_make_invoice
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: logistic
+#: selection:logistic.requirement,state:0 selection:logistic.waybill,state:0
+#: selection:logistic.waybill_driver_payment,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:227
+#, python-format
+msgid ""
+"Cannot cancel requirements that has a renewed by requirement! You must first "
+"delete the related renewed by requirement."
+msgstr ""
+"Cannot cancel requirements that has a renewed by requirement! You must first "
+"delete the related renewed by requirement."
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:216
+#, python-format
+msgid "Cannot delete requirement(s) which are not in draft or cancelled state."
+msgstr ""
+"Cannot delete requirement(s) which are not in draft or cancelled state."
+
+#. module: logistic
+#: field:fleet.vehicle,capacity:0
+msgid "Capacity (pallets)"
+msgstr "Capacidad (pallets)"
+
+#. module: logistic
+#: selection:fleet.vehicle,type:0
+msgid "Car"
+msgstr "Auto"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_10_product_template
+msgid "Carnet Municipal"
+msgstr "Carnet Municipal"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_13_product_template
+msgid "Carnet Sanitario"
+msgstr "Carnet Sanitario"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.view_logistic_vehicle_filter
+msgid "Cars"
+msgstr "Autos"
+
+#. module: logistic
+#: code:addons/logistic/waybill.py:169
+#, python-format
+msgid "Charged"
+msgstr "Litros Cargados"
+
+#. module: logistic
+#: help:logistic.travel.make.invoice,grouped:0
+msgid "Check the box to group the invoices for the same customers"
+msgstr "Marque la casilla para agrupar facturas para el mismo cliente"
+
+#. module: logistic
+#: help:logistic.expense.make.invoice,grouped:0
+msgid "Check the box to group the invoices for the same suppliers"
+msgstr ""
+"Marque la casilla para agrupar las facturas para los mismos proveedores"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: logistic
+#: selection:logistic.waybill,state:0
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: logistic
+#: field:logistic.waybill,company_id:0
+msgid "Company"
+msgstr "Compania"
+
+#. module: logistic
+#: model:ir.ui.menu,name:logistic.menu_configuration
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:373
+#, python-format
+msgid "Configuration Error!"
+msgstr "Configuration Error!"
+
+#. module: logistic
+#: code:addons/logistic/waybill.py:173
+#, python-format
+msgid "Consumed Liters"
+msgstr "Litros Consumidos"
+
+#. module: logistic
+#: code:addons/logistic/waybill.py:183
+#, python-format
+msgid "Consumption"
+msgstr "Consumo (l/km)"
+
+#. module: logistic
+#: field:logistic.waybill,consumption:0
+msgid "Consumption (l/km)"
+msgstr "Consumo (l/km)"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_form
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Create Invoice"
+msgstr "Crear Factura"
+
+#. module: logistic
+#: view:logistic.expense.make.invoice:logistic.view_expense_make_invoice
+#: view:logistic.travel.make.invoice:logistic.view_travel_make_invoice
+msgid "Create Invoices"
+msgstr "Crear Facturas"
+
+#. module: logistic
+#: view:logistic.expense.make.invoice:logistic.view_expense_make_invoice
+#: view:logistic.travel.make.invoice:logistic.view_travel_make_invoice
+msgid "Create invoices"
+msgstr "Crear Facturas"
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,create_uid:0
+#: field:logistic.location,create_uid:0
+#: field:logistic.requirement,create_uid:0 field:logistic.travel,create_uid:0
+#: field:logistic.travel.make.invoice,create_uid:0
+#: field:logistic.waybill,create_uid:0
+#: field:logistic.waybill_driver_payment,create_uid:0
+#: field:logistic.waybill_expense,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,create_date:0
+#: field:logistic.location,create_date:0
+#: field:logistic.requirement,create_date:0
+#: field:logistic.travel,create_date:0
+#: field:logistic.travel.make.invoice,create_date:0
+#: field:logistic.waybill,create_date:0
+#: field:logistic.waybill_driver_payment,create_date:0
+#: field:logistic.waybill_expense,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_15_product_template
+msgid "Cubierta Bridgestone"
+msgstr "Cubierta Bridgestone"
+
+#. module: logistic
+#: field:logistic.waybill,currency_id:0
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_12_product_template
+msgid "Curso FTP"
+msgstr "Curso FTP"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,partner_id:0
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_02_product_template
+msgid "Córdoba – Buenos Aires"
+msgstr "Córdoba – Buenos Aires"
+
+#. module: logistic
+#: field:logistic.requirement,date:0
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: field:logistic.waybill,date:0
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_filter
+#: field:logistic.waybill_driver_payment,date:0
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,date:0
+msgid "Date"
+msgstr "Fecha"
+
+#. module: logistic
+#: field:logistic.waybill,date_finish:0
+msgid "Date Finish"
+msgstr "Fecha Terminado"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+msgid "Date From"
+msgstr "Fecha desde"
+
+#. module: logistic
+#: field:logistic.waybill,date_start:0
+msgid "Date Start"
+msgstr "Fecha Comienzo"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+msgid "Date To"
+msgstr "Fecha hasta"
+
+#. module: logistic
+#: help:logistic.requirement,message_last_post:0
+#: help:logistic.waybill,message_last_post:0
+#: help:logistic.waybill_driver_payment,message_last_post:0
+msgid "Date of the last message posted on the record."
+msgstr "Fecha del último mensaje publicado en el historial."
+
+#. module: logistic
+#: field:product.product,default_range:0
+msgid "Default Range"
+msgstr "Rango por Defecto"
+
+#. module: logistic
+#: field:product.product,default_validity_days:0
+msgid "Default Validity Days"
+msgstr "Días de Validación por Defecto"
+
+#. module: logistic
+#: field:product.product,default_warning_days:0
+msgid "Default Warning Days"
+msgstr "Días de Advertencia por Defecto"
+
+#. module: logistic
+#: field:product.product,default_warning_range:0
+msgid "Default Warning Range"
+msgstr "Rango de Advertencia por Defecto"
+
+#. module: logistic
+#: code:addons/logistic/waybill.py:214
+#, python-format
+msgid "Distance"
+msgstr "Distancia"
+
+#. module: logistic
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,invoice_state:0
+msgid "Do not Invoice"
+msgstr "No Facturar"
+
+#. module: logistic
+#: view:logistic.expense.make.invoice:logistic.view_expense_make_invoice
+#: view:logistic.travel.make.invoice:logistic.view_travel_make_invoice
+msgid "Do you really want to create the invoice(s)?"
+msgstr "Quiere realmente crear la(s) factura(s)?"
+
+#. module: logistic
+#: selection:logistic.requirement,type:0
+#: selection:product.product,service_subtype:0
+msgid "Document"
+msgstr "Documento"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+#: field:fleet.vehicle,document_ids:0
+#: view:product.product:logistic.view_logistic_product_filter
+#: view:res.partner:logistic.view_logistic_partner_form
+#: field:res.partner,document_ids:0
+msgid "Documents"
+msgstr "Documentos"
+
+#. module: logistic
+#: selection:logistic.requirement,state:0
+#: selection:logistic.waybill_driver_payment,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: field:logistic.requirement,partner_id:0
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,driver_id:0
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+#: field:logistic.waybill,driver_id:0
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_filter
+#: field:logistic.waybill_driver_payment,driver_id:0
+msgid "Driver"
+msgstr "Conductor"
+
+#. module: logistic
+#: field:logistic.waybill,driver_payment_id:0
+msgid "Driver Payment"
+msgstr "Pago de Conductor"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_waybill_driver_payment_driver_payments
+#: model:ir.ui.menu,name:logistic.menu_driver_payments
+msgid "Driver Payments"
+msgstr "Pagos de Conductores"
+
+#. module: logistic
+#: field:logistic.waybill,driver_product_id:0
+#: field:res.partner,driver_product_id:0
+msgid "Driver Product"
+msgstr "Producto de Conductor"
+
+#. module: logistic
+#: code:addons/logistic/waybill.py:218
+#, python-format
+msgid "Driver Total"
+msgstr "Conductor Total"
+
+#. module: logistic
+#: field:logistic.waybill,driver_unit_price:0
+msgid "Driver Unit Price"
+msgstr "Precio por Unidad del Conductor"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_partner_drivers
+#: model:ir.ui.menu,name:logistic.menu_drivers
+msgid "Drivers"
+msgstr "Conductores"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_waybill
+msgid "Email Thread"
+msgstr "Hilo de Mensajes"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+msgid "Engine Options"
+msgstr "Opciones del motor"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:357
+#: code:addons/logistic/requirement.py:360
+#: code:addons/logistic/requirement.py:363 code:addons/logistic/travel.py:167
+#: code:addons/logistic/travel.py:196 code:addons/logistic/travel.py:243
+#: code:addons/logistic/travel.py:298 code:addons/logistic/travel.py:319
+#: code:addons/logistic/travel.py:338 code:addons/logistic/travel.py:351
+#: code:addons/logistic/travel.py:403 code:addons/logistic/waybill.py:432
+#: code:addons/logistic/waybill.py:435
+#: code:addons/logistic/waybill_expense.py:79
+#: code:addons/logistic/waybill_expense.py:126
+#: code:addons/logistic/waybill_expense.py:186
+#: code:addons/logistic/waybill_expense.py:206
+#: code:addons/logistic/waybill_expense.py:225
+#: code:addons/logistic/waybill_expense.py:238
+#: code:addons/logistic/waybill_expense.py:285
+#: code:addons/logistic/wizard/travel_sale_order.py:58
+#: code:addons/logistic/wizard/travel_sale_order.py:146
+#: code:addons/logistic/wizard/travel_sale_order.py:149
+#: code:addons/logistic/wizard/travel_sale_order.py:152
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:80
+#, python-format
+msgid "Error! From date must be lower then to date."
+msgstr "Error! From date must be lower then to date."
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_expense_make_invoice
+msgid "Expense Make Invoice"
+msgstr "Facturar Gasto"
+
+#. module: logistic
+#: field:logistic.waybill,waybill_expense_ids:0
+msgid "Expenses"
+msgstr "Gastos"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_waybill_expense_expenses_to_invoice
+#: model:ir.ui.menu,name:logistic.menu_expenses_to_invoice
+msgid "Expenses to Invoice"
+msgstr "Gastos a Facturar"
+
+#. module: logistic
+#: field:logistic.requirement,expiration_date:0
+msgid "Expiration Date"
+msgstr "Fecha de Expiración"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Final"
+msgstr "Final"
+
+#. module: logistic
+#: field:logistic.waybill,final_liters:0
+msgid "Final Liters"
+msgstr "Litros Finales"
+
+#. module: logistic
+#: field:logistic.waybill,final_odometer_id:0
+#: field:logistic.waybill,wagon_final_odometer_id:0
+msgid "Final Odometer"
+msgstr "Odómetro Final"
+
+#. module: logistic
+#: field:logistic.requirement,message_follower_ids:0
+#: field:logistic.waybill,message_follower_ids:0
+#: field:logistic.waybill_driver_payment,message_follower_ids:0
+msgid "Followers"
+msgstr "Seguidores"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,from_date:0
+msgid "From"
+msgstr "Desde"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+msgid "From Location"
+msgstr "Desde Ubicación"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Fuel"
+msgstr "Combustible"
+
+#. module: logistic
+#: code:addons/logistic/waybill_expense.py:287
+#, python-format
+msgid "Gastos de Hoja de Ruta"
+msgstr "Gastos de Hoja de Ruta"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+msgid "General Properties"
+msgstr "Propiedades generales"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+msgid "Group By..."
+msgstr "Agrupar Por..."
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,grouped_line:0
+#: field:logistic.travel.make.invoice,grouped_line:0
+msgid "Group the Invoice Lines"
+msgstr "Agrupar por lineas de factura"
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,grouped:0
+#: field:logistic.travel.make.invoice,grouped:0
+msgid "Group the invoices"
+msgstr "Agrupar las Facturas"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:407
+#, python-format
+msgid "Hoja de Ruta"
+msgstr "Hoja de Ruta"
+
+#. module: logistic
+#: help:logistic.requirement,message_summary:0
+#: help:logistic.waybill,message_summary:0
+#: help:logistic.waybill_driver_payment,message_summary:0
+msgid ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+msgstr ""
+"Holds the Chatter summary (number of messages, ...). This summary is "
+"directly in html format in order to be inserted in kanban views."
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,id:0 field:logistic.location,id:0
+#: field:logistic.requirement,id:0 field:logistic.travel,id:0
+#: field:logistic.travel.make.invoice,id:0 field:logistic.waybill,id:0
+#: field:logistic.waybill_driver_payment,id:0
+#: field:logistic.waybill_expense,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: logistic
+#: help:logistic.requirement,message_unread:0
+#: help:logistic.waybill,message_unread:0
+#: help:logistic.waybill_driver_payment,message_unread:0
+msgid "If checked new messages require your attention."
+msgstr "If checked new messages require your attention."
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+msgid "Information"
+msgstr "Información"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_fleet_vehicle
+msgid "Information on a vehicle"
+msgstr "Información en un vehículo"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Initial"
+msgstr "Inicial"
+
+#. module: logistic
+#: field:logistic.waybill,initial_liters:0
+msgid "Initial Liters"
+msgstr "Litros Iniciales"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:124 code:addons/logistic/waybill.py:195
+#: field:logistic.requirement,initial_odometer_id:0
+#: field:logistic.waybill,initial_odometer_id:0
+#: field:logistic.waybill,wagon_initial_odometer_id:0
+#, python-format
+msgid "Initial Odometer"
+msgstr "Odómetro Inicial"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_05_product_template
+msgid "Inspección Técnica Vehicular"
+msgstr "Inspección Técnica Vehicular"
+
+#. module: logistic
+#: view:res.partner:logistic.view_logistic_partner_form
+msgid "Internal Notes"
+msgstr "Notas internas"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:216
+#: code:addons/logistic/requirement.py:226
+#, python-format
+msgid "Invalid Action!"
+msgstr "Invalid Action!"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:120
+#: model:ir.model,name:logistic.model_account_invoice
+#, python-format
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,invoice_date:0
+#: field:logistic.travel.make.invoice,invoice_date:0
+msgid "Invoice Date"
+msgstr "Fecha de Factura"
+
+#. module: logistic
+#: field:logistic.travel,invoice_line_id:0
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,invoice_line_id:0
+msgid "Invoice Line"
+msgstr "Línea de Factura"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:148
+#, python-format
+msgid "Invoice Lines"
+msgstr "Líneas de Factura"
+
+#. module: logistic
+#: field:res.partner,is_driver:0
+msgid "Is Driver?"
+msgstr "¿Es conductor?"
+
+#. module: logistic
+#: field:product.product,is_fuel:0
+msgid "Is Fuel?"
+msgstr "¿Es Combustible?"
+
+#. module: logistic
+#: field:logistic.requirement,message_is_follower:0
+#: field:logistic.waybill,message_is_follower:0
+#: field:logistic.waybill_driver_payment,message_is_follower:0
+msgid "Is a Follower"
+msgstr "Is a Follower"
+
+#. module: logistic
+#: field:logistic.requirement,issue_date:0
+msgid "Issue Date"
+msgstr "Fecha de Emisión"
+
+#. module: logistic
+#: selection:logistic.requirement,odometer_unit:0
+#: selection:logistic.waybill,odometer_unit:0
+#: selection:product.product,range_unit:0
+msgid "Kilometers"
+msgstr "Kilómetros"
+
+#. module: logistic
+#: field:logistic.requirement,message_last_post:0
+#: field:logistic.waybill,message_last_post:0
+#: field:logistic.waybill_driver_payment,message_last_post:0
+msgid "Last Message Date"
+msgstr "Last Message Date"
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,write_uid:0
+#: field:logistic.location,write_uid:0 field:logistic.requirement,write_uid:0
+#: field:logistic.travel,write_uid:0
+#: field:logistic.travel.make.invoice,write_uid:0
+#: field:logistic.waybill,write_uid:0
+#: field:logistic.waybill_driver_payment,write_uid:0
+#: field:logistic.waybill_expense,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: logistic
+#: field:logistic.expense.make.invoice,write_date:0
+#: field:logistic.location,write_date:0
+#: field:logistic.requirement,write_date:0 field:logistic.travel,write_date:0
+#: field:logistic.travel.make.invoice,write_date:0
+#: field:logistic.waybill,write_date:0
+#: field:logistic.waybill_driver_payment,write_date:0
+#: field:logistic.waybill_expense,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: logistic
+#: field:fleet.vehicle,length:0
+msgid "Length  (mts)"
+msgstr "Largo  (mts)"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,location_from_id:0
+#: field:product.product,location_from_id:0
+msgid "Location From"
+msgstr "Ubicación Desde"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,location_to_id:0
+#: field:product.product,location_to_id:0
+msgid "Location To"
+msgstr "Ubicación A"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_location_locations
+#: model:ir.ui.menu,name:logistic.menu_locations
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#. module: logistic
+#: model:ir.module.category,description:logistic.module_category_logistic
+#: model:ir.module.category,name:logistic.module_category_logistic
+#: model:ir.ui.menu,name:logistic.menu_logistic
+msgid "Logistic"
+msgstr "Logística"
+
+#. module: logistic
+#: selection:logistic.requirement,type:0
+#: selection:product.product,service_subtype:0
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+#: field:fleet.vehicle,maintenance_ids:0
+#: model:ir.actions.act_window,name:logistic.action_logistic_requirement_maintenances
+#: model:ir.ui.menu,name:logistic.menu_maintenances
+#: view:product.product:logistic.view_logistic_product_filter
+msgid "Maintenances"
+msgstr "Mantenimientos"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_expense_make_invoice
+#: model:ir.actions.act_window,name:logistic.action_travel_make_invoice
+msgid "Make Invoices"
+msgstr "Realizar facturas"
+
+#. module: logistic
+#: model:res.groups,name:logistic.group_manager
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: logistic
+#: model:ir.ui.menu,name:logistic.menu_marcas
+msgid "Marcas"
+msgstr "Marcas"
+
+#. module: logistic
+#: model:ir.ui.menu,name:logistic.menu_master_data
+msgid "Master Data"
+msgstr "Fecha Maestra"
+
+#. module: logistic
+#: field:logistic.requirement,message_ids:0
+#: field:logistic.waybill,message_ids:0
+#: field:logistic.waybill_driver_payment,message_ids:0
+msgid "Messages"
+msgstr "Messages"
+
+#. module: logistic
+#: help:logistic.requirement,message_ids:0 help:logistic.waybill,message_ids:0
+#: help:logistic.waybill_driver_payment,message_ids:0
+msgid "Messages and communication history"
+msgstr "Messages and communication history"
+
+#. module: logistic
+#: selection:logistic.requirement,odometer_unit:0
+#: selection:logistic.waybill,odometer_unit:0
+#: selection:product.product,range_unit:0
+msgid "Miles"
+msgstr "Miles"
+
+#. module: logistic
+#: model:ir.ui.menu,name:logistic.fleet_vehicle_model_brand_menu
+msgid "Model brand of Vehicle"
+msgstr "Modelo del vehículo"
+
+#. module: logistic
+#: field:fleet.vehicle,motor_sn:0
+msgid "Motor Number"
+msgstr "Numero de Motor"
+
+#. module: logistic
+#: view:logistic.location:logistic.view_logistic_location_filter
+#: field:logistic.location,name:0
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: field:logistic.requirement,name:0
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: field:logistic.waybill,name:0
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_filter
+#: field:logistic.waybill_driver_payment,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+#: selection:logistic.requirement,state:0
+msgid "Need Renew"
+msgstr "Necesita Renovación"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+#: selection:logistic.requirement,state:0
+msgid "Next To Renew"
+msgstr "Próximo a Renovarse"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:363
+#, python-format
+msgid "No address defined for the supplier"
+msgstr "No address defined for the supplier"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:360
+#, python-format
+msgid "No default supplier defined for this product"
+msgstr "No default supplier defined for this product"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:357
+#, python-format
+msgid "No supplier defined for this product !"
+msgstr "No hay proveedor definido para este producto !"
+
+#. module: logistic
+#: field:logistic.requirement,note:0 field:logistic.waybill,note:0
+#: field:logistic.waybill_driver_payment,note:0
+#: field:logistic.waybill_expense,note:0
+msgid "Note"
+msgstr "Nota"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Notes"
+msgstr "Notas"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Notes......"
+msgstr "Notas......"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+msgid "Número de Chasis"
+msgstr "Número de Chasis"
+
+#. module: logistic
+#: selection:logistic.requirement,state:0
+msgid "OK"
+msgstr "OK"
+
+#. module: logistic
+#: field:logistic.requirement,odometer_range:0
+msgid "Odometer Range"
+msgstr "Rango de Odometro"
+
+#. module: logistic
+#: field:logistic.requirement,odometer_unit:0
+#: field:logistic.waybill,odometer_unit:0
+msgid "Odometer Unit"
+msgstr "Unidad de Odometro"
+
+#. module: logistic
+#: help:logistic.requirement,initial_odometer_id:0
+#: help:logistic.waybill,final_odometer_id:0
+#: help:logistic.waybill,initial_odometer_id:0
+#: help:logistic.waybill,wagon_final_odometer_id:0
+#: help:logistic.waybill,wagon_initial_odometer_id:0
+msgid "Odometer measure of the vehicle at the moment of this log"
+msgstr "Medida del Odómetro del vehíuclo en el momento de este registro"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:154
+#, python-format
+msgid "Order Reference"
+msgstr "Orden de Compra"
+
+#. module: logistic
+#: code:addons/logistic/waybill_expense.py:126
+#, python-format
+msgid "Order cannot be created because no purchase pricelist exists!"
+msgstr "Order cannot be created because no purchase pricelist exists!"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:243
+#: code:addons/logistic/wizard/travel_sale_order.py:58
+#, python-format
+msgid "Order cannot be created because not sale pricelist exists!"
+msgstr "Order cannot be created because not sale pricelist exists!"
+
+#. module: logistic
+#: selection:product.product,service_subtype:0
+msgid "Other"
+msgstr "Otro"
+
+#. module: logistic
+#: view:product.product:logistic.view_logistic_product_filter
+msgid "Others"
+msgstr "Otros"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:462
+#, python-format
+msgid "PO: %s"
+msgstr "PO: %s"
+
+#. module: logistic
+#: selection:logistic.waybill_driver_payment,state:0
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_res_partner
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_requirement_partners_documents
+#: model:ir.ui.menu,name:logistic.menu_partners_documents
+msgid "Partners Documents"
+msgstr "Documentos de Conductores"
+
+#. module: logistic
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_form
+msgid "Pay"
+msgstr "Pago"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Payment And Cost"
+msgstr "Costo y Pago"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_09_product_template
+msgid "Permiso Internacional Chile"
+msgstr "Permiso Internacional Chile"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:299 code:addons/logistic/travel.py:339
+#: code:addons/logistic/waybill_expense.py:187
+#: code:addons/logistic/waybill_expense.py:226
+#, python-format
+msgid "Please define income account for this product: \"%s\" (id:%d)."
+msgstr "Please define income account for this product: \"%s\" (id:%d)."
+
+#. module: logistic
+#: code:addons/logistic/waybill_expense.py:286
+#, python-format
+msgid "Please define purchases journal for this company: \"%s\" (id:%d)."
+msgstr "Please define purchases journal for this company: \"%s\" (id:%d)."
+
+#. module: logistic
+#: code:addons/logistic/travel.py:404
+#, python-format
+msgid "Please define sales journal for this company: \"%s\" (id:%d)."
+msgstr "Please define sales journal for this company: \"%s\" (id:%d)."
+
+#. module: logistic
+#: field:logistic.travel,price:0
+msgid "Price"
+msgstr "Precio"
+
+#. module: logistic
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,price_unit:0
+msgid "Price Unit"
+msgstr "Precio unitario"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_product_product
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: field:logistic.requirement,product_id:0
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,product_id:0
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,product_id:0
+msgid "Product"
+msgstr "Producto"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_product_products
+#: model:ir.ui.menu,name:logistic.menu_products
+msgid "Products"
+msgstr "Productos"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_11_product_template
+msgid "Psicofísico"
+msgstr "Psicofísico"
+
+#. module: logistic
+#: field:logistic.requirement,po_line_id:0
+msgid "Purchase Order Line"
+msgstr "Linea de Ordenes de Compra"
+
+#. module: logistic
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,product_uom_qty:0
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: logistic
+#: field:product.product,range_unit:0
+msgid "Range Unit"
+msgstr "Rango de Unidad"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,reference:0
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: field:logistic.waybill,reference:0
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Reference..."
+msgstr "Referencia..."
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:132
+#, python-format
+msgid "Remaining Days"
+msgstr "Días Restantes"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:128
+#, python-format
+msgid "Remaining Range"
+msgstr "Rango Restante"
+
+#. module: logistic
+#: selection:logistic.requirement,state:0
+msgid "Renewal Requested"
+msgstr "Renovación de Petición"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+#: selection:logistic.requirement,state:0
+msgid "Renewed"
+msgstr "Renovado"
+
+#. module: logistic
+#: field:logistic.requirement,renewed_by_id:0
+msgid "Renewed By"
+msgstr "Renovado Por"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:137
+#, python-format
+msgid "Renews"
+msgstr "Renueva a"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+msgid "Request Renewal"
+msgstr "Petición de Renovación"
+
+#. module: logistic
+#: model:ir.ui.menu,name:logistic.menu_requirements
+msgid "Requirements"
+msgstr "Requerimientos"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_01_product_template
+msgid "Rosario – Córdoba"
+msgstr "Rosario – Córdoba"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_06_product_template
+msgid "Ruta"
+msgstr "Ruta"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_08_product_template
+msgid "SENASA"
+msgstr "SENASA"
+
+#. module: logistic
+#: code:addons/logistic/wizard/travel_sale_order.py:169
+#, python-format
+msgid "Sale Orders"
+msgstr "Ordenes de Venta"
+
+#. module: logistic
+#: code:addons/logistic/wizard/travel_sale_order.py:152
+#, python-format
+msgid ""
+"Sale order cannot be created because it already has a related sale order "
+"line!"
+msgstr ""
+"Sale order cannot be created because it already has a related sale order "
+"line!"
+
+#. module: logistic
+#: code:addons/logistic/wizard/travel_sale_order.py:146
+#, python-format
+msgid ""
+"Sale order cannot be created because there is no partner defined for this "
+"travel!"
+msgstr ""
+"Sale order cannot be created because there is no partner defined for this "
+"travel!"
+
+#. module: logistic
+#: code:addons/logistic/wizard/travel_sale_order.py:149
+#, python-format
+msgid ""
+"Sale order cannot be created because there is no product defined for this "
+"travel!"
+msgstr ""
+"Sale order cannot be created because there is no product defined for this "
+"travel!"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_04_product_template
+msgid "Seguro"
+msgstr "Seguro"
+
+#. module: logistic
+#: model:product.template,name:logistic.product_product_14_product_template
+msgid "Service"
+msgstr "Servicio"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+msgid "Set Active"
+msgstr "Poner Activo"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+msgid "Set OK"
+msgstr "Establecer OK"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: field:logistic.requirement,state:0 field:logistic.waybill,state:0
+#: field:logistic.waybill_driver_payment,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: logistic
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+msgid "Subtotal"
+msgstr "Subtotal"
+
+#. module: logistic
+#: field:product.product,service_subtype:0
+msgid "Subtype"
+msgstr "Subtipo"
+
+#. module: logistic
+#: field:logistic.requirement,message_summary:0
+#: field:logistic.waybill,message_summary:0
+#: field:logistic.waybill_driver_payment,message_summary:0
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: logistic
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,supplier_id:0
+msgid "Supplier"
+msgstr "Proveedor"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:373
+#, python-format
+msgid ""
+"The product \"%s\" has been defined with your company as reseller which "
+"seems to be a configuration error!"
+msgstr ""
+"The product \"%s\" has been defined with your company as reseller which "
+"seems to be a configuration error!"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:320 code:addons/logistic/travel.py:352
+#: code:addons/logistic/waybill_expense.py:207
+#: code:addons/logistic/waybill_expense.py:239
+#, python-format
+msgid ""
+"There is no Fiscal Position defined or Income category account defined for "
+"default properties of Product categories."
+msgstr ""
+"There is no Fiscal Position defined or Income category account defined for "
+"default properties of Product categories."
+
+#. module: logistic
+#: code:addons/logistic/travel.py:167
+#, python-format
+msgid "There is no sale pricelist!"
+msgstr "There is no sale pricelist!"
+
+#. module: logistic
+#: field:logistic.travel,to_date:0
+msgid "To"
+msgstr "A"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_form
+msgid "To Draft"
+msgstr "A Borrador"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+msgid "To Invoice"
+msgstr "A Facturar"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+msgid "To Location"
+msgstr "A Ubicación"
+
+#. module: logistic
+#: code:addons/logistic/waybill_expense.py:76
+#, python-format
+msgid "To create invoice expenses must have supplier and product"
+msgstr "To create invoice expenses must have supplier and product"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:193
+#, python-format
+msgid "To create invoice travels must have partner and product"
+msgstr "To create invoice travels must have partner and product"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_tree
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+#: view:logistic.waybill:logistic.view_logistic_waybill_tree
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_form
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_tree
+msgid "Total"
+msgstr "Total"
+
+#. module: logistic
+#: selection:fleet.vehicle,type:0
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,tractor_id:0
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: field:logistic.waybill,tractor_id:0
+msgid "Tractor"
+msgstr "Tractor"
+
+#. module: logistic
+#: code:addons/logistic/waybill.py:432
+#, python-format
+msgid "Tractor Final odometer must be greater than initial odometer!"
+msgstr "Tractor Final odometer must be greater than initial odometer!"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.view_logistic_vehicle_filter
+msgid "Tractors"
+msgstr "Tractors"
+
+#. module: logistic
+#: selection:product.product,service_subtype:0
+msgid "Travel"
+msgstr "Viaje"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_travel_make_invoice
+msgid "Travel Make Invoice"
+msgstr "Travel Make Invoice"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_travel_travels
+#: model:ir.ui.menu,name:logistic.menu_travels
+#: view:logistic.travel:logistic.view_logistic_travel_calendar
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+#: field:logistic.waybill,travel_ids:0
+#: view:product.product:logistic.view_logistic_product_filter
+msgid "Travels"
+msgstr "Viajes"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_travel_travels_calendar
+#: model:ir.ui.menu,name:logistic.menu_travels_calendar
+msgid "Travels Calendar"
+msgstr "Calendario de Viajes"
+
+#. module: logistic
+#: field:fleet.vehicle,type:0 field:logistic.requirement,type:0
+msgid "Type"
+msgstr "Tipo"
+
+#. module: logistic
+#: field:logistic.requirement,message_unread:0
+#: field:logistic.waybill,message_unread:0
+#: field:logistic.waybill_driver_payment,message_unread:0
+msgid "Unread Messages"
+msgstr "Unread Messages"
+
+#. module: logistic
+#: model:res.groups,name:logistic.group_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: logistic
+#: code:addons/logistic/wizard/requirement_replace_wizard.py:142
+#, python-format
+msgid "User Error!"
+msgstr "User Error!"
+
+#. module: logistic
+#: view:logistic.requirement:logistic.view_logistic_requirement_filter
+#: field:logistic.requirement,vehicle_id:0
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+msgid "Vehicle"
+msgstr "Vehículo"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_requirement_vehicle_documents
+#: model:ir.ui.menu,name:logistic.menu_vehicle_documents
+msgid "Vehicle Documents"
+msgstr "Documentos de Vehículos"
+
+#. module: logistic
+#: model:ir.ui.menu,name:logistic.fleet_vehicle_model_menu
+msgid "Vehicle Model"
+msgstr "Modelo del vehículo"
+
+#. module: logistic
+#: model:ir.ui.menu,name:logistic.fleet_vehicle_state_menu
+msgid "Vehicle Status"
+msgstr "Estado del vehículo"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_vehicle_vehicles
+#: model:ir.ui.menu,name:logistic.menu_vehicles
+msgid "Vehicles"
+msgstr "Vehículos"
+
+#. module: logistic
+#: model:res.groups,name:logistic.group_view
+msgid "View"
+msgstr "Vista"
+
+#. module: logistic
+#: selection:fleet.vehicle,type:0 field:fleet.vehicle,wagon_id:0
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: field:logistic.waybill,wagon_id:0
+msgid "Wagon"
+msgstr "Furgón"
+
+#. module: logistic
+#: code:addons/logistic/waybill.py:435
+#, python-format
+msgid "Wagon Final odometer must be greater than initial odometer!"
+msgstr "Wagon Final odometer must be greater than initial odometer!"
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.view_logistic_vehicle_filter
+msgid "Wagons"
+msgstr "Wagons"
+
+#. module: logistic
+#: code:addons/logistic/requirement.py:101
+#: field:logistic.requirement,warning_days:0
+#, python-format
+msgid "Warning Days"
+msgstr "Días de Advertencia"
+
+#. module: logistic
+#: field:logistic.requirement,warning_range:0
+msgid "Warning Range"
+msgstr "Rango de Advertencia"
+
+#. module: logistic
+#: code:addons/logistic/travel.py:193
+#: code:addons/logistic/waybill_expense.py:76
+#, python-format
+msgid "Warning!"
+msgstr "Warning!"
+
+#. module: logistic
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: field:logistic.travel,waybill_id:0
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: field:logistic.waybill_expense,waybill_id:0
+msgid "Waybill"
+msgstr "Hoja de Ruta"
+
+#. module: logistic
+#: model:ir.actions.act_window,name:logistic.action_logistic_waybill_waybills
+#: model:ir.ui.menu,name:logistic.menu_waybills
+#: model:ir.ui.menu,name:logistic.menu_waybills_main
+#: field:logistic.waybill_driver_payment,waybill_ids:0
+msgid "Waybills"
+msgstr "Hojas de Ruta"
+
+#. module: logistic
+#: field:fleet.vehicle,width:0
+msgid "Width (mts)"
+msgstr "Ancho (mts)"
+
+#. module: logistic
+#: field:fleet.vehicle,year:0
+msgid "Year"
+msgstr "Año"
+
+#. module: logistic
+#: code:addons/logistic/waybill_expense.py:80
+#, python-format
+msgid ""
+"You cannot group expenses having different currencies for the same supplier."
+msgstr ""
+"You cannot group expenses having different currencies for the same supplier."
+
+#. module: logistic
+#: code:addons/logistic/travel.py:197
+#, python-format
+msgid ""
+"You cannot group travels having different currencies for the same partner."
+msgstr ""
+"You cannot group travels having different currencies for the same partner."
+
+#. module: logistic
+#: code:addons/logistic/wizard/requirement_replace_wizard.py:142
+#, python-format
+msgid "You must select accounts to reconcile."
+msgstr "You must select accounts to reconcile."
+
+#. module: logistic
+#: view:fleet.vehicle:logistic.fleet_vehicle_form
+msgid "base.group_no_one"
+msgstr "base.group_no_one"
+
+#. module: logistic
+#: field:fleet.vehicle,default_kilometers:0
+msgid "default_kilometers"
+msgstr "default_kilometers"
+
+#. module: logistic
+#: field:fleet.vehicle,default_validity:0
+msgid "default_validity"
+msgstr "default_validity"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_location
+#: view:logistic.location:logistic.view_logistic_location_filter
+#: view:logistic.location:logistic.view_logistic_location_form
+#: view:logistic.location:logistic.view_logistic_location_tree
+msgid "location"
+msgstr "location"
+
+#. module: logistic
+#: view:logistic.expense.make.invoice:logistic.view_expense_make_invoice
+#: view:logistic.travel.make.invoice:logistic.view_travel_make_invoice
+msgid "or"
+msgstr "o"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_requirement
+#: view:logistic.requirement:logistic.view_logistic_requirement_form
+#: view:logistic.requirement:logistic.view_logistic_requirement_tree
+msgid "requirement"
+msgstr "requirement"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_travel
+#: view:logistic.travel:logistic.view_logistic_travel_filter
+#: view:logistic.travel:logistic.view_logistic_travel_form
+#: view:logistic.travel:logistic.view_logistic_travel_tree
+msgid "travel"
+msgstr "Viaje"
+
+#. module: logistic
+#: view:logistic.waybill:logistic.view_logistic_waybill_filter
+#: view:logistic.waybill:logistic.view_logistic_waybill_form
+#: view:logistic.waybill:logistic.view_logistic_waybill_tree
+msgid "waybill"
+msgstr "Hoja de ruta"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_waybill_driver_payment
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_filter
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_form
+#: view:logistic.waybill_driver_payment:logistic.view_logistic_waybill_driver_payment_tree
+msgid "waybill_driver_payment"
+msgstr "waybill_driver_payment"
+
+#. module: logistic
+#: model:ir.model,name:logistic.model_logistic_waybill_expense
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_filter
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_form
+#: view:logistic.waybill_expense:logistic.view_logistic_waybill_expense_tree
+msgid "waybill_expense"
+msgstr "waybill_expense"

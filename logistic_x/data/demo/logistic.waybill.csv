@@ -1,3 +1,0 @@
-id,tractor_id/id,wagon_id/id,driver_id/id,initial_odometer,final_odometer
-logistic_waybill_01,fleet_vehicle_02,fleet_vehicle_01,base.res_partner_main1,55000,
-logistic_waybill_02,fleet_vehicle_04,fleet_vehicle_03,base.res_partner_main2,70000,

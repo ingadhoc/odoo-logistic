@@ -1,29 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-##############################################################################
-#
-#    Logistic
-#    Copyright (C) 2014 No author.
-#    No email
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
--->
-<!-- logistic.waybill -->
-<!-- logistic.waybill -->
-<!-- logistic.waybill -->
 <openerp>
     <data>
 
@@ -32,26 +7,27 @@
             <field name="name">logistic.waybill.select</field>
             <field name="model">logistic.waybill</field>
             <field name="arch" type="xml">
-                <search string="waybill" version="7.0">
+                <search string="waybill" version="8.0">
                     <group string="By Attribute">
-                    <field name="name" string="Name"
-                            />
-                    <field name="reference" string="Reference"
-                            />
-                    <field name="date" string="Date"
-                            />
-                    <field name="tractor_id" string="Tractor"
-                            />
-                    <field name="wagon_id" string="Wagon"
-                            />
-                    <field name="driver_id" string="Driver"
-                            />
+                        <field name="name" string="Name"/>
+                        <field name="reference" string="Reference"/>
+                        <field name="date" string="Date"/>
+                        <field name="tractor_id" string="Tractor"/>
+                        <field name="wagon_id" string="Wagon"/>
+                        <field name="driver_id" string="Driver"/>
+                        <filter string="Active" name="active" domain="[('state','=','active')]"/>
                     </group>
-                    <group string="By object">
-                    <field name="driver_payment_id" string="Driver Payment"
-                            />
+                        <group>
+                        <field name="date" string="Date From" filter_domain="[('date','&gt;=',self)]"/>
+                        <field name="date" string="Date To" filter_domain="[('date','&lt;=',self)]"/>
                     </group>
-                </search>
+                       <group expand="0" string="Group By...">
+                           <filter string="Vehicle" domain="[]" context="{'group_by' : 'tractor_id'}"/>
+                           <filter string="Wagon" domain="[]" context="{'group_by' : 'wagon_id'}"/>
+                           <filter string="Driver" domain="[]" context="{'group_by' : 'driver_id'}"/>
+                           <filter string="Date" domain="[]" context="{'group_by' : 'date'}"/>
+                    </group> 
+                </search>                   
             </field>
         </record>
 
@@ -60,7 +36,7 @@
             <field name="name">logistic.waybill.form</field>
             <field name="model">logistic.waybill</field>
             <field name="arch" type="xml">
-                <form string="waybill" version="7.0">
+                <form string="waybill" version="8.0">
                     <header>
                         <button name="sgn_close"
                             states="active"
@@ -81,57 +57,123 @@
                             />
                     </header>
                     <sheet string="waybill">
-                     <group>
-                        <field name="name"
-                            />
-                        <field name="reference"
-                            />
-                        <field name="date"
-                            />
-                        <field name="tractor_id"
-                            on_change="on_change_vehicle(vehicle_id, context)"
-                            />
-                        <field name="wagon_id"
-                            />
-                        <field name="driver_id"
-                            />
-                        <field name="initial_odometer"
-                            />
-                        <field name="final_odometer"
-                            />
-                        <field name="odometer_unit"
-                            />
-                        <field name="note"
-                            />
-                        <field name="company_id"
-                            />
-                        <field name="date_start"
-                            />
-                        <field name="date_finish"
-                            />
-                        <field name="driver_product_id"
-                            />
-                        <field name="distance"
-                            />
-                        <field name="initial_liters"
-                            />
-                        <field name="final_liters"
-                            />
-                        <field name="charged_liters"
-                            />
-                        <field name="consumed_liters"
-                            />
-                        <field name="consumption"
-                            />
-                    <field name="travel_ids"
-                            />
-                    <field name="waybill_expense_ids"
-                            />
-                    <field name="driver_payment_id"
-                            />
-                     </group>
-                    </sheet>
+                        <field name="odometer_unit" invisible="1"/>
+                        <field name="tractor_status" invisible="1"/>
+                        <field name="wagon_status" invisible="1"/>
+                        <field name="driver_status" invisible="1"/>
+                        <h1>
+                            <label string="Waybill "/>
+                            <field name="name" class="oe_inline" readonly="1"/>
+                            / <field name="reference" placeholder="Reference..." class="oe_inline"/>
+                        </h1>
+                            <group>
+                                <group colspan="2">
+                                    <field name="date"/>
+                                </group>
+                                <group>
+                                    <label for="tractor_id"/>
+                                    <div class="oe_inline">
+                                        <field name="tractor_id" class="oe_inline"/>
+                                        <img src="logistic/static/src/img/light-green.png" attrs="{'invisible':[('tractor_status', '!=', 'ok')]}" class="oe_inline oe_view_only"/>
+                                        <img src="logistic/static/src/img/light-yellow.png" attrs="{'invisible':[('tractor_status', '!=', 'next_to_renew')]}" class="oe_inline oe_view_only"/>
+                                        <img src="logistic/static/src/img/light-red.png" attrs="{'invisible':[('tractor_status', '!=', 'need_renew')]}" class="oe_inline oe_view_only"/>
+                                    </div>
+                                    <label for="wagon_id"/>
+                                    <div class="oe_inline">
+                                        <field name="wagon_id" class="oe_inline"/>
+                                        <img src="logistic/static/src/img/light-green.png" attrs="{'invisible':[('wagon_status', '!=', 'ok')]}" class="oe_inline oe_view_only"/>
+                                        <img src="logistic/static/src/img/light-yellow.png" attrs="{'invisible':[('wagon_status', '!=', 'next_to_renew')]}" class="oe_inline oe_view_only"/>
+                                        <img src="logistic/static/src/img/light-red.png" attrs="{'invisible':[('wagon_status', '!=', 'need_renew')]}" class="oe_inline oe_view_only"/>
+                                    </div>
+                                    <label for="driver_id"/>
+                                    <div class="oe_inline">
+                                        <field name="driver_id" class="oe_inline"/>
+                                         <img src="logistic/static/src/img/light-green.png" attrs="{'invisible':[('driver_status', '!=', 'ok')]}" class="oe_inline oe_view_only"/>
+                                        <img src="logistic/static/src/img/light-yellow.png" attrs="{'invisible':[('driver_status', '!=', 'next_to_renew')]}" class="oe_inline oe_view_only"/>
+                                        <img src="logistic/static/src/img/light-red.png" attrs="{'invisible':[('driver_status', '!=', 'need_renew')]}" class="oe_inline oe_view_only"/>
+                                    </div>                                            
+                                </group>
+                                <group col="4">
+                                    <field name="initial_odometer" string="Initial"/>
+                                    <field name="final_odometer" string="Final"/>
+                                    <field name="wagon_initial_odometer" string="Initial"/>
+                                    <field name="wagon_final_odometer" string="Final"/>
+                                </group>
 
+                                </group>
+    <!--                             <group>
+                                    <field name="tractor_id" on_change="on_change_tractor(tractor_id, context)"/>
+                                    <field name="wagon_id"/>
+                                    <field name="driver_id"/>
+                                </group>
+                                <group>
+                                    <field name="initial_odometer"/>
+                                    <field name="final_odometer"/>
+                                </group> -->
+                        <notebook>
+                            <page string="Travels">
+                                <field name="travel_ids" context="{'waybill_id':id,'from_waybill':True}">
+                                    <tree editable="top">
+                                        <field name="from_date" on_change="on_change_from_date(from_date, context)"/>
+                                        <field name="location_from_id" on_change="on_change_location(location_from_id, location_to_id, context)"/>
+                                        <field name="to_date"/>
+                                        <field name="location_to_id" on_change="on_change_location(location_from_id, location_to_id, context)"/>
+                                        <field name="partner_id"/>
+                                        <field name="reference"/>
+                                        <field name="product_id"/>
+                                        <field name="price" groups="base.group_sale_salesman,account.group_account_invoice" sum="Total"/>
+                                        <field name="ordered" invisible="1"/>
+                                        <field name="invoice_line_id" groups="base.group_sale_salesman"/>
+                                    </tree>
+                                </field>
+                                <group>
+                                    <group>
+                                        <field name="date_start"/>
+                                        <field name="date_finish"/>
+                                    </group>
+                                    <group>
+                                        <field name="initial_liters"/>
+                                        <field name="final_liters"/>
+                                    </group>
+                                    <group col="1" colspan="2">
+                                        <field name="waybill_expense_ids" context="{'from_waybill':True}">
+                                            <tree editable="top">
+                                                <field name="supplier_id"/>
+                                                <field name="product_id"/>
+                                                <field name="price_unit"/>
+                                                <field name="product_uom_qty"/>
+                                                <field name="price_subtotal" sum="Total"/>
+                                                <field name="invoice_state"/>
+                                                <field name="note"/>
+                                                <field name="invoice_line_id"/>
+                                                <button name="%(action_expense_make_invoice)d" string="Create Invoice" type="action" attrs="{'invisible': ['|','|',('supplier_id','=',False),('product_id','=',False),('invoice_state','=',True)]}"  icon="gtk-execute" groups="account.group_account_invoice"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Notes">
+                                <field name="note" placeholder="Notes......"/>
+                            </page>
+                            <page string="Payment And Cost">
+                                <field name="currency_id" invisible="1"/>
+                                <group>
+                                    <!-- <field name="distance" /> -->
+                                    <group string="Driver">
+                                        <field name="driver_product_id"/>
+                                        <field name="driver_unit_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="driver_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="driver_payment_id"/>
+                                    </group>
+                                    <group string="Fuel">
+                                        <field name="charged_liters"/>
+                                        <field name="consumed_liters"/>
+                                        <field name="consumption"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
                         <field name="message_ids" widget="mail_thread"/>
@@ -151,22 +193,14 @@
                     colors="grey:state=='cancelled';blue:state in ('active',);black:state in ('closed',); red:state in ()"
                     >
                     <field name="message_unread" invisible="1"/>
-                    <field name="name"
-                        />
-                    <field name="reference"
-                        />
-                    <field name="date"
-                        />
-                    <field name="tractor_id"
-                        />
-                    <field name="wagon_id"
-                        />
-                    <field name="driver_id"
-                        />
-                    <field name="distance"
-                        />
-                    <field name="driver_payment_id"
-                        />
+                    <field name="name"/>
+                    <field name="reference"/>
+                    <field name="date"/>
+                    <field name="tractor_id"/>
+                    <field name="wagon_id"/>
+                    <field name="driver_id"/>
+                    <field name="distance" sum="Total"/>
+                    <field name="driver_payment_id"/>
                     <field name="state" />
                 </tree>
             </field>
@@ -174,5 +208,3 @@
 
     </data>
 </openerp>
-<!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
-     -->

@@ -1,9 +1,0 @@
-id,is_driver,supplier,customer,is_company,name
-base.res_partner_main1,True,False,False,False,Mark Davis
-base.res_partner_main2,True,False,False,False,Roger Scott
-res_partner_01,False,True,False,True,Municipalidad de Córdoba
-res_partner_02,False,True,False,True,Proveedor 1
-res_partner_03,False,True,False,True,Segurometal
-res_partner_04,False,True,False,True,Agencia de Chile
-res_partner_05,False,True,False,True,Taller Mecánico
-res_partner_06,False,True,False,True,Bridgestone

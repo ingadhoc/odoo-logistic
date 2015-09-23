@@ -21,20 +21,19 @@
 
 
 {'active': False,
-    'author': 'ADHOC.',
-    'category': u'base.module_category_knowledge_management',
-    'demo_xml': [
+    'author': 'ADHOC SA',
+    'category': 'base.module_category_knowledge_management',
+    'demo': [
     ],
-    'depends': [u'fleet'],
+    'depends': ['fleet'],
     'description': """
 Logistic translations
 """,
-    'init_xml': [],
     'installable': True,
     'license': 'AGPL-3',
-    'name': u'Logistic Translations',
+    'name': 'Logistic Translations',
     'test': [],
-    'update_xml': [
+    'data': [
     ],
     'version': '8.0.0.1.0',
     'css': [

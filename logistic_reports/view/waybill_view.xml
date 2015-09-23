@@ -6,24 +6,24 @@
         <record id="view_logistic_waybill_form" model="ir.ui.view">
             <field name="name">logistic.waybill.form</field>
             <field name="model">logistic.waybill</field>
-            <field name="inherit_id" ref="logistic_x.view_logistic_waybill_form"/>
+            <field name="inherit_id" ref="logistic.view_logistic_waybill_form"/>
             <field name="arch" type="xml">
                 <page string="Payment And Cost" position="after">
                     <page string="Summary">
                         <group>
-                            <field name="days_range" />
-                            <field name="consumption_copy" />
-                            <field name="distance" />
+                            <field name="days_range"/>
+                            <field name="consumption_copy"/>
+                            <field name="distance"/>
                             <group>
-                                <field name="total_price" />
-                                <field name="total_cost" />
-                                <field name="net" />
-                                <field name="net_avg" />
+                                <field name="total_price"/>
+                                <field name="total_cost"/>
+                                <field name="net"/>
+                                <field name="net_avg"/>
                             </group>
                             <group>
-                                <field name="price_km" />
-                                <field name="cost_km" />
-                                <field name="net_km" />
+                                <field name="price_km"/>
+                                <field name="cost_km"/>
+                                <field name="net_km"/>
                             </group>
                         </group>
                     </page>
@@ -36,7 +36,7 @@
 
         <!-- TREEVIEW -->
 
-        <record id="view_logistic_waybill_report_tree" model="ir.ui.view">
+<!--         <record id="view_logistic_waybill_report_tree" model="ir.ui.view">
             <field name="name">logistic_report.waybill.tree</field>
             <field name="model">logistic.waybill</field>
             <field name="arch" type="xml">
@@ -47,7 +47,7 @@
                     <field name="driver_id"/>
                     <field name="state" invisible="1"/>
                     <field name="days_range"/>
-                    <field name="consumption_copy" avg="Promedio"/>
+                    <field name="consumption" avg="Promedio"/>
                     <field name="total_price" sum="Total"/>
                     <field name="total_cost" sum="Total"/>
                     <field name="net" sum="Total"/>
@@ -56,6 +56,24 @@
                     <field name="price_km" avg="Promedio"/>
                     <field name="net_km" avg="Promedio"/>
                 </tree>
+            </field>
+        </record> -->
+
+        <record id="view_logistic_waybill_report_graph" model="ir.ui.view">
+            <field name="name">logistic_report.waybill.graph</field>
+            <field name="model">logistic.waybill</field>
+            <field name="arch" type="xml">
+                <graph string="waybill" type="pivot">
+                    <field name="name" type="row"/>
+                    <field name="consumption" type="measure"/>
+                    <field name="total_price" type="measure"/>
+                    <field name="total_cost" type="measure"/>
+                    <field name="net" type="measure"/>
+                    <field name="net_avg" type="measure"/>
+                    <field name="cost_km" type="measure"/>
+                    <field name="price_km" type="measure"/>
+                    <field name="net_km" type="measure"/>
+                </graph>
             </field>
         </record>
 
