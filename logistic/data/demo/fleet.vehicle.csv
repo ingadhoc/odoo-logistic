@@ -1,0 +1,5 @@
+id,model_id/id,license_plate,driver_id/id,vin_sn,color,wagon_id/id,type,name
+fleet_vehicle_01,fleet.brand_mercedes,AFD123,base.res_partner_main1,131231,Negro,,wagon,Furgon 1
+fleet_vehicle_02,fleet.brand_mercedes,AHJ843,base.res_partner_main1,646423,Blanco,fleet_vehicle_01,tractor,Camion 1
+fleet_vehicle_03,fleet.brand_mercedes,HSD431,base.res_partner_main2,423422,Negro,,wagon,Furgon 2
+fleet_vehicle_04,fleet.brand_mercedes,JSD123,base.res_partner_main2,536643,Negro,fleet_vehicle_03,tractor,Camion 2

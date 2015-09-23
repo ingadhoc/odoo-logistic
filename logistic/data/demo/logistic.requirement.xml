@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+            
+         <!-- Confirm requirements-->
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_01"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_02"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_03"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_04"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_05"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_06"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_07"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_08"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_09"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_10"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_11"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_12"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_13"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_14"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_15"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_16"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_17"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_18"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_19"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_20"/>
+
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_01"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_02"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_03"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_04"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_05"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_06"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_07"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_08"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_09"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_10"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_11"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_12"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_13"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_14"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_15"/>
+        <workflow action="sgn_set_ok" model="logistic.requirement" ref="logistic_x.logistic_requirement_main_16"/>
+
+    </data>
+</openerp>
