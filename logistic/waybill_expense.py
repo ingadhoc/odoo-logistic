@@ -56,6 +56,11 @@ class waybill_expense(models.Model):
     date = fields.Date(
         related='waybill_id.date',  string='Date', store=True)
 
+    @api.one
+    @api.onchange('product_id')
+    def on_change_product(self):
+        self.price_unit = self.product_id.lst_price
+
     def action_invoice_create(self, cr, uid, ids, grouped=False, date_invoice=False, context=None):
         invoice_ids = []
         partner_currency = {}
