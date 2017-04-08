@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * logistic_reports
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: odoo-logistic (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-29 16:48+0000\n"
+"PO-Revision-Date: 2015-09-23 17:25+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Spanish (Argentina) (http://www.transifex.com/adhoc/ingadhoc-odoo-logistic-8-0/language/es_AR/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_AR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: logistic_reports
+#: model:ir.actions.act_window,name:logistic_reports.action_analysis_travel_report
+#: model:ir.ui.menu,name:logistic_reports.menu_analysis_travel
+msgid "Analysis Travel"
+msgstr "Análisis de Viaje"
+
+#. module: logistic_reports
+#: field:logistic.waybill,conumption:0
+msgid "Conumption"
+msgstr ""
+
+#. module: logistic_reports
+#: field:logistic.waybill,cost_km:0
+msgid "Cost km"
+msgstr ""
+
+#. module: logistic_reports
+#: field:logistic.travel,days_range:0
+msgid "Days Range"
+msgstr "Días de viaje"
+
+#. module: logistic_reports
+#: field:logistic.travel,days_range_avg:0
+msgid "Days Range Average"
+msgstr "Promedio de Días de viaje"
+
+#. module: logistic_reports
+#: model:ir.model,name:logistic_reports.model_logistic_waybill
+msgid "Email Thread"
+msgstr ""
+
+#. module: logistic_reports
+#: model:ir.ui.menu,name:logistic_reports.menu_logistic_report
+msgid "Logistic"
+msgstr "Logística"
+
+#. module: logistic_reports
+#: field:logistic.waybill,net:0
+msgid "Net"
+msgstr "Neto"
+
+#. module: logistic_reports
+#: field:logistic.waybill,net_avg:0
+msgid "Net %"
+msgstr "Neto %"
+
+#. module: logistic_reports
+#: field:logistic.waybill,net_km:0
+msgid "Net per km"
+msgstr "Neto por km"
+
+#. module: logistic_reports
+#: view:logistic.waybill:logistic_reports.view_logistic_waybill_form
+msgid "Payment And Cost"
+msgstr "Costo y Pago"
+
+#. module: logistic_reports
+#: field:logistic.waybill,price_km:0
+msgid "Price per km"
+msgstr "Precio por km"
+
+#. module: logistic_reports
+#: model:ir.actions.act_window,name:logistic_reports.action_logistic_waybill_report
+#: model:ir.ui.menu,name:logistic_reports.menu_waybills_report
+#: view:logistic.waybill:logistic_reports.view_logistic_waybill_form
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: logistic_reports
+#: view:logistic.travel:logistic_reports.view_logistic_travel_tree
+msgid "Total"
+msgstr "Total"
+
+#. module: logistic_reports
+#: field:logistic.waybill,total_cost:0
+msgid "Total Cost"
+msgstr "Costo Total"
+
+#. module: logistic_reports
+#: field:logistic.waybill,total_price:0
+msgid "Total Price"
+msgstr "Precio Total"
+
+#. module: logistic_reports
+#: view:logistic.travel:logistic_reports.view_logistic_travel_graph
+#: view:logistic.travel:logistic_reports.view_logistic_travel_tree
+msgid "Travel"
+msgstr "Viaje"
+
+#. module: logistic_reports
+#: model:ir.actions.report.xml,name:logistic_reports.waybill_report
+msgid "Waybill"
+msgstr "Hoja de Ruta"
+
+#. module: logistic_reports
+#: model:ir.model,name:logistic_reports.model_logistic_travel
+msgid "travel"
+msgstr "Viaje"
+
+#. module: logistic_reports
+#: view:logistic.waybill:logistic_reports.view_logistic_waybill_report_graph
+msgid "waybill"
+msgstr "Hoja de ruta"
